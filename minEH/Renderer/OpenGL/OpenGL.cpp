@@ -51,7 +51,7 @@ namespace mh
         uint32_t Context::beginDraw(float r, float g, float b, float a)
         {
             glClearColor(r, g, b, a);
-            glClear(GL_COLOR_BUFFER_BIT);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             return 0;
         }
         
@@ -66,6 +66,11 @@ namespace mh
         {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            
+            glEnable(GL_DEPTH_TEST);
+            glDepthFunc(GL_LEQUAL);
+            glEnable(GL_CULL_FACE);
+            glCullFace(GL_BACK);
             
             bc::bindContext(this);
             tc::bindContext(this);

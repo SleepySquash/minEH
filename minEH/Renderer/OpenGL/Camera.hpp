@@ -21,7 +21,7 @@ namespace mh
         {
             Context* context;
             CameraBufferObject cbo;
-            GLuint cameraUBO, cameraLoc;
+            GLuint CBO, cameraLoc;
             bool mDirty = false;
             
             GLCamera(Context* context = nullptr);

@@ -14,6 +14,7 @@ namespace mh
     namespace ShaderCollection
     {
         ShaderCollectorObject* sprite = nullptr;
+        ShaderCollectorObject* mesh = nullptr;
     }
 }
 

@@ -39,7 +39,7 @@ namespace mh
         {
             Mesh* mesh;
             
-            // MeshTest(GL::Context* context, const std::string& model = "Models/gothloli.obj", const std::string& texture = "Images/gothloli_d.jpg");
+            MeshTest(GL::Context* context, const std::string& model = "Models/gothloli.obj", const std::string& texture = "Models/gothloli_d.jpg");
             MeshTest(Vk::Context* context, const std::string& model = "Models/gothloli.obj", const std::string& texture = "Models/gothloli_d.jpg");
             void onInit() override;
             void onDestroy() override;

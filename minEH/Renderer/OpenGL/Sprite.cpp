@@ -61,7 +61,7 @@ namespace mh
     #ifdef MINEH_DEBUG
             if (!texture.first) { std::cout << "Error :: Sprite :: Draw :: No texture is bound (nullptr) while attempting to draw.\n"; return; }
     #endif
-            if (context->shaderID != ID) { glUseProgram(ID); context->shaderID = ID; }
+            if (context->shaderID != ID) { glUseProgram(ID); glDisable(GL_DEPTH_TEST); context->shaderID = ID; }
             if (context->VAOID != VAO) { glBindVertexArray(VAO); context->VAOID = VAO; }
             if (context->VBOID != VBO) { glBindBuffer(GL_ARRAY_BUFFER, VBO); context->VBOID = VBO; }
             if (mDirty)
@@ -81,7 +81,7 @@ namespace mh
         void GLSprite::dirty() { mDirty = true; }
         
         void GLSprite::setContext(void* context) { this->context = (GL::Context*)context; }
-        void GLSprite::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path); }
+        void GLSprite::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path); texture.second = path; }
     }
 }
 #endif

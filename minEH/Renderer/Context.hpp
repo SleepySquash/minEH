@@ -45,7 +45,7 @@ namespace mh
         
         struct Context : Renderer
         {
-            GLuint shaderID = 0, VAOID = 0, VBOID = 0, EBOID = 0, textureID = 0;
+            GLuint shaderID = 0, VAOID = 0, VBOID = 0, EBOID = 0, textureID = 0, CBOID = 0;
             Window* window = nullptr;
             Camera* camera = nullptr;
             
@@ -170,6 +170,8 @@ namespace mh
             
             bool anisotropyEnable = false;
             VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT;
+            VkPresentModeKHR presentMode1stPriority = VK_PRESENT_MODE_MAILBOX_KHR;
+            VkPresentModeKHR presentMode2ndPriority = VK_PRESENT_MODE_FIFO_KHR;
             
             VkCommandPool commandPool = VK_NULL_HANDLE, shortPool = VK_NULL_HANDLE;
             std::vector<VkCommandBuffer> commandBuffers = { VK_NULL_HANDLE };

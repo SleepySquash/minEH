@@ -379,8 +379,8 @@ namespace Vk
         presentModes.resize(presentModeCount);
         vkGetPhysicalDeviceSurfacePresentModesKHR(GPU, surface, &presentModeCount, presentModes.data());
         
-        for (auto& p : presentModes)
-            if (p == VK_PRESENT_MODE_MAILBOX_KHR) return VK_PRESENT_MODE_MAILBOX_KHR;
+        for (auto& p : presentModes) if (p == presentMode1stPriority) return presentMode1stPriority;
+        for (auto& p : presentModes) if (p == presentMode2ndPriority) return presentMode2ndPriority;
         return VK_PRESENT_MODE_FIFO_KHR;
     }
     

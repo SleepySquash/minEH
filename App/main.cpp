@@ -32,13 +32,13 @@ void _main(int, const char**)
     Camera* camera = Graphics::GetCamera(&context);
     context.camera = camera;
     
-    Entity* cameraController = composition.addEntity();
-    cameraController->addComponent<FreeCamera>(&window, camera);
+    Entity* player = composition.addEntity();
+    player->addComponent<FreeCamera>(&window, camera);
     
     {
         Entity* entity = composition.addEntity();
-        auto* mesh = entity->addComponent<test::MeshTest>(&context);
-        mesh->mesh->setScale({0.5f, 0.5f, 0.5f});
+        auto* mesh = entity->addComponent<test::MeshTest>(&context, "Models/chalet.obj", "Models/chalet.jpg");
+        mesh->mesh->setRotation({glm::radians(-90.f), 0.f, 0.f});
         mesh->mesh->setPosition({0.f, 0.f, 0.f});
     }
     
@@ -59,7 +59,6 @@ void _main(int, const char**)
             {
                 case Event::Type::Closed: window.close(); break;
                 case Event::Type::Resized: window.resize(event); context.resize(); break;
-                case Event::Type::KeyPressed: break;
                 default: break;
             }
             composition.event(event);

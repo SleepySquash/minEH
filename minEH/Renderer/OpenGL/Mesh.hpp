@@ -21,15 +21,16 @@ namespace mh
         struct GLMesh : Mesh
         {
             std::pair<GL::Texture*, std::string> texture = { nullptr, "" };
+            std::string modelPath;
             GL::Context* context = nullptr;
             
             glm::mat4 model;
-            GLuint VAO, VBO, EBO, ID, locModel;
-            Camera* camera = nullptr;
+            GLuint VAO, VBO, EBO, ID, loc;
+            uint32_t indicesCount;
             
             bool mDirty = true;
             
-            GLMesh(GL::Context* context);
+            GLMesh(GL::Context* context = nullptr);
             
             void create() override;
             void destroy() override;

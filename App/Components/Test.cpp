@@ -91,8 +91,10 @@ namespace mh
         
         
         
-        // MeshTest::MeshTest(GL::Context* context, const std::string& model, const std::string& texture) { mesh = (Mesh*)Graphics::GetMesh(context); }
-        MeshTest::MeshTest(Vk::Context* context, const std::string& model, const std::string& texture) { mesh = (Mesh*)Graphics::GetMesh(context); mesh->setTexture(texture); mesh->setModel(model); }
+        MeshTest::MeshTest(GL::Context* context, const std::string& model, const std::string& texture) {
+            mesh = (Mesh*)Graphics::GetMesh(context); mesh->setTexture(texture); mesh->setModel(model); }
+        MeshTest::MeshTest(Vk::Context* context, const std::string& model, const std::string& texture) {
+            mesh = (Mesh*)Graphics::GetMesh(context); mesh->setTexture(texture); mesh->setModel(model); }
         void MeshTest::onInit() { mesh->create(); }
         void MeshTest::onDestroy() { mesh->destroy(); delete mesh; }
         void MeshTest::onEvent(Event& event)
