@@ -30,7 +30,7 @@ namespace mh
             VBO = buffer->VBO;
             
             if (ShaderCollection::sprite) ++ShaderCollection::sprite->uses;
-            else ShaderCollection::sprite = new ShaderCollectorObject("Shaders/sprite.vert", "Shaders/sprite.frag");
+            else ShaderCollection::sprite = new ShaderCollectorObject("Shaders/OpenGL/sprite.vert", "Shaders/OpenGL/sprite.frag");
             ID = ShaderCollection::sprite->shader.ID;
             loc = glGetUniformLocation(ID, "model");
         }

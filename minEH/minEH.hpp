@@ -36,3 +36,5 @@
 
 #include "Engine/Composition.hpp"
 #include "Engine/Components/CameraController.hpp"
+
+#include "Audio/Audio.hpp"

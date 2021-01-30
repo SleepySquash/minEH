@@ -97,8 +97,8 @@ namespace mh
             PipelineCollectorObject* pco = pc::get("sprite");
             if (!pco->loaded)
             {
-                pco->vertexShaderPath = resourcePath() + "/Shaders/spv/_sprite.vert.spv";
-                pco->fragmentShaderPath = resourcePath() + "/Shaders/spv/_sprite.frag.spv";
+                pco->vertexShaderPath = resourcePath() + "/Shaders/Vulkan/spv/sprite.vert";
+                pco->fragmentShaderPath = resourcePath() + "/Shaders/Vulkan/spv/sprite.frag";
                 pco->depthEnabled = false;
                 pco->descriptor = &descriptor;
                 

@@ -113,8 +113,8 @@ namespace mh
             PipelineCollectorObject* pco = pc::get("mesh");
             if (!pco->loaded)
             {
-                pco->vertexShaderPath = resourcePath() + "/Shaders/spv/_mesh.vert.spv";
-                pco->fragmentShaderPath = resourcePath() + "/Shaders/spv/_mesh.frag.spv";
+                pco->vertexShaderPath = resourcePath() + "/Shaders/Vulkan/spv/mesh.vert";
+                pco->fragmentShaderPath = resourcePath() + "/Shaders/Vulkan/spv/mesh.frag";
                 pco->depthEnabled = true;
                 pco->cullMode = VK_CULL_MODE_FRONT_BIT;
                 pco->descriptor = &descriptor;

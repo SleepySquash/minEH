@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD08A79225C1DEF000618F26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD08A79125C1DEF000618F26 /* AVFoundation.framework */; };
+		DD08A79725C1E25000618F26 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD08A79625C1E25000618F26 /* libavcodec.a */; };
+		DD08A79E25C1EA2100618F26 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD08A79D25C1EA2000618F26 /* libavformat.a */; };
+		DD08A7A225C1EC4800618F26 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = DD08A7A125C1EC4800618F26 /* Audio */; };
+		DD08A7A325C1EC4800618F26 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = DD08A7A125C1EC4800618F26 /* Audio */; };
 		DD282A1325B86558006D398F /* Vulkan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD282A1225B86558006D398F /* Vulkan.cpp */; };
 		DD282A1425B86558006D398F /* Vulkan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD282A1225B86558006D398F /* Vulkan.cpp */; };
 		DD282A2025B86DDC006D398F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD282A1F25B86DDC006D398F /* QuartzCore.framework */; };
@@ -54,6 +59,8 @@
 		DD5B57A025BC158D00C78C01 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B579F25BC158D00C78C01 /* Metal.framework */; };
 		DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
 		DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
+		DD880F8425C1C66400A41F0B /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD880F8225C1C66400A41F0B /* Audio.cpp */; };
+		DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD880F8225C1C66400A41F0B /* Audio.cpp */; };
 		DDC4A37E25B42B5F006E2E0D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */; };
 		DDC4A37F25B42B5F006E2E0D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */; };
 		DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
@@ -86,6 +93,13 @@
 		DDD7BAC625B16256007E3634 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BAC425B16256007E3634 /* Shaders */; };
 		DDD7BB0425B2274E007E3634 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BB0325B2274E007E3634 /* Cocoa.framework */; };
 		DDD7BB0825B22761007E3634 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BB0725B22761007E3634 /* CoreVideo.framework */; };
+		DDE5348A25C4BC5500D71B70 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348925C4BC5500D71B70 /* libportaudio.a */; };
+		DDE5348D25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */; };
+		DDE5348E25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */; };
+		DDE5349625C4BF2B00D71B70 /* libportaudio.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DDE534C725C5BB4200D71B70 /* libsndfile.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */; };
+		DDE534C825C5BB4200D71B70 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE534C625C5BB4200D71B70 /* libsndfile.a */; };
+		DDE534CC25C5BB5B00D71B70 /* libsndfile.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DDF0C51125B4353900374CD6 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = DDF0C51025B4353900374CD6 /* Images */; };
 		DDF0C51225B4353900374CD6 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = DDF0C51025B4353900374CD6 /* Images */; };
 		DDF0C51A25B43B2B00374CD6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C51825B43B2B00374CD6 /* Color.cpp */; };
@@ -111,12 +125,18 @@
 			files = (
 				DD59BBEB25BE1D0E0086DD0B /* libMoltenVK.dylib in CopyFiles */,
 				DD282A3325B87268006D398F /* libVkLayer_khronos_validation.dylib in CopyFiles */,
+				DDE5349625C4BF2B00D71B70 /* libportaudio.2.dylib in CopyFiles */,
+				DDE534CC25C5BB5B00D71B70 /* libsndfile.1.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DD08A79125C1DEF000618F26 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DD08A79625C1E25000618F26 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../../../../usr/local/Cellar/ffmpeg/4.1/lib/libavcodec.a; sourceTree = "<group>"; };
+		DD08A79D25C1EA2000618F26 /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavformat.a; path = ../../../../../../usr/local/Cellar/ffmpeg/4.1/lib/libavformat.a; sourceTree = "<group>"; };
+		DD08A7A125C1EC4800618F26 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
 		DD282A0925B8482D006D398F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		DD282A1225B86558006D398F /* Vulkan.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vulkan.cpp; sourceTree = "<group>"; };
 		DD282A1F25B86DDC006D398F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -157,6 +177,9 @@
 		DD5B579F25BC158D00C78C01 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		DD5B57A925BC93F500C78C01 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		DD5B57AA25BC93F500C78C01 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		DD880F8225C1C66400A41F0B /* Audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
+		DD880F8325C1C66400A41F0B /* Audio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Audio.hpp; sourceTree = "<group>"; };
+		DD880F8725C1C67100A41F0B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		DDC4A37D25B42B5F006E2E0D /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		DDCCB03325B993EC0078B279 /* Drawable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
@@ -201,6 +224,10 @@
 		DDD7BB0725B22761007E3634 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDD7BB0B25B28F5A007E3634 /* Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cocoa.h; sourceTree = "<group>"; };
 		DDD7BB1725B31A5D007E3634 /* minEH.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = minEH.hpp; sourceTree = "<group>"; };
+		DDE5348925C4BC5500D71B70 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = ../../../Libraries/portaudio/lib/.libs/libportaudio.a; sourceTree = "<group>"; };
+		DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libportaudio.2.dylib; path = ../../../Libraries/portaudio/lib/.libs/libportaudio.2.dylib; sourceTree = "<group>"; };
+		DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.1.dylib; path = ../../../Libraries/libsndfile/src/.libs/libsndfile.1.dylib; sourceTree = "<group>"; };
+		DDE534C625C5BB4200D71B70 /* libsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsndfile.a; path = ../../../Libraries/libsndfile/src/.libs/libsndfile.a; sourceTree = "<group>"; };
 		DDF0C51025B4353900374CD6 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		DDF0C51825B43B2B00374CD6 /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		DDF0C51925B43B2B00374CD6 /* Color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Color.hpp; sourceTree = "<group>"; };
@@ -221,6 +248,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE534C725C5BB4200D71B70 /* libsndfile.1.dylib in Frameworks */,
+				DDE534C825C5BB4200D71B70 /* libsndfile.a in Frameworks */,
+				DDE5348D25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */,
+				DDE5348A25C4BC5500D71B70 /* libportaudio.a in Frameworks */,
+				DD08A79725C1E25000618F26 /* libavcodec.a in Frameworks */,
+				DD08A79E25C1EA2100618F26 /* libavformat.a in Frameworks */,
+				DD08A79225C1DEF000618F26 /* AVFoundation.framework in Frameworks */,
 				DD59BBE225BE1B2A0086DD0B /* MoltenVK.xcframework in Frameworks */,
 				DD59BBEA25BE1D0B0086DD0B /* libMoltenVK.dylib in Frameworks */,
 				DD5B57A025BC158D00C78C01 /* Metal.framework in Frameworks */,
@@ -238,6 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE5348E25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */,
 				DD5B579925BC157300C78C01 /* IOSurface.framework in Frameworks */,
 				DD5B579725BC156900C78C01 /* UIKit.framework in Frameworks */,
 				DD5B579525BC155500C78C01 /* QuartzCore.framework in Frameworks */,
@@ -366,8 +401,16 @@
 		DDD7BAA925B15EF8007E3634 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */,
+				DDE534C625C5BB4200D71B70 /* libsndfile.a */,
+				DDE5348925C4BC5500D71B70 /* libportaudio.a */,
+				DD08A79D25C1EA2000618F26 /* libavformat.a */,
+				DD08A79625C1E25000618F26 /* libavcodec.a */,
+				DD08A79125C1DEF000618F26 /* AVFoundation.framework */,
+				DD880F8725C1C67100A41F0B /* OpenAL.framework */,
 				DD59BBE925BE1D0B0086DD0B /* libMoltenVK.dylib */,
 				DD5B579F25BC158D00C78C01 /* Metal.framework */,
+				DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */,
 				DD5B579C25BC158400C78C01 /* IOSurface.framework */,
 				DD5B579A25BC157C00C78C01 /* IOKit.framework */,
 				DD5B579825BC157300C78C01 /* IOSurface.framework */,
@@ -389,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				DD282A2325B87005006D398F /* vulkan */,
+				DD08A7A125C1EC4800618F26 /* Audio */,
 				DD59BBC925BE07B80086DD0B /* Models */,
 				DDF0C51025B4353900374CD6 /* Images */,
 				DDD7BAC425B16256007E3634 /* Shaders */,
@@ -439,6 +483,8 @@
 		DDD7BB1325B3198B007E3634 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				DD880F8225C1C66400A41F0B /* Audio.cpp */,
+				DD880F8325C1C66400A41F0B /* Audio.hpp */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -564,6 +610,7 @@
 				DDD7BA1425AF11F1007E3634 /* Frameworks */,
 				DDD7BA1525AF11F1007E3634 /* Resources */,
 				DD282A2E25B8712F006D398F /* CopyFiles */,
+				DDE534A025C4C44600D71B70 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -634,6 +681,7 @@
 				DD59BBCA25BE07B80086DD0B /* Models in Resources */,
 				DDD7BAC525B16256007E3634 /* Shaders in Resources */,
 				DDF0C51125B4353900374CD6 /* Images in Resources */,
+				DD08A7A225C1EC4800618F26 /* Audio in Resources */,
 				DDD7BA2025AF11F4007E3634 /* Assets.xcassets in Resources */,
 				DD282A2425B87005006D398F /* vulkan in Resources */,
 			);
@@ -650,18 +698,44 @@
 				DDD7BA4325AF12EE007E3634 /* Assets.xcassets in Resources */,
 				DD59BBCB25BE07B80086DD0B /* Models in Resources */,
 				DDD7BA4125AF12EC007E3634 /* Main.storyboard in Resources */,
+				DD08A7A325C1EC4800618F26 /* Audio in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DDE534A025C4C44600D71B70 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\ninstall_name_tool -change \"/usr/local/lib/libportaudio.2.dylib\" \"@executable_path/../Frameworks/libportaudio.2.dylib\" \"${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/MacOS/${PRODUCT_NAME}\"\ninstall_name_tool -change \"/usr/local/lib/libsndfile.1.dylib\" \"@executable_path/../Frameworks/libsndfile.1.dylib\" \"${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/MacOS/${PRODUCT_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DDD7BA1325AF11F1007E3634 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD59BBB625BDEEC90086DD0B /* Camera.cpp in Sources */,
 				DDD7BA7625B01885007E3634 /* main.cpp in Sources */,
+				DDF0C52925B5833600374CD6 /* Test.cpp in Sources */,
+				DDD7BA2625AF11F4007E3634 /* main.mm in Sources */,
+				DD880F8425C1C66400A41F0B /* Audio.cpp in Sources */,
+				DD59BBB625BDEEC90086DD0B /* Camera.cpp in Sources */,
 				DD282A3725B89058006D398F /* Buffer.cpp in Sources */,
 				DDF0C52025B480FC00374CD6 /* Shader.cpp in Sources */,
 				DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */,
@@ -669,7 +743,6 @@
 				DDD7BAB825B16146007E3634 /* ResourcePath.cpp in Sources */,
 				DDF0C51A25B43B2B00374CD6 /* Color.cpp in Sources */,
 				DD59BB8925BD6C630086DD0B /* Factory.cpp in Sources */,
-				DDD7BA2625AF11F4007E3634 /* main.mm in Sources */,
 				DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */,
 				DDC4A37E25B42B5F006E2E0D /* Sprite.cpp in Sources */,
 				DDD7BAA425B15567007E3634 /* Cocoa.mm in Sources */,
@@ -679,7 +752,6 @@
 				DD59BBC125BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DD59BBBC25BDF1400086DD0B /* CameraController.cpp in Sources */,
 				DDD7BAB025B160BE007E3634 /* Shader.cpp in Sources */,
-				DDF0C52925B5833600374CD6 /* Test.cpp in Sources */,
 				DDD7BA9025B0285D007E3634 /* Cocoa.mm in Sources */,
 				DDD7BABD25B1616D007E3634 /* ResourcePath.mm in Sources */,
 				DD59BBDA25BE1A0B0086DD0B /* Camera.cpp in Sources */,
@@ -700,6 +772,7 @@
 			files = (
 				DDD7BA3E25AF12EC007E3634 /* ViewController.m in Sources */,
 				DD59BB7F25BCB9C30086DD0B /* Window.cpp in Sources */,
+				DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */,
 				DD282A3825B89058006D398F /* Buffer.cpp in Sources */,
 				DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */,
 				DDF0C51B25B43B2B00374CD6 /* Color.cpp in Sources */,
@@ -761,7 +834,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -810,8 +883,15 @@
 					/usr/local/Cellar/glm/0.9.9.5/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
+					/usr/local/Cellar/ffmpeg/4.1/include,
+					/Users/mayday/Developer/Libraries/portaudio/include,
+					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/ffmpeg/4.1/lib,
+					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
+					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -827,7 +907,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -870,8 +950,15 @@
 					/usr/local/Cellar/glm/0.9.9.5/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
+					/usr/local/Cellar/ffmpeg/4.1/include,
+					/Users/mayday/Developer/Libraries/portaudio/include,
+					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/ffmpeg/4.1/lib,
+					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
+					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -895,13 +982,23 @@
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
+					/usr/local/Cellar/ffmpeg/4.1/include,
+					/Users/mayday/Developer/Libraries/portaudio/include,
+					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
 				INFOPLIST_FILE = macOS/Info.plist;
+				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = /Users/mayday/Developer/vulkan/macOS/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/Users/mayday/Developer/vulkan/macOS/lib,
+					/usr/local/Cellar/ffmpeg/4.1/lib,
+					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
+					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = melancholyhill.mineh.macOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -923,13 +1020,23 @@
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
+					/usr/local/Cellar/ffmpeg/4.1/include,
+					/Users/mayday/Developer/Libraries/portaudio/include,
+					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
 				INFOPLIST_FILE = macOS/Info.plist;
+				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = /Users/mayday/Developer/vulkan/macOS/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/Users/mayday/Developer/vulkan/macOS/lib,
+					/usr/local/Cellar/ffmpeg/4.1/lib,
+					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
+					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = melancholyhill.mineh.macOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -29,7 +29,7 @@ namespace mh
             if (ShaderCollection::mesh) ++ShaderCollection::mesh->uses;
             else
             {
-                ShaderCollection::mesh = new ShaderCollectorObject("Shaders/mesh.vert", "Shaders/mesh.frag");
+                ShaderCollection::mesh = new ShaderCollectorObject("Shaders/OpenGL/mesh.vert", "Shaders/OpenGL/mesh.frag");
                 GLuint uniformBlockIndex = glGetUniformBlockIndex(ShaderCollection::mesh->shader.ID, "CBO");
                 glUniformBlockBinding(ShaderCollection::mesh->shader.ID, uniformBlockIndex, 0);
             }
