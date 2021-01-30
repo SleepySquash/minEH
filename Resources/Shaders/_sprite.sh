@@ -1,3 +1,0 @@
-/Users/mayday/Developer/vulkan/macOS/bin/glslc "/Users/mayday/Developer/XCode/JUNK Projects/OpenGL App/Resources/Shaders/_sprite.vert" -o "/Users/mayday/Developer/XCode/JUNK Projects/OpenGL App/Resources/Shaders/spv/_sprite.vert.spv"
-
-/Users/mayday/Developer/vulkan/macOS/bin/glslc "/Users/mayday/Developer/XCode/JUNK Projects/OpenGL App/Resources/Shaders/_sprite.frag" -o "//Users/mayday/Developer/XCode/JUNK Projects/OpenGL App/Resources/Shaders/spv/_sprite.frag.spv"
