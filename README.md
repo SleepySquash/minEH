@@ -8,7 +8,7 @@ minEH (minimal Engine Holder) is a game engine that contains window and events a
 1. Maths: glm
 
 ## Building
-Building for now supported only in Xcode (macOS), but you probably might build the project via command line tools on macOS.
+Building for now is supported only in Xcode (macOS), but you probably might build the project via the command line tools on macOS.
 Other operating systems will be supported as I get into them.
 
 ### macOS
@@ -241,7 +241,7 @@ composition.destroy(); // Destroy
 ## Audio
 For now there's only Audio class which is the audio stream.
 First you need to `Audio::Init();` on the start of your application.
-And on the termination you should call `Audio::Destroy();`.
+And on the termination you should call `Audio::Destroy();`
 
 Playing audio is straightforward
 ```
@@ -267,3 +267,7 @@ Audio is being played in the same thread but async, so performance shouldn't suf
 
 ### Supported OS
 1. All specified in the PortAudio and sndfile libraries.
+
+## Screenshots
+![Screenshot 1]
+(https://github.com/SleepySquash/minEH/blob/main/Screenshot%202021-01-25%20at%2018.50.28.png)
