@@ -19,15 +19,15 @@ Example of usage is for now embedded into the project - App subfolder (main.cpp 
 
 ## Window and events
 Window is an abstract entity which has really intuitive interface. In order to create one, you simply create a Window and then call the open function:
-`
+```
 Window window;
 window.open();
-`
+```
 Before opening the window you can specify its dimentions and title.
 Closing the window is straightforward: `Window.close();`
 
 Events are poll loop based. So you should place the poll loop inside `while (window.isOpen) { }` loop.
-`
+```
 Event event;
 while (window.isOpen)
 {
@@ -41,7 +41,7 @@ while (window.isOpen)
         }
     }
 }
-`
+```
 Above is the minimum code needed for the window to properly work.
 
 ### Supported OS
@@ -57,18 +57,18 @@ The window's content is undefined unless you bind a Renderer to it.
 Renderer is an abstract class which handles all the calls to your GPU in order to render the window's content.
 
 First you need to create the context object:
-`
+```
 GL::Context context;
-`
-`
+```
+```
 Vk::Context context;
-`
+```
 All the calls to the context are abstract except these ones above - you have to specify which Renderer's implementation you want to use: GL for OpenGL or Vk for Vulkan.
 
 Binding is simple: `context.create(&window);`
 
 Now in order for the application to works you need to set up the following code structure in you app:
-`
+```
 while (window.isOpen)
 {
     if (window.pollEvent(event))
@@ -98,7 +98,7 @@ while (window.isOpen)
 context.wait(); // Wait for the GPU to stop executing commands
 ... // Destroy commands
 context.destroy();
-`
+```
 Now the concept behind Record and Draw commands should be explained.
 Recording means forming the commands which will be sent to the GPU.
 Drawing means not actually drawing but updating the buffers (variables) which are stored on the GPU.
@@ -134,18 +134,18 @@ The usage of every resource is being tracked and once it drops to 0 the resource
 ## Graphics
 So the engine can render 2D and 3D graphics.
 First I should describe the Factory idea I'm using in order to be able to abstract all the Renderer-dependent code. Factory is just a collection of functions like:
-`
+```
 Sprite* Graphics::GetSprite(context)
 Camera* Graphics::GetCamera(context)
 Mesh* Graphics::GetMesh(context)
-`
+```
 that return an abstract graphics object but in fact these functions create Renderer-dependent graphics object and return only the abstraction (since every abstract graphics object is a parent of the renderer-dependent) based on the context that is being parsed inside.
 So in order to create a graphics primivite you should call the Factory's method, store the pointer in your object or application and once it became obsolete (the object that used sprite is about to get destroyed, for example) you **have to delete** the pointer (`delete ptr;`).
 
 For now only Sprite on the 2D side is implemented. Sprite is just a single quad with the texture. It has no depth testing. Texture is beind loaded through setTexture("path") method and is released automaticly when the sprite is destroyed.
 Sprite on init should always call create() and on destroy - destroy(). Don't forget to `delete sprite;` pointer as well.
 On the resize event sprite should call resize(). In the record loop it should call record() and on the draw loop - draw().
-`
+```
 Sprite sprite;
 sprite.setTexture("image.jpg");
 sprite.create();
@@ -179,13 +179,13 @@ while (window.isOpen)
 sprite.destroy();
 delete sprite;
 ...
-`
+```
 
 In order to do some 3D you first need to create the Camera and set it to the context thus making it the active camera:
-`
+```
 Camera* camera = Graphics::GetCamera(&context);
 context.camera = camera;
-`
+```
 
 The Camera class also need to be created, updated, drawed (buffers get updated there) and destroyed.
 But you might be interested in creating a camera controller object, which will be handling all the movement and the view changes as well as all the specified above actions. In the component system this engine has FreeCamera component presented in the Engine/Components/CameraController.hpp - you can take a look.
@@ -199,14 +199,14 @@ Then you can create 3D Meshes which are identical in use to the Sprites but also
 ## Component system
 Component system is the Composition class which contains a list of Entities. An Entity has a list of Components. And the Component is the virtual class that has onInit(), onDestroy(), onUpdate(float), onEvent(Event), onRecord(uint32_t), onDraw() virtual methods that can be overriden.
 
-`
+```
 Composition comp;
 Entity* entity = comp.addEntity();
 auto component = entity->addComponent<YourComponentClass>(your component CTOR's args);
-`
+```
 
 For the composition to work in the usual application cycle:
-`
+```
 Composition composition; // Init
 ...
 while (window.isOpen)
@@ -236,7 +236,7 @@ while (window.isOpen)
 ...
 composition.destroy(); // Destroy
 ...
-`
+```
 
 ## Audio
 For now there's only Audio class which is the audio stream.
@@ -244,7 +244,7 @@ First you need to `Audio::Init();` on the start of your application.
 And on the termination you should call `Audio::Destroy();`.
 
 Playing audio is straightforward
-`
+```
 Audio music;
 music.open("music.ogg");
 
@@ -257,7 +257,7 @@ if (music.isOpen)
     while (music.isPlaying())
         std::cout << music.getPosition() << "/" << music.duration << "\n";
 }
-`
+```
 
 Audio is being played in the same thread but async, so performance shouldn't suffer unless you're heavy loading the CPU. I'll be playing audio in the seperate thread in the future.
 
