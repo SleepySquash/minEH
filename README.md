@@ -269,5 +269,4 @@ Audio is being played in the same thread but async, so performance shouldn't suf
 1. All specified in the PortAudio and sndfile libraries.
 
 ## Screenshots
-![Screenshot 1]
-(https://github.com/SleepySquash/minEH/blob/main/Screenshot%202021-01-25%20at%2018.50.28.png)
+![Screenshot 1](https://github.com/SleepySquash/minEH/blob/main/Screenshot%202021-01-25%20at%2018.50.28.jpg)
