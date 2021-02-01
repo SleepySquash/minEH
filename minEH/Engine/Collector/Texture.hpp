@@ -8,6 +8,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <list>
 
 #include "../../Support/Config.hpp"
 #include "../../Renderer/Context.hpp"
@@ -19,6 +20,7 @@ namespace mh
         void* texture = nullptr;
         uint32_t usage;
         bool destroyable = true;
+        uint8_t frames;
         
         TextureCollectorObject(const uint32_t& usage = 0);
         ~TextureCollectorObject();
@@ -37,7 +39,8 @@ namespace mh
         };
         static Context context;
         static Renderer::Type type;
-        static std::unordered_map<std::string, TextureCollectorObject> map;
+        static std::unordered_map<std::string, TextureCollectorObject*> map;
+        static std::list<std::unordered_map<std::string, TextureCollectorObject*>::iterator> trash;
         
         enum class Filter { LINEAR, NEAREST, CUBIC };
         
@@ -47,8 +50,10 @@ namespace mh
 #ifdef MINEH_VULKAN
         static void bindContext(Vk::Context* context);
 #endif
-        static void* get(const std::string& image, const Filter& samplerFilter = Filter::LINEAR);
+        static TextureCollectorObject* get(const std::string& image, const Filter& samplerFilter = Filter::LINEAR);
+        static TextureCollectorObject* raw(const std::string& image);
         static void erase(const std::string& image, const uint32_t& count = 1);
+        static void frame();
         static void clear();
     };
 

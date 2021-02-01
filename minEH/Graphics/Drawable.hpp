@@ -27,6 +27,7 @@ namespace mh
         virtual void setPosition(const glm::vec2& pos);
         virtual void setRotation(const float&     rot);
         virtual void setScale   (const glm::vec2& scl);
+        virtual void setScale   (const float&     scl);
         
         virtual const glm::vec2& getPosition();
         virtual const float&     getRotation();
@@ -37,6 +38,9 @@ namespace mh
     
     struct Sprite : Drawable, Transform2D
     {
+        glm::vec4 color{ 1.f, 1.f, 1.f, 1.f };
+        float xcoef{ 1.f }, ycoef{ 1.f };
+        
         virtual void create();
         virtual void resize();
         virtual void destroy();

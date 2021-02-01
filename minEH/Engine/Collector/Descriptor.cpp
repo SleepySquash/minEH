@@ -13,7 +13,8 @@
 
 namespace mh
 {
-    std::unordered_map<std::string, DescriptorCollectorObject> DescriptorCollector::map;
+    std::unordered_map<std::string, DescriptorCollectorObject*> DescriptorCollector::map;
+    std::list<std::unordered_map<std::string, DescriptorCollectorObject*>::iterator> DescriptorCollector::trash;
     Vk::Context* DescriptorCollector::context = nullptr;
     uint32_t DescriptorCollector::ids = 1;
     
@@ -101,14 +102,30 @@ namespace mh
         auto it = map.find(id);
         if (it != map.end())
         {
-            ++(*it).second.usage;
-            return &(*it).second;
+            ++(*it).second->usage;
+            if ((*it).second->frames)
+            {
+                (*it).second->frames = 0;
+                for (auto iter = trash.begin(); iter != trash.end(); ++iter)
+                    if (*iter == it) { trash.erase(iter); break; }
+            }
+            return (*it).second;
         }
         else
         {
-            it = map.emplace(id, 1).first;
-            (*it).second.id = ids++;
-            return &(*it).second;
+            it = map.emplace(id, nullptr).first;
+            (*it).second = new DescriptorCollectorObject(1);
+            (*it).second->id = ids++;
+            return (*it).second;
+        }
+    }
+    DescriptorCollectorObject* DescriptorCollector::raw(const std::string& id)
+    {
+        if (map.find(id) == map.end()) return nullptr;
+        else
+        {
+            DescriptorCollectorObject* dco = get(id);
+            --dco->usage; return dco;
         }
     }
 
@@ -117,30 +134,43 @@ namespace mh
         auto it = map.find(id);
         if (it != map.end())
         {
-            // std::cout << "(*it).second.usage: " << (*it).second.usage << "\n";
-            if ((*it).second.usage == 1 || (*it).second.usage == 0)
+            if ((*it).second->usage == 1 || (*it).second->usage == 0)
             {
-                if ((*it).second.destroyable)
+                if ((*it).second->destroyable)
                 {
-                    if ((*it).second.loaded) (*it).second.destroyDescriptor(context);
-                    map.erase(it);
+                    (*it).second->frames = context->commandBuffers.size() + 1;
+                    trash.push_back(it);
                 }
-                else (*it).second.usage = 0;
+                else (*it).second->usage = 0;
             }
-            else --(*it).second.usage;
+            else --(*it).second->usage;
+        }
+    }
+    
+    void DescriptorCollector::frame()
+    {
+        for (auto it = trash.begin(); it != trash.end();)
+        {
+            --((**it).second->frames);
+            if ((**it).second->frames == 0)
+            {
+                if ((**it).second->loaded) (**it).second->destroyDescriptor(context);
+                delete (**it).second; map.erase(*it); it = trash.erase(it);
+            }
+            else ++it;
         }
     }
     
     void DescriptorCollector::recreate()
     {
         for (auto it = map.begin(); it != map.end(); ++it)
-            if ((*it).second.loaded) (*it).second.recreateDescriptor(context);
+            if ((*it).second->loaded) (*it).second->recreateDescriptor(context);
     }
     
     void DescriptorCollector::clear()
     {
         for (auto it = map.begin(); it != map.end(); ++it)
-            if ((*it).second.loaded) (*it).second.destroyDescriptor(context);
+            if ((*it).second->loaded) { (*it).second->destroyDescriptor(context); delete (*it).second; }
         map.clear(); ids = 1;
     }
 }

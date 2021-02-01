@@ -79,7 +79,7 @@ namespace mh
         void GLMesh::dirty() { mDirty = true; }
         
         void GLMesh::setContext(void* context) { this->context = (GL::Context*)context; }
-        void GLMesh::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path); texture.second = path; }
+        void GLMesh::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path)->texture; texture.second = path; }
         void GLMesh::setModel(const std::string& path)
         {
             modelPath = path;

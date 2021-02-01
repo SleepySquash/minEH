@@ -11,6 +11,7 @@
 #ifdef MINEH_VULKAN
 
 #include <unordered_map>
+#include <list>
 
 #include "../../Renderer/Context.hpp"
 
@@ -18,12 +19,14 @@ namespace mh
 {
     enum class DescriptorType { undef, Camera };
     
+    // TODO: Tie to ImageView if descriptor contains one that is used in the TextureCollector so when ImageView gets destroyed there the DCO gets some kind flag of "needs to be recreated since ImageView is destroyed".
     struct DescriptorCollectorObject
     {
         Vk::Descriptor descriptor;
         
         uint32_t usage, id;
         bool loaded = false, destroyable = true;
+        uint8_t frames;
         
         std::vector<VkDescriptorSetLayoutBinding> bindings;
         std::vector<VkDescriptorPoolSize> size;
@@ -43,12 +46,15 @@ namespace mh
     struct DescriptorCollector
     {
         static Vk::Context* context;
-        static std::unordered_map<std::string, DescriptorCollectorObject> map;
+        static std::unordered_map<std::string, DescriptorCollectorObject*> map;
+        static std::list<std::unordered_map<std::string, DescriptorCollectorObject*>::iterator> trash;
         static uint32_t ids;
         
         static void bindContext(Vk::Context* context);
         static DescriptorCollectorObject* get(const std::string& id);
+        static DescriptorCollectorObject* raw(const std::string& id);
         static void erase(const std::string& id, const uint32_t& count = 1);
+        static void frame();
         static void recreate();
         static void clear();
     };

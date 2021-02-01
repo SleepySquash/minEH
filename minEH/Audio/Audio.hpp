@@ -5,12 +5,12 @@
 //  Created by Никита Исаенко on 27.01.2021.
 //
 
-#ifndef Audio_hpp
-#define Audio_hpp
+#pragma once
 
 #include <iostream>
 #include <sndfile.h>
 #include <portaudio.h>
+#include <mutex>
 
 namespace mh
 {
@@ -19,7 +19,8 @@ namespace mh
         SNDFILE *file = nullptr;
         SF_INFO *sfinfo = nullptr;
         
-        bool playing = false, looped = false;
+        std::mutex mux;
+        bool playing = false, looped = false, abort = false;
         sf_count_t framesRead = 0;
     };
     
@@ -58,5 +59,3 @@ namespace mh
         static void Destroy();
     };
 }
-
-#endif /* Audio_hpp */

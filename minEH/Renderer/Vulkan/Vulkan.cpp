@@ -31,7 +31,9 @@ namespace mh
 
 #if defined(MINEH_MACOS) || defined(MINEH_IOS)
     #include <vulkan/vulkan_metal.h>
-    #include <MoltenVK/vk_mvk_moltenvk.h>
+    #ifdef MINEH_MOLTENVK
+        #include <MoltenVK/vk_mvk_moltenvk.h>
+    #endif
 #endif
 
 namespace mh
@@ -44,6 +46,7 @@ namespace Vk
     void Context::wait() { vkDeviceWaitIdle(device); }
     void Context::create(Window* window)
     {
+        type = Renderer::Type::Vk;
         bc::bindContext(this);
         tc::bindContext(this);
         pc::bindContext(this);
@@ -58,6 +61,8 @@ namespace Vk
         createCommandPool();
         
         createSwapchain();
+        lastSize.width = swapChainProps.extent.width;
+        lastSize.height = swapChainProps.extent.height;
         createColorImage();
         createDepthImage();
         createRenderPass();
@@ -172,10 +177,12 @@ namespace Vk
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) throw std::runtime_error("createInstance() failed!");
         
 #if defined(MINEH_MACOS) || defined(MINEH_IOS)
+    #ifdef MINEH_MOLTENVK
         MVKConfiguration config; size_t size;
         vkGetMoltenVKConfigurationMVK(instance, &config, &size);
         config.synchronousQueueSubmits = false;
         vkSetMoltenVKConfigurationMVK(instance, &config, &size);
+    #endif
 #endif
     }
 
@@ -1311,6 +1318,10 @@ namespace Vk
         else if (result != VK_SUCCESS) throw std::runtime_error("vkQueuePresentKHR() failed!");
         
         currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
+        
+        tc::frame();
+        dc::frame();
+        pc::frame();
     }
 
     
@@ -1437,44 +1448,6 @@ namespace Vk
         file.read(data.data(), size);
         
         return data;
-    }
-
-    void loadModel(const std::string& MODEL_NAME, std::vector<Vertex<glm::vec3>>& vertices, std::vector<uint32_t>& indices)
-    {
-        /*if (MODEL_NAME.length() == 0) return;
-        
-        tinyobj::attrib_t attrib;
-        std::vector<tinyobj::shape_t> shapes;
-        std::vector<tinyobj::material_t> materials;
-        std::string warn, err;
-        
-        if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, MODEL_NAME.c_str())) throw std::runtime_error("loadModel() failed: " + warn + err);
-        
-        std::unordered_map<Vertex<glm::vec3>, uint32_t> uniqueVertices = {};
-        
-        for (const auto& shape : shapes)
-        {
-            for (const auto& index : shape.mesh.indices)
-            {
-                Vertex<glm::vec3> vertex;
-                
-                vertex.pos = {
-                    attrib.vertices[3 * index.vertex_index + 0],
-                    attrib.vertices[3 * index.vertex_index + 1],
-                    attrib.vertices[3 * index.vertex_index + 2]
-                };
-
-                vertex.uv = {
-                          attrib.texcoords[2 * index.texcoord_index + 0],
-                    1.f - attrib.texcoords[2 * index.texcoord_index + 1]
-                };
-                
-                if (uniqueVertices.count(vertex) == 0) {
-                    uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
-                    vertices.push_back(vertex); }
-                indices.push_back(uniqueVertices[vertex]);
-            }
-        }*/
     }
 
     bool hasStencilComponent(VkFormat format) { return format == VK_FORMAT_D32_SFLOAT_S8_UINT || format == VK_FORMAT_D24_UNORM_S8_UINT; }

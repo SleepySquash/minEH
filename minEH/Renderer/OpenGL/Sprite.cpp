@@ -32,12 +32,13 @@ namespace mh
             if (ShaderCollection::sprite) ++ShaderCollection::sprite->uses;
             else ShaderCollection::sprite = new ShaderCollectorObject("Shaders/OpenGL/sprite.vert", "Shaders/OpenGL/sprite.frag");
             ID = ShaderCollection::sprite->shader.ID;
-            loc = glGetUniformLocation(ID, "model");
+            mloc = glGetUniformLocation(ID, "model");
+            cloc = glGetUniformLocation(ID, "color");
         }
         
         void GLSprite::destroy()
         {
-            tc::erase(texture.second);
+            if (texture.first) tc::erase(texture.second);
             bc::erase("quad");
             if (ShaderCollection::sprite)
             {
@@ -48,6 +49,9 @@ namespace mh
         
         void GLSprite::resize()
         {
+#ifdef MINEH_DEBUG
+            if (!texture.first) return;
+#endif
             float aspect = (float)context->window->frame.width/context->window->frame.height;
             float rwidth = texture.first->image.width, rheight = texture.first->image.height;
             if (aspect > 1.f) rwidth /= aspect; else rheight *= aspect;
@@ -71,7 +75,8 @@ namespace mh
                 model = glm::scale(model, glm::vec3(scale.x * xcoef, scale.y * ycoef, 0.f));
                 mDirty = false;
             }
-            glUniformMatrix4fv(loc, 1, false, glm::value_ptr(model));
+            glUniformMatrix4fv(mloc, 1, false, glm::value_ptr(model));
+            glUniform4f(cloc, color.r, color.g, color.b, color.a);
             glActiveTexture(GL_TEXTURE0);
             if (context->textureID != texture.first->id) {
                 glBindTexture(GL_TEXTURE_2D, texture.first->id); context->textureID = texture.first->id; }
@@ -81,7 +86,7 @@ namespace mh
         void GLSprite::dirty() { mDirty = true; }
         
         void GLSprite::setContext(void* context) { this->context = (GL::Context*)context; }
-        void GLSprite::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path); texture.second = path; }
+        void GLSprite::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path)->texture; texture.second = path; }
     }
 }
 #endif

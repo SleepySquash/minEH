@@ -24,10 +24,8 @@ namespace mh
             GL::Context* context = nullptr;
             
             glm::mat4 model;
-            GLuint VAO, VBO, EBO, ID, loc;
-            
+            GLuint VAO, VBO, EBO, ID, mloc, cloc;
             bool mDirty = true;
-            float xcoef{ 1.f }, ycoef{ 1.f };
             
             GLSprite();
             GLSprite(GL::Context* context);

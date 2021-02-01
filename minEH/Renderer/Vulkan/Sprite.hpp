@@ -33,8 +33,6 @@ namespace mh
             glm::mat4 model;
             bool mDirty = false;
             
-            float xcoef{ 1.f }, ycoef{ 1.f };
-            
             VkSprite();
             VkSprite(Vk::Context* context);
             

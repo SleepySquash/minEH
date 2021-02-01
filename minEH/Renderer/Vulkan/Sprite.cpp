@@ -41,6 +41,9 @@ namespace mh
         }
         void VkSprite::resize()
         {
+#ifdef MINEH_DEBUG
+            if (!texture.first) return;
+#endif
             float aspect = (float)context->swapChainProps.extent.width/context->swapChainProps.extent.height;
             float rwidth = texture.first->image.width, rheight = texture.first->image.height;
             if (aspect > 1.f) rwidth /= aspect; else rheight *= aspect;
@@ -54,7 +57,12 @@ namespace mh
 
         void VkSprite::createDescriptors()
         {
-            DescriptorCollectorObject* dco = dc::get("texture " + texture.second);
+#ifdef MINEH_DEBUG
+            if (!texture.first) return;
+#endif
+            DescriptorCollectorObject* dco;
+            if (descriptor.layout == VK_NULL_HANDLE) dco = dc::get("texture " + texture.second);
+                                                else dco = dc::raw("texture " + texture.second);
             if (!dco->loaded)
             {
                 VkDescriptorSetLayoutBinding samplerBinding;
@@ -94,7 +102,9 @@ namespace mh
         
         void VkSprite::createGraphicsPipeline()
         {
-            PipelineCollectorObject* pco = pc::get("sprite");
+            PipelineCollectorObject* pco;
+            if (graphicsPipeline == VK_NULL_HANDLE) pco = pc::get("sprite");
+                                               else pco = pc::raw("sprite");
             if (!pco->loaded)
             {
                 pco->vertexShaderPath = resourcePath() + "/Shaders/Vulkan/spv/sprite.vert";
@@ -118,10 +128,13 @@ namespace mh
                 pco->vAttributeDescription[1].format = VK_FORMAT_R32G32_SFLOAT;
                 pco->vAttributeDescription[1].offset = offsetof(Vertex<glm::vec2>, uv);
                 
-                pco->pushConstantRanges.resize(1);
+                pco->pushConstantRanges.resize(2);
                 pco->pushConstantRanges[0].stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
                 pco->pushConstantRanges[0].offset = 0;
                 pco->pushConstantRanges[0].size = sizeof(glm::mat4);
+                pco->pushConstantRanges[1].stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
+                pco->pushConstantRanges[1].offset = sizeof(glm::mat4);
+                pco->pushConstantRanges[1].size = sizeof(glm::vec4);
                 
                 pco->createPipeline(context);
             }
@@ -133,6 +146,9 @@ namespace mh
         
         void VkSprite::record(const uint32_t& i)
         {
+#ifdef MINEH_DEBUG
+            if (!texture.first) return;
+#endif
             VkCommandBuffer& commandBuffer = context->commandBuffers[i];
             if (context->pipelineID != pipelineID) {
                 vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline); context->pipelineID = pipelineID; }
@@ -146,7 +162,7 @@ namespace mh
                 context->descriptorID = descriptorID; }
             
             vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(glm::mat4), &model);
-            // vkCmdDrawIndexed(commandBuffer, 6, 1, 0, 0, 0);
+            vkCmdPushConstants(commandBuffer, pipelineLayout, VK_SHADER_STAGE_FRAGMENT_BIT, sizeof(glm::mat4), sizeof(glm::vec4), &color);
             vkCmdDraw(commandBuffer, 6, 1, 0, 0);
         }
 
@@ -162,7 +178,7 @@ namespace mh
             }
         }
         void VkSprite::dirty() { mDirty = true; updateModel(); }
-        void VkSprite::setTexture(const std::string& path) { texture.first = (Vk::Texture*)tc::get(path); texture.second = path; }
+        void VkSprite::setTexture(const std::string& path) { texture.first = (Vk::Texture*)tc::get(path)->texture; texture.second = path; }
     }
 }
 

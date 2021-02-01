@@ -17,7 +17,7 @@ Open the Xcode project, sign it up with your Apple profile. You might have to do
 ## Examples
 Example of usage is for now embedded into the project - App subfolder (main.cpp and some components) is the example.
 
-## Window and events
+# Window and events
 Window is an abstract entity which has really intuitive interface. In order to create one, you simply create a Window and then call the open function:
 ```
 Window window;
@@ -52,7 +52,7 @@ Above is the minimum code needed for the window to properly work.
 ### Known bugs
 1. setTitle() leaks memory :(
 
-## Renderer
+# Renderer
 The window's content is undefined unless you bind a Renderer to it.
 Renderer is an abstract class which handles all the calls to your GPU in order to render the window's content.
 
@@ -67,7 +67,7 @@ All the calls to the context are abstract except these ones above - you have to 
 
 Binding is simple: `context.create(&window);`
 
-Now in order for the application to works you need to set up the following code structure in you app:
+Now in order for the application to work you need to set up the following code structure in you app:
 ```
 while (window.isOpen)
 {
@@ -117,7 +117,7 @@ You shouldn't really understand what's what. You should only know that the Draw 
 1. UNIX (Vulkan, OpenGL)
 1. ... etc since the compatability is defined by the backend which is being used.
 
-## Collectors
+# Collectors
 Collectors are just static classes that hold specified resources.
 For example TextureCollector holds textures, BufferCollectors holds buffers etc.
 
@@ -131,7 +131,7 @@ The usage of every resource is being tracked and once it drops to 0 the resource
 1. DescriptorCollector (dc) - Vulkan descriptors.
 1. PipelineCollector (pc) - Vulkan pipelines.
 
-## Graphics
+# Graphics
 So the engine can render 2D and 3D graphics.
 First I should describe the Factory idea I'm using in order to be able to abstract all the Renderer-dependent code. Factory is just a collection of functions like:
 ```
@@ -187,16 +187,16 @@ Camera* camera = Graphics::GetCamera(&context);
 context.camera = camera;
 ```
 
-The Camera class also need to be created, updated, drawed (buffers get updated there) and destroyed.
+The Camera class also needs to be created, updated, drawed (buffers get updated there) and destroyed.
 But you might be interested in creating a camera controller object, which will be handling all the movement and the view changes as well as all the specified above actions. In the component system this engine has FreeCamera component presented in the Engine/Components/CameraController.hpp - you can take a look.
 
-Then you can create 3D Meshes which are identical in use to the Sprites but also has setModel("path") method which loads the 3D model (.obj only for now).
+Then you can create 3D Meshes which are identical in use to the Sprites but also have setModel("path") method which loads the 3D model (.obj only for now).
 
 ### Formats supported
 1. Images: .jpg, .png, .bmp and more (stb_image).
 1. Models: .obj (tinyobjloader)
 
-## Component system
+# Component system
 Component system is the Composition class which contains a list of Entities. An Entity has a list of Components. And the Component is the virtual class that has onInit(), onDestroy(), onUpdate(float), onEvent(Event), onRecord(uint32_t), onDraw() virtual methods that can be overriden.
 
 ```
@@ -238,7 +238,7 @@ composition.destroy(); // Destroy
 ...
 ```
 
-## Audio
+# Audio
 For now there's only Audio class which is the audio stream.
 First you need to `Audio::Init();` on the start of your application.
 And on the termination you should call `Audio::Destroy();`
@@ -268,5 +268,5 @@ Audio is being played in the same thread but async, so performance shouldn't suf
 ### Supported OS
 1. All specified in the PortAudio and sndfile libraries.
 
-## Screenshots
+# Screenshots
 ![Screenshot 1](https://github.com/SleepySquash/minEH/blob/main/Screenshot%202021-01-25%20at%2018.50.28.jpg)

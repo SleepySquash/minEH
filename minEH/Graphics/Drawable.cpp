@@ -24,6 +24,7 @@ namespace mh
     void Transform2D::setPosition(const glm::vec2& pos) { position = pos; dirty(); }
     void Transform2D::setRotation(const float&     rot) { rotation = rot; dirty(); }
     void Transform2D::setScale   (const glm::vec2& scl) { scale    = scl; dirty(); }
+    void Transform2D::setScale   (const float&       s) { scale    = glm::vec2(s, s); dirty(); }
     
     const glm::vec2& Transform2D::getPosition() { return position; }
     const float&     Transform2D::getRotation() { return rotation; }

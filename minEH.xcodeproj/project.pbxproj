@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DD08A79225C1DEF000618F26 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD08A79125C1DEF000618F26 /* AVFoundation.framework */; };
-		DD08A79725C1E25000618F26 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD08A79625C1E25000618F26 /* libavcodec.a */; };
-		DD08A79E25C1EA2100618F26 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD08A79D25C1EA2000618F26 /* libavformat.a */; };
 		DD08A7A225C1EC4800618F26 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = DD08A7A125C1EC4800618F26 /* Audio */; };
 		DD08A7A325C1EC4800618F26 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = DD08A7A125C1EC4800618F26 /* Audio */; };
 		DD282A1325B86558006D398F /* Vulkan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD282A1225B86558006D398F /* Vulkan.cpp */; };
@@ -41,8 +39,6 @@
 		DD59BBDB25BE1A0B0086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBD825BE1A0B0086DD0B /* Camera.cpp */; };
 		DD59BBDF25BE1A150086DD0B /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBDD25BE1A150086DD0B /* Mesh.cpp */; };
 		DD59BBE025BE1A150086DD0B /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBDD25BE1A150086DD0B /* Mesh.cpp */; };
-		DD59BBE225BE1B2A0086DD0B /* MoltenVK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B578A25BC150400C78C01 /* MoltenVK.xcframework */; };
-		DD59BBEA25BE1D0B0086DD0B /* libMoltenVK.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD59BBE925BE1D0B0086DD0B /* libMoltenVK.dylib */; };
 		DD59BBEB25BE1D0E0086DD0B /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD59BBE925BE1D0B0086DD0B /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DD5B575B25BAF4E700C78C01 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B575925BAF4E700C78C01 /* Pipeline.cpp */; };
 		DD5B575C25BAF4E700C78C01 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B575925BAF4E700C78C01 /* Pipeline.cpp */; };
@@ -61,6 +57,17 @@
 		DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
 		DD880F8425C1C66400A41F0B /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD880F8225C1C66400A41F0B /* Audio.cpp */; };
 		DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD880F8225C1C66400A41F0B /* Audio.cpp */; };
+		DD89FACB25C6E62700D55E66 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD89FAC925C6E62700D55E66 /* Utility.cpp */; };
+		DD89FACC25C6E62700D55E66 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD89FAC925C6E62700D55E66 /* Utility.cpp */; };
+		DD963F4B25C7310600DD499B /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD963F4925C7310600DD499B /* String.cpp */; };
+		DD963F4C25C7310600DD499B /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD963F4925C7310600DD499B /* String.cpp */; };
+		DD963F5025C747DC00DD499B /* Keymaps in Resources */ = {isa = PBXBuildFile; fileRef = DD963F4F25C747DC00DD499B /* Keymaps */; };
+		DD963F5125C747DC00DD499B /* Keymaps in Resources */ = {isa = PBXBuildFile; fileRef = DD963F4F25C747DC00DD499B /* Keymaps */; };
+		DD963F6325C889C900DD499B /* libvulkan.1.2.131.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD963F6225C889C900DD499B /* libvulkan.1.2.131.dylib */; };
+		DDA1151D25C63A70006B628E /* Keys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1151B25C63A70006B628E /* Keys.cpp */; };
+		DDA1151E25C63A70006B628E /* Keys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1151B25C63A70006B628E /* Keys.cpp */; };
+		DDA1152325C64004006B628E /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1152125C64004006B628E /* Parser.cpp */; };
+		DDA1152425C64004006B628E /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1152125C64004006B628E /* Parser.cpp */; };
 		DDC4A37E25B42B5F006E2E0D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */; };
 		DDC4A37F25B42B5F006E2E0D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */; };
 		DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
@@ -180,6 +187,18 @@
 		DD880F8225C1C66400A41F0B /* Audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
 		DD880F8325C1C66400A41F0B /* Audio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Audio.hpp; sourceTree = "<group>"; };
 		DD880F8725C1C67100A41F0B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		DD89FAC925C6E62700D55E66 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
+		DD89FACA25C6E62700D55E66 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		DD963F4425C72F6800DD499B /* Stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
+		DD963F4925C7310600DD499B /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
+		DD963F4A25C7310600DD499B /* String.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
+		DD963F4F25C747DC00DD499B /* Keymaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Keymaps; sourceTree = "<group>"; };
+		DD963F5725C80FBC00DD499B /* Modes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Modes.hpp; sourceTree = "<group>"; };
+		DD963F6225C889C900DD499B /* libvulkan.1.2.131.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.2.131.dylib; path = ../../../vulkan/macOS/lib/libvulkan.1.2.131.dylib; sourceTree = "<group>"; };
+		DDA1151B25C63A70006B628E /* Keys.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Keys.cpp; sourceTree = "<group>"; };
+		DDA1151C25C63A70006B628E /* Keys.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Keys.hpp; sourceTree = "<group>"; };
+		DDA1152125C64004006B628E /* Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
+		DDA1152225C64004006B628E /* Parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
 		DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		DDC4A37D25B42B5F006E2E0D /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		DDCCB03325B993EC0078B279 /* Drawable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
@@ -252,11 +271,7 @@
 				DDE534C825C5BB4200D71B70 /* libsndfile.a in Frameworks */,
 				DDE5348D25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */,
 				DDE5348A25C4BC5500D71B70 /* libportaudio.a in Frameworks */,
-				DD08A79725C1E25000618F26 /* libavcodec.a in Frameworks */,
-				DD08A79E25C1EA2100618F26 /* libavformat.a in Frameworks */,
 				DD08A79225C1DEF000618F26 /* AVFoundation.framework in Frameworks */,
-				DD59BBE225BE1B2A0086DD0B /* MoltenVK.xcframework in Frameworks */,
-				DD59BBEA25BE1D0B0086DD0B /* libMoltenVK.dylib in Frameworks */,
 				DD5B57A025BC158D00C78C01 /* Metal.framework in Frameworks */,
 				DD5B579D25BC158400C78C01 /* IOSurface.framework in Frameworks */,
 				DD5B579B25BC157C00C78C01 /* IOKit.framework in Frameworks */,
@@ -264,6 +279,7 @@
 				DDD7BB0825B22761007E3634 /* CoreVideo.framework in Frameworks */,
 				DDD7BB0425B2274E007E3634 /* Cocoa.framework in Frameworks */,
 				DDD7BAAB25B15EF8007E3634 /* OpenGL.framework in Frameworks */,
+				DD963F6325C889C900DD499B /* libvulkan.1.2.131.dylib in Frameworks */,
 				DD282A3225B87263006D398F /* libVkLayer_khronos_validation.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +308,18 @@
 				DD59BBBB25BDF1400086DD0B /* CameraController.hpp */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		DDA1152025C63FBD006B628E /* String */ = {
+			isa = PBXGroup;
+			children = (
+				DD963F4925C7310600DD499B /* String.cpp */,
+				DD963F4A25C7310600DD499B /* String.hpp */,
+				DD963F4425C72F6800DD499B /* Stack.hpp */,
+				DDA1152125C64004006B628E /* Parser.cpp */,
+				DDA1152225C64004006B628E /* Parser.hpp */,
+			);
+			path = String;
 			sourceTree = "<group>";
 		};
 		DDD7B9F125AF1044007E3634 = {
@@ -401,6 +429,7 @@
 		DDD7BAA925B15EF8007E3634 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD963F6225C889C900DD499B /* libvulkan.1.2.131.dylib */,
 				DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */,
 				DDE534C625C5BB4200D71B70 /* libsndfile.a */,
 				DDE5348925C4BC5500D71B70 /* libportaudio.a */,
@@ -431,11 +460,12 @@
 		DDD7BAC325B16226007E3634 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD282A2325B87005006D398F /* vulkan */,
 				DD08A7A125C1EC4800618F26 /* Audio */,
-				DD59BBC925BE07B80086DD0B /* Models */,
 				DDF0C51025B4353900374CD6 /* Images */,
+				DD963F4F25C747DC00DD499B /* Keymaps */,
+				DD59BBC925BE07B80086DD0B /* Models */,
 				DDD7BAC425B16256007E3634 /* Shaders */,
+				DD282A2325B87005006D398F /* vulkan */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -472,8 +502,6 @@
 				DD59BB8825BD6C630086DD0B /* Factory.hpp */,
 				DDCCB03325B993EC0078B279 /* Drawable.cpp */,
 				DDCCB03425B993EC0078B279 /* Drawable.hpp */,
-				DDF0C51825B43B2B00374CD6 /* Color.cpp */,
-				DDF0C51925B43B2B00374CD6 /* Color.hpp */,
 				DD59BBB425BDEEC90086DD0B /* Camera.cpp */,
 				DD59BBB525BDEEC90086DD0B /* Camera.hpp */,
 			);
@@ -503,6 +531,7 @@
 				DD5B57A825BC660300C78C01 /* Components */,
 				DDD7BA6025AF19BA007E3634 /* Composition.cpp */,
 				DDD7BA6125AF19BA007E3634 /* Composition.hpp */,
+				DD963F5725C80FBC00DD499B /* Modes.hpp */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -510,8 +539,11 @@
 		DDD7BB1625B31A07007E3634 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				DDA1152025C63FBD006B628E /* String */,
 				DDF0C53325B6A5C900374CD6 /* Clock.cpp */,
 				DDF0C53425B6A5C900374CD6 /* Clock.hpp */,
+				DDF0C51825B43B2B00374CD6 /* Color.cpp */,
+				DDF0C51925B43B2B00374CD6 /* Color.hpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -580,6 +612,8 @@
 			children = (
 				DDF0C52725B5833600374CD6 /* Test.cpp */,
 				DDF0C52825B5833600374CD6 /* Test.hpp */,
+				DDA1151B25C63A70006B628E /* Keys.cpp */,
+				DDA1151C25C63A70006B628E /* Keys.hpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -593,6 +627,8 @@
 				DDD7BAB625B16146007E3634 /* ResourcePath.cpp */,
 				DDD7BAB725B16146007E3634 /* ResourcePath.hpp */,
 				DDD7BABC25B1616D007E3634 /* ResourcePath.mm */,
+				DD89FAC925C6E62700D55E66 /* Utility.cpp */,
+				DD89FACA25C6E62700D55E66 /* Utility.hpp */,
 				DDF0C54025B6AB5900374CD6 /* utf.cpp */,
 				DDF0C54125B6AB5900374CD6 /* utf.hpp */,
 			);
@@ -682,6 +718,7 @@
 				DDD7BAC525B16256007E3634 /* Shaders in Resources */,
 				DDF0C51125B4353900374CD6 /* Images in Resources */,
 				DD08A7A225C1EC4800618F26 /* Audio in Resources */,
+				DD963F5025C747DC00DD499B /* Keymaps in Resources */,
 				DDD7BA2025AF11F4007E3634 /* Assets.xcassets in Resources */,
 				DD282A2425B87005006D398F /* vulkan in Resources */,
 			);
@@ -697,6 +734,7 @@
 				DDD7BAC625B16256007E3634 /* Shaders in Resources */,
 				DDD7BA4325AF12EE007E3634 /* Assets.xcassets in Resources */,
 				DD59BBCB25BE07B80086DD0B /* Models in Resources */,
+				DD963F5125C747DC00DD499B /* Keymaps in Resources */,
 				DDD7BA4125AF12EC007E3634 /* Main.storyboard in Resources */,
 				DD08A7A325C1EC4800618F26 /* Audio in Resources */,
 			);
@@ -737,6 +775,8 @@
 				DD880F8425C1C66400A41F0B /* Audio.cpp in Sources */,
 				DD59BBB625BDEEC90086DD0B /* Camera.cpp in Sources */,
 				DD282A3725B89058006D398F /* Buffer.cpp in Sources */,
+				DDA1152325C64004006B628E /* Parser.cpp in Sources */,
+				DD89FACB25C6E62700D55E66 /* Utility.cpp in Sources */,
 				DDF0C52025B480FC00374CD6 /* Shader.cpp in Sources */,
 				DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */,
 				DDF0C53525B6A5C900374CD6 /* Clock.cpp in Sources */,
@@ -761,7 +801,9 @@
 				DDD7BA6225AF19BB007E3634 /* Composition.cpp in Sources */,
 				DD46E02925B9BB56001E4333 /* OpenGL.cpp in Sources */,
 				DD5B576025BB36FA00C78C01 /* Descriptor.cpp in Sources */,
+				DDA1151D25C63A70006B628E /* Keys.cpp in Sources */,
 				DD59BBC625BDF82D0086DD0B /* Mesh.cpp in Sources */,
+				DD963F4B25C7310600DD499B /* String.cpp in Sources */,
 				DD282A1325B86558006D398F /* Vulkan.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,10 +812,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD89FACC25C6E62700D55E66 /* Utility.cpp in Sources */,
 				DDD7BA3E25AF12EC007E3634 /* ViewController.m in Sources */,
 				DD59BB7F25BCB9C30086DD0B /* Window.cpp in Sources */,
 				DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */,
 				DD282A3825B89058006D398F /* Buffer.cpp in Sources */,
+				DD963F4C25C7310600DD499B /* String.cpp in Sources */,
 				DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */,
 				DDF0C51B25B43B2B00374CD6 /* Color.cpp in Sources */,
 				DDCCB03625B993EC0078B279 /* Drawable.cpp in Sources */,
@@ -785,6 +829,7 @@
 				DDD7BA8125B023CE007E3634 /* ApplicationState.cpp in Sources */,
 				DDF0C53625B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB925B16146007E3634 /* ResourcePath.cpp in Sources */,
+				DDA1151E25C63A70006B628E /* Keys.cpp in Sources */,
 				DD59BBC225BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DDD7BA4925AF12EE007E3634 /* main.m in Sources */,
 				DDF0C54325B6AB5900374CD6 /* utf.cpp in Sources */,
@@ -792,6 +837,7 @@
 				DDF0C52A25B5833600374CD6 /* Test.cpp in Sources */,
 				DD59BBDB25BE1A0B0086DD0B /* Camera.cpp in Sources */,
 				DDD7BA7725B01885007E3634 /* main.cpp in Sources */,
+				DDA1152425C64004006B628E /* Parser.cpp in Sources */,
 				DD59BBBD25BDF1400086DD0B /* CameraController.cpp in Sources */,
 				DDD7BA3B25AF12EC007E3634 /* SceneDelegate.m in Sources */,
 				DDF0C53C25B6AA8000374CD6 /* Texture.cpp in Sources */,
@@ -883,12 +929,10 @@
 					/usr/local/Cellar/glm/0.9.9.5/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
-					/usr/local/Cellar/ffmpeg/4.1/include,
 					/Users/mayday/Developer/Libraries/portaudio/include,
 					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/ffmpeg/4.1/lib,
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
 				);
@@ -950,12 +994,10 @@
 					/usr/local/Cellar/glm/0.9.9.5/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
-					/usr/local/Cellar/ffmpeg/4.1/include,
 					/Users/mayday/Developer/Libraries/portaudio/include,
 					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/ffmpeg/4.1/lib,
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
 				);
@@ -982,7 +1024,6 @@
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
-					/usr/local/Cellar/ffmpeg/4.1/include,
 					/Users/mayday/Developer/Libraries/portaudio/include,
 					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
@@ -995,7 +1036,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/Users/mayday/Developer/vulkan/macOS/lib,
-					/usr/local/Cellar/ffmpeg/4.1/lib,
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
 				);
@@ -1020,7 +1060,6 @@
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
-					/usr/local/Cellar/ffmpeg/4.1/include,
 					/Users/mayday/Developer/Libraries/portaudio/include,
 					/Users/mayday/Developer/Libraries/libsndfile/include,
 				);
@@ -1033,7 +1072,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/Users/mayday/Developer/vulkan/macOS/lib,
-					/usr/local/Cellar/ffmpeg/4.1/lib,
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
 				);

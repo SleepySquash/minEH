@@ -47,7 +47,9 @@ namespace mh
 
         void VkMesh::createDescriptors()
         {
-            DescriptorCollectorObject* dco = dc::get("mesh " + texture.second);
+            DescriptorCollectorObject* dco;
+            if (descriptor.layout == VK_NULL_HANDLE) dco = dc::get("mesh " + texture.second);
+                                                else dco = dc::raw("mesh " + texture.second);
             if (!dco->loaded)
             {
                 VkDescriptorSetLayoutBinding uboBinding;
@@ -110,7 +112,9 @@ namespace mh
         
         void VkMesh::createGraphicsPipeline()
         {
-            PipelineCollectorObject* pco = pc::get("mesh");
+            PipelineCollectorObject* pco;
+            if (graphicsPipeline == VK_NULL_HANDLE) pco = pc::get("mesh");
+                                               else pco = pc::raw("mesh");
             if (!pco->loaded)
             {
                 pco->vertexShaderPath = resourcePath() + "/Shaders/Vulkan/spv/mesh.vert";
@@ -180,7 +184,7 @@ namespace mh
             }
         }
         void VkMesh::dirty() { mDirty = true; updateModel(); }
-        void VkMesh::setTexture(const std::string& path) { texture.first = (Vk::Texture*)tc::get(path); texture.second = path; }
+        void VkMesh::setTexture(const std::string& path) { texture.first = (Vk::Texture*)tc::get(path)->texture; texture.second = path; }
         void VkMesh::setModel(const std::string& path)
         {
             modelPath = path;

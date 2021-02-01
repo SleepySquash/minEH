@@ -7,12 +7,15 @@
 
 #include "Pipeline.hpp"
 
+#include <iostream>
+
 #ifdef MINEH_VULKAN
 namespace mh
 {
-    std::unordered_map<std::string, PipelineCollectorObject> pc::map;
-    Vk::Context* pc::context = nullptr;
-    uint32_t pc::ids = 1;
+    std::unordered_map<std::string, PipelineCollectorObject*> PipelineCollector::map;
+    std::list<std::unordered_map<std::string, PipelineCollectorObject*>::iterator> PipelineCollector::trash;
+    Vk::Context* PipelineCollector::context = nullptr;
+    uint32_t PipelineCollector::ids = 1;
     
     
 #pragma mark -
@@ -187,51 +190,81 @@ namespace mh
 #pragma mark -
 #pragma mark Pipeline Collector
     
-    void pc::bindContext(Vk::Context* context) { pc::context = context; }
-    PipelineCollectorObject* pc::get(const std::string& id)
+    void PipelineCollector::bindContext(Vk::Context* context) { PipelineCollector::context = context; }
+    PipelineCollectorObject* PipelineCollector::get(const std::string& id)
     {
         auto it = map.find(id);
         if (it != map.end())
         {
-            ++(*it).second.usage;
-            return &(*it).second;
+            ++(*it).second->usage;
+            if ((*it).second->frames)
+            {
+                (*it).second->frames = 0;
+                for (auto iter = trash.begin(); iter != trash.end(); ++iter)
+                    if (*iter == it) { trash.erase(iter); break; }
+            }
+            return (*it).second;
         }
         else
         {
-            it = map.emplace(id, 1).first;
-            (*it).second.id = ids++;
-            return &(*it).second;
+            it = map.emplace(id, nullptr).first;
+            (*it).second = new PipelineCollectorObject(1);
+            (*it).second->id = ids++;
+            return (*it).second;
+        }
+    }
+    PipelineCollectorObject* PipelineCollector::raw(const std::string& id)
+    {
+        if (map.find(id) == map.end()) return nullptr;
+        else
+        {
+            PipelineCollectorObject* pco = get(id);
+            --pco->usage; return pco;
         }
     }
 
-    void pc::erase(const std::string& id, const uint32_t& count)
+    void PipelineCollector::erase(const std::string& id, const uint32_t& count)
     {
         auto it = map.find(id);
         if (it != map.end())
         {
-            if ((*it).second.usage == 1 || (*it).second.usage == 0)
+            if ((*it).second->usage == 1 || (*it).second->usage == 0)
             {
-                if ((*it).second.destroyable)
+                if ((*it).second->destroyable)
                 {
-                    (*it).second.destroyPipeline(context);
-                    map.erase(it);
+                    (*it).second->frames = context->commandBuffers.size() + 1;
+                    trash.push_back(it);
                 }
-                else (*it).second.usage = 0;
+                else (*it).second->usage = 0;
             }
-            else --(*it).second.usage;
+            else --(*it).second->usage;
         }
     }
     
-    void pc::recreate()
+    void PipelineCollector::frame()
     {
-        for (auto it = map.begin(); it != map.end(); ++it)
-            if ((*it).second.loaded) (*it).second.recreatePipeline(context);
+        for (auto it = trash.begin(); it != trash.end();)
+        {
+            --((**it).second->frames);
+            if ((**it).second->frames == 0)
+            {
+                if ((**it).second->loaded) (**it).second->destroyPipeline(context);
+                delete (**it).second; map.erase(*it); it = trash.erase(it);
+            }
+            else ++it;
+        }
     }
     
-    void pc::clear()
+    void PipelineCollector::recreate()
     {
         for (auto it = map.begin(); it != map.end(); ++it)
-            if ((*it).second.loaded) (*it).second.destroyPipeline(context);
+            if ((*it).second->loaded) (*it).second->recreatePipeline(context);
+    }
+    
+    void PipelineCollector::clear()
+    {
+        for (auto it = map.begin(); it != map.end(); ++it)
+            if ((*it).second->loaded) { (*it).second->destroyPipeline(context); delete (*it).second; }
         map.clear(); ids = 1;
     }
 }

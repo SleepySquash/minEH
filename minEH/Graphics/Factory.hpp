@@ -23,11 +23,14 @@ namespace mh
     {
         GL::GLSprite* GetSprite(GL::Context* context);
         Vk::VkSprite* GetSprite(Vk::Context* context);
+        Sprite* GetSprite(Renderer* context);
         
         GL::GLCamera* GetCamera(GL::Context* context);
         Vk::VkCamera* GetCamera(Vk::Context* context);
+        Camera* GetCamera(Renderer* context);
         
         GL::GLMesh* GetMesh(GL::Context* context);
         Vk::VkMesh* GetMesh(Vk::Context* context);
+        Mesh* GetMesh(Renderer* context);
     }
 }

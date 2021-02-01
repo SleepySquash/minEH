@@ -45,6 +45,7 @@ namespace mh
             else std::cout << "stbi_load() Error: failed to load texture '" << path << "'.\n";
             stbi_image_free(data);
             
+            textureID = 0;
             return texture;
         }
         
@@ -56,7 +57,7 @@ namespace mh
         }
         
         void Context::beginRecord(const uint32_t&) { }
-        void Context::endRecord(const uint32_t&) { }
+        void Context::endRecord(const uint32_t&) { tc::frame(); }
         
         void Context::resize() { glViewport(0, 0, window->frame.width, window->frame.height); }
         void Context::destroy() { }

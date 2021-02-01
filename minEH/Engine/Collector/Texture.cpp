@@ -8,6 +8,7 @@
 #include "Texture.hpp"
 
 #include <stb_image.h>
+#include <iostream>
 
 #include "../../Support/ResourcePath.hpp"
 
@@ -18,7 +19,8 @@ namespace mh
     {
         // if (savePixels) stbi_image_free(pixels);
     }
-    std::unordered_map<std::string, TextureCollectorObject> TextureCollector::map;
+    std::unordered_map<std::string, TextureCollectorObject*> TextureCollector::map;
+    std::list<std::unordered_map<std::string, TextureCollectorObject*>::iterator> TextureCollector::trash;
     TextureCollector::Context TextureCollector::context;
     Renderer::Type TextureCollector::type{ Renderer::Type::undef };
     
@@ -28,17 +30,24 @@ namespace mh
 #ifdef MINEH_VULKAN
     void TextureCollector::bindContext(Vk::Context* context) { TextureCollector::context.vk = context; type = Renderer::Type::Vk; }
 #endif
-    void* TextureCollector::get(const std::string& image, const Filter& samplerFilter)
+    TextureCollectorObject* TextureCollector::get(const std::string& image, const Filter& samplerFilter)
     {
         auto it = map.find(image);
         if (it != map.end())
         {
-            ++(*it).second.usage;
-            return (*it).second.texture;
+            ++(*it).second->usage;
+            if ((*it).second->frames)
+            {
+                (*it).second->frames = 0;
+                for (auto iter = trash.begin(); iter != trash.end(); ++iter)
+                    if (*iter == it) { trash.erase(iter); break; }
+            }
+            return (*it).second;
         }
         else
         {
-            it = map.emplace(image, 1).first;
+            it = map.emplace(image, nullptr).first;
+            (*it).second = new TextureCollectorObject(1);
             switch (type)
             {
                 default: throw std::runtime_error("TextureCollector :: get :: No context is bind! You need to tc::bindContext(*context)!"); break;
@@ -55,7 +64,7 @@ namespace mh
                         case Filter::CUBIC: filter = VK_FILTER_CUBIC_IMG; break;
                     }
                     *texture = context.vk->generateTexture(resourcePath() + image, 0, filter);
-                    (*it).second.texture = texture;
+                    (*it).second->texture = texture;
                 } break;
 #endif
 #ifdef MINEH_OPENGL
@@ -70,11 +79,19 @@ namespace mh
                         case Filter::NEAREST: filter = GL_NEAREST; break;
                     }
                     *texture = context.gl->loadTexture(resourcePath() + image, filter);
-                    (*it).second.texture = texture;
+                    (*it).second->texture = texture;
                 } break;
 #endif
             }
-            return (*it).second.texture;
+            return (*it).second;
+        }
+    }
+    TextureCollectorObject* TextureCollector::raw(const std::string& image)
+    {
+        if (map.find(image) == map.end()) return nullptr;
+        {
+            TextureCollectorObject* tco = get(image);
+            --tco->usage; return tco;
         }
     }
 
@@ -83,35 +100,57 @@ namespace mh
         auto it = map.find(image);
         if (it != map.end())
         {
-            if ((*it).second.usage == 1 || (*it).second.usage == 0)
+            if ((*it).second->usage == 1 || (*it).second->usage == 0)
             {
-                if ((*it).second.destroyable)
+                if ((*it).second->destroyable)
                 {
                     switch (type)
                     {
-                        default: throw std::runtime_error("TextureCollector :: erase :: No context is bind! You need to tc::bindContext(*context)!"); break;
+                        default: (*it).second->frames = 1; break;
 #ifdef MINEH_VULKAN
-                        case Renderer::Type::Vk:
-                        {
-                            Vk::Texture* texture = (Vk::Texture*)((*it).second.texture);
-                            context.vk->freeTexture(*texture);
-                            delete texture;
-                        } break;
-#endif
-#ifdef MINEH_OPENGL
-                        case Renderer::Type::GL:
-                        {
-                            GL::Texture* texture = (GL::Texture*)((*it).second.texture);
-                            if (texture->id) glDeleteTextures(1, &texture->id);
-                            delete texture;
-                        } break;
+                        case Renderer::Type::Vk: (*it).second->frames = context.vk->commandBuffers.size() + 1; break;
 #endif
                     }
-                    map.erase(it);
+                    trash.push_back(it);
                 }
-                else (*it).second.usage = 0;
+                else (*it).second->usage = 0;
             }
-            else --(*it).second.usage;
+            else --(*it).second->usage;
+        }
+    }
+    
+    void TextureCollector::frame()
+    {
+        for (auto it = trash.begin(); it != trash.end();)
+        {
+            --((**it).second->frames);
+            if ((**it).second->frames == 0)
+            {
+                switch (type)
+                {
+                    default: throw std::runtime_error("TextureCollector :: erase :: No context is bind! You need to tc::bindContext(*context)!"); break;
+#ifdef MINEH_VULKAN
+                    case Renderer::Type::Vk:
+                    {
+                        Vk::Texture* texture = (Vk::Texture*)((**it).second->texture);
+                        context.vk->freeTexture(*texture);
+                        delete texture;
+                    } break;
+#endif
+#ifdef MINEH_OPENGL
+                    case Renderer::Type::GL:
+                    {
+                        GL::Texture* texture = (GL::Texture*)((**it).second->texture);
+                        if (texture->id) glDeleteTextures(1, &texture->id);
+                        delete texture;
+                    } break;
+#endif
+                }
+                delete (**it).second;
+                map.erase(*it);
+                it = trash.erase(it);
+            }
+            else ++it;
         }
     }
     
@@ -125,7 +164,7 @@ namespace mh
 #ifdef MINEH_VULKAN
                 case Renderer::Type::Vk:
                 {
-                    Vk::Texture* texture = (Vk::Texture*)((*it).second.texture);
+                    Vk::Texture* texture = (Vk::Texture*)((*it).second->texture);
                     context.vk->freeTexture(*texture);
                     delete texture;
                 } break;
@@ -133,13 +172,15 @@ namespace mh
 #ifdef MINEH_OPENGL
                 case Renderer::Type::GL:
                 {
-                    GL::Texture* texture = (GL::Texture*)((*it).second.texture);
+                    GL::Texture* texture = (GL::Texture*)((*it).second->texture);
                     if (texture->id) glDeleteTextures(1, &texture->id);
                     delete texture;
                 } break;
 #endif
             }
+            delete (*it).second;
         }
         map.clear();
+        trash.clear();
     }
 }

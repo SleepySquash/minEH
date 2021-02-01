@@ -7,15 +7,12 @@
 
 #include "Audio.hpp"
 
-#include <stdio.h>
-#include <unistd.h>
-
 namespace mh
 {
     void Audio::Init()
     {
         PaError err = Pa_Initialize();
-        if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
+        if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
     }
     void Audio::Destroy() { Pa_Terminate(); }
     
@@ -24,25 +21,29 @@ namespace mh
     Audio::Audio(const std::string& filename) { open(filename); }
     Audio::~Audio()
     {
+        d.mux.lock();
+        if (stream) Pa_AbortStream(stream);
+        if (stream) Pa_CloseStream(stream);
         if (d.file) sf_close(d.file);
         if (d.sfinfo) delete d.sfinfo;
-        if (stream && Pa_IsStreamActive(stream)) Pa_AbortStream(stream);
-        if (stream) Pa_CloseStream(stream);
+        d.mux.unlock();
     }
     
     void Audio::open(const std::string& filename)
     {
         close(); d.sfinfo = new SF_INFO;
-        if (!(d.file = sf_open(filename.c_str(), SFM_READ, d.sfinfo))) { printf ("Error : Not able to open input file %s.\n", filename.c_str()); return; }
+        if (!(d.file = sf_open(filename.c_str(), SFM_READ, d.sfinfo))) { printf("Error :: Audio :: Failed to open file: \"%s\".\n", filename.c_str()); return; }
         duration = (double)d.sfinfo->frames / d.sfinfo->samplerate; isOpen = true;
     }
     void Audio::close()
     {
+        d.mux.lock();
+        if (stream) Pa_AbortStream(stream);
+        if (stream) { Pa_CloseStream(stream); stream = nullptr; }
         if (d.file) { sf_close(d.file); d.file = nullptr; }
         if (d.sfinfo) { delete d.sfinfo; d.sfinfo = nullptr; }
-        if (stream && Pa_IsStreamActive(stream)) Pa_AbortStream(stream);
-        if (stream) { Pa_CloseStream(stream); stream = nullptr; }
         d.playing = false; d.framesRead = 0; isOpen = false;
+        d.mux.unlock();
     }
     
     void Audio::play()
@@ -50,7 +51,7 @@ namespace mh
         // Create PortAudio's Device and Stream
         PaStreamParameters outputParameters;
         outputParameters.device = Pa_GetDefaultOutputDevice();
-        if (outputParameters.device == paNoDevice) { std::cerr << "Audio :: Error :: No default output device.\n"; return; }
+        if (outputParameters.device == paNoDevice) { std::cerr << "Error :: Audio :: No default output device.\n"; return; }
         outputParameters.channelCount = d.sfinfo->channels;
         outputParameters.sampleFormat = paFloat32;
         outputParameters.suggestedLatency = Pa_GetDeviceInfo(outputParameters.device)->defaultLowOutputLatency;
@@ -60,6 +61,9 @@ namespace mh
                                     [](const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData) -> int
                                     {
                                         MyAudioData *d = (MyAudioData*)userData;
+                                        d->mux.lock();
+                                        if (!d->file || ! d->sfinfo || d->abort) { d->mux.unlock(); return paAbort; }
+            
                                         float *out = (float*)outputBuffer;
                                         framesPerBuffer *= d->sfinfo->channels;
                                         
@@ -81,20 +85,22 @@ namespace mh
                                             d->framesRead = 0; sf_seek(d->file, 0, SEEK_SET);
                                             readCount = sf_read_float(d->file, data, framesPerBuffer);
                                         }
-                                        else return paComplete;
+                                        else { d->mux.unlock(); return paComplete; }
                                         
                                         d->framesRead += readCount / d->sfinfo->channels;
+            
+                                        d->mux.unlock();
                                         return paContinue;
                                     }, &d);
-        if (err != paNoError) { std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n"; return; }
+        if (err != paNoError) { std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; return; }
         
         err = Pa_SetStreamFinishedCallback(stream, [](void* userData) { ((MyAudioData*)userData)->playing = false; });
-        if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
-        err = Pa_StartStream(stream); if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n"; else d.playing = true;
+        if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
+        err = Pa_StartStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; else d.playing = true;
     }
     
     void Audio::pause() { stop(); }
-    void Audio::stop() { PaError err = Pa_StopStream(stream); if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n"; }
+    void Audio::stop() { PaError err = Pa_StopStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; }
     
     void Audio::setLooped(const bool& doLoop) { d.looped = true; }
     bool Audio::isLooped() { return d.looped; }
@@ -146,7 +152,7 @@ namespace mh
                                         else return paComplete;
                                         return paContinue;
                                     }, &d);
-        if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
+        if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
         
         err = Pa_SetStreamFinishedCallback(stream,
                                            [](void* userData)
@@ -155,15 +161,15 @@ namespace mh
                                                d->playing = false;
                                                printf("Stream Completed\n");
                                            });
-        if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
-        err = Pa_StartStream(stream); if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
+        if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
+        err = Pa_StartStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
         
         // Waiting til the Stream ends...
-        do { if (!Pa_IsStreamActive(stream)) break; sleep(1);} while (1);
+        do { if (!Pa_IsStreamActive(stream)) break; Pa_Sleep(1); } while (1);
         
         // Closing the Stream
-        err = Pa_StopStream(stream); if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
-        err = Pa_CloseStream(stream); if (err != paNoError) std::cerr << "Audio :: Error :: " << Pa_GetErrorText( err ) << ".\n";
+        err = Pa_StopStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
+        err = Pa_CloseStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
         
         sf_close(d.file); // Closing the sndfile's File
     }

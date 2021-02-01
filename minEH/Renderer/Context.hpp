@@ -28,6 +28,8 @@ namespace mh
     struct Renderer
     {
         enum class Type { undef, GL, Vk, MTL, WGL, DX, DX12 } type;
+        Window* window = nullptr;
+        Camera* camera = nullptr;
     };
     
     struct CameraBufferObject { glm::mat4 view, proj; };
@@ -46,8 +48,6 @@ namespace mh
         struct Context : Renderer
         {
             GLuint shaderID = 0, VAOID = 0, VBOID = 0, EBOID = 0, textureID = 0, CBOID = 0;
-            Window* window = nullptr;
-            Camera* camera = nullptr;
             
             Context();
             Context(Window* window);
@@ -153,7 +153,7 @@ namespace mh
         {
             int MAX_FRAMES_IN_FLIGHT = 3;
             std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
-            bool enableValidationLayers = false;
+            bool enableValidationLayers = true;
             
             uint32_t vertexID, indexID, pipelineID, descriptorID;
             
@@ -164,8 +164,6 @@ namespace mh
             VkQueue graphicsQueue = VK_NULL_HANDLE, presentQueue = VK_NULL_HANDLE;
             VkDevice device = VK_NULL_HANDLE;
             
-            Window* window = nullptr;
-            Camera* camera = nullptr;
             WindowSize lastSize;
             
             bool anisotropyEnable = false;

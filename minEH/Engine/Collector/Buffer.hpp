@@ -48,6 +48,7 @@ namespace mh
         static void bindContext(Vk::Context* context);
 #endif
         static BufferCollectorObject* get(const std::string& id);
+        static BufferCollectorObject* raw(const std::string& id);
         static bool exists(const std::string& id);
         static void erase(const std::string& id, const uint32_t& count = 1);
         static void clear();

@@ -11,6 +11,7 @@
 #ifdef MINEH_VULKAN
 
 #include <unordered_map>
+#include <list>
 
 #include "../../Renderer/Context.hpp"
 
@@ -23,6 +24,7 @@ namespace mh
         
         uint32_t usage, id;
         bool loaded = false, shaders = false, destroyable = true;
+        uint8_t frames;
         
         //...
         std::string vertexShaderPath;
@@ -51,12 +53,15 @@ namespace mh
     struct PipelineCollector
     {
         static Vk::Context* context;
-        static std::unordered_map<std::string, PipelineCollectorObject> map;
+        static std::unordered_map<std::string, PipelineCollectorObject*> map;
+        static std::list<std::unordered_map<std::string, PipelineCollectorObject*>::iterator> trash;
         static uint32_t ids;
         
         static void bindContext(Vk::Context* context);
         static PipelineCollectorObject* get(const std::string& id);
+        static PipelineCollectorObject* raw(const std::string& id);
         static void erase(const std::string& id, const uint32_t& count = 1);
+        static void frame();
         static void recreate();
         static void clear();
     };

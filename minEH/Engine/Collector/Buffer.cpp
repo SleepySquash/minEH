@@ -74,6 +74,7 @@ namespace mh
                         glEnableVertexAttribArray(1); glVertexAttribPointer(1, 2, GL_FLOAT, false, 4 * sizeof(float), (void*)(2 * sizeof(float)));
                         glBindVertexArray(0);
                         
+                        context.gl->VAOID = context.gl->VBOID = context.gl->EBOID = 0;
                         return &(*it).second;
                     } break;
 #endif
@@ -153,6 +154,15 @@ namespace mh
             }
             
             return nullptr;
+        }
+    }
+    BufferCollectorObject* BufferCollector::raw(const std::string& id)
+    {
+        if (map.find(id) == map.end()) return nullptr;
+        else
+        {
+            BufferCollectorObject* bco = get(id);
+            --bco->usage; return bco;
         }
     }
     
