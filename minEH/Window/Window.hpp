@@ -30,6 +30,7 @@ namespace mh
         bool fullscreen = false;
         
         WindowSize frame;
+        float aspect;
         
         bool isOpen = false;
         bool mayRender = true, shouldRender = true;

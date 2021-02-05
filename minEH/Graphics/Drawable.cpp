@@ -37,6 +37,20 @@ namespace mh
     
     void Sprite::setContext(void* context) { }
     void Sprite::setTexture(const std::string& path) { }
+    void Sprite::setUV(const glm::vec4& uv) { }
+    
+    
+    bool Font::open(const std::string& path) { return false; }
+    void Font::close() { }
+    void Font::setContext(void *context) { }
+    
+    
+    void Text::create() { }
+    void Text::resize() { }
+    void Text::destroy() { }
+    
+    void Text::setContext(void* context) { }
+    void Text::setFont(const std::string& path) { }
     
     
     void Transform3D::dirty() { }

@@ -23,6 +23,30 @@ namespace mh
             }
         }
         
+        GL::GLFont* GetFont(GL::Context* context) { return new GL::GLFont(context); }
+        // Vk::VkSprite* GetFont(Vk::Context* context) { return new Vk::VkSprite(context); }
+        Font* GetFont(Renderer* context)
+        {
+            switch (context->type)
+            {
+                default: return nullptr; break;
+                case Renderer::Type::GL: return new GL::GLFont((GL::Context*)context); break;
+                // case Renderer::Type::Vk: return new Vk::VkSprite((Vk::Context*)context); break;
+            }
+        }
+        
+        GL::GLText* GetText(GL::Context* context) { return new GL::GLText(context); }
+        // Vk::VkSprite* GetText(Vk::Context* context) { return new Vk::VkSprite(context); }
+        Text* GetText(Renderer* context)
+        {
+            switch (context->type)
+            {
+                default: return nullptr; break;
+                case Renderer::Type::GL: return new GL::GLText((GL::Context*)context); break;
+                // case Renderer::Type::Vk: return new Vk::VkSprite((Vk::Context*)context); break;
+            }
+        }
+        
         GL::GLCamera* GetCamera(GL::Context* context) { GL::GLCamera* camera = new GL::GLCamera(context); camera->create(); return camera; }
         Vk::VkCamera* GetCamera(Vk::Context* context) { Vk::VkCamera* camera = new Vk::VkCamera(context); camera->create(); return camera; }
         Camera* GetCamera(Renderer* context)

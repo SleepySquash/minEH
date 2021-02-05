@@ -15,6 +15,7 @@
 #include "../../Engine/Collector/Texture.hpp"
 #include "../../Engine/Collector/Buffer.hpp"
 #include "../../Engine/Collector/Shader.hpp"
+#include "../../Engine/Collector/Font.hpp"
 
 namespace mh
 {
@@ -56,11 +57,16 @@ namespace mh
             return 0;
         }
         
-        void Context::beginRecord(const uint32_t&) { }
+        void Context::beginRecord(const uint32_t&) {  }
         void Context::endRecord(const uint32_t&) { tc::frame(); }
         
         void Context::resize() { glViewport(0, 0, window->frame.width, window->frame.height); }
-        void Context::destroy() { }
+        void Context::destroy()
+        {
+            bc::clear();
+            tc::clear();
+            fc::clear();
+        }
         void Context::wait() { }
         
         void Context::init()
@@ -75,6 +81,7 @@ namespace mh
             
             bc::bindContext(this);
             tc::bindContext(this);
+            fc::bindContext(this);
         }
     }
 }

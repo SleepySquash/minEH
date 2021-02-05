@@ -23,6 +23,9 @@
 #include "Renderer/Context.hpp"
 #include "Renderer/OpenGL/Shader.hpp"
 #include "Renderer/OpenGL/Sprite.hpp"
+#include "Renderer/OpenGL/Text.hpp"
+#include "Renderer/OpenGL/Camera.hpp"
+#include "Renderer/OpenGL/Mesh.hpp"
 #include "Renderer/Vulkan/Sprite.hpp"
 #include "Renderer/Vulkan/Camera.hpp"
 #include "Renderer/Vulkan/Mesh.hpp"
@@ -36,8 +39,11 @@
 #include "Engine/Collector/Buffer.hpp"
 #include "Engine/Collector/Pipeline.hpp"
 #include "Engine/Collector/Descriptor.hpp"
+#include "Engine/Collector/Font.hpp"
 #include "Engine/Composition.hpp"
 #include "Engine/Modes.hpp"
+
 #include "Engine/Components/CameraController.hpp"
+#include "Engine/Components/Debug.hpp"
 
 #include "Audio/Audio.hpp"

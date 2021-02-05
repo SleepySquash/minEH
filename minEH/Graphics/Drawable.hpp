@@ -9,6 +9,7 @@
 
 #include <string>
 #include <glm/glm.hpp>
+#include "../Engine/Modes.hpp"
 
 namespace mh
 {
@@ -23,6 +24,7 @@ namespace mh
         glm::vec2 position{ 0.f },
                   scale   { 1.f };
         float     rotation{ 0.f };
+        glm::vec4 bounds;
         
         virtual void setPosition(const glm::vec2& pos);
         virtual void setRotation(const float&     rot);
@@ -47,6 +49,29 @@ namespace mh
         
         virtual void setContext(void* context);
         virtual void setTexture(const std::string& path);
+        virtual void setUV(const glm::vec4& uv); // TODO: vertex and UV buffers should be seperate vertex attributes (in) so that sprite can change independently their own UV buffer via glSubBufferData or vkCmdCopyBuffer (if UV change is frequent then it should use GL_DYNAMIC_DRAW and CPU visible buffer)
+    };
+    
+    struct Font
+    {
+        virtual bool open(const std::string& path);
+        virtual void close();
+        
+        virtual void setContext(void* context);
+    };
+    
+    struct Text : Drawable, Transform2D
+    {
+        Align halign{ Align::Center }, valign{ Align::Middle };
+        glm::vec4 color{ 1.f, 1.f, 1.f, 1.f };
+        std::string string{ "Text" };
+        
+        virtual void create();
+        virtual void resize();
+        virtual void destroy();
+        
+        virtual void setContext(void* context);
+        virtual void setFont(const std::string& path);
     };
     
     struct Transform3D

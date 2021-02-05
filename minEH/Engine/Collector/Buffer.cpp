@@ -100,6 +100,61 @@ namespace mh
 #endif
                 }
             }
+            else if (id == "text")
+            {
+                switch (type)
+                {
+                    default: break;
+#ifdef MINEH_OPENGL
+                    case Renderer::Type::GL:
+                    {
+                        GLfloat vector[] = {
+                             0.f,  1.f,    0.0f, 0.0f,
+                             0.f,  0.f,    0.0f, 1.0f,
+                             1.f,  0.f,    1.0f, 1.0f,
+                             0.f,  1.f,    0.0f, 0.0f,
+                             1.f,  0.f,    1.0f, 1.0f,
+                             1.f,  1.f,    1.0f, 0.0f,
+                        };
+                        
+                        auto it = map.emplace(id, 1).first;
+                        GL::Buffer* buffer = new GL::Buffer;
+                        (*it).second.buffer = (void*)buffer;
+                        
+                        glGenVertexArrays(1, &buffer->VAO);
+                        glBindVertexArray(buffer->VAO);
+                        glGenBuffers(1, &buffer->VBO);
+                        glBindBuffer(GL_ARRAY_BUFFER, buffer->VBO);
+                        glBufferData(GL_ARRAY_BUFFER, sizeof(vector), vector, GL_STATIC_DRAW);
+                        glEnableVertexAttribArray(0); glVertexAttribPointer(0, 4, GL_FLOAT, false, 4 * sizeof(float), (void*)(0));
+                        glBindVertexArray(0);
+                        
+                        context.gl->VAOID = context.gl->VBOID = 0;
+                        return &(*it).second;
+                    } break;
+#endif
+#ifdef MINEH_VULKAN
+                    case Renderer::Type::Vk:
+                    {
+                        std::vector<Vertex<glm::vec2>> vector = {
+                            { {  0.f,   0.f }, { 0.0f,  0.0f } },
+                            { {  1.f,   0.f }, { 1.0f,  0.0f } },
+                            { {  0.f,   1.f }, { 0.0f,  1.0f } },
+                            { {  1.f,   0.f }, { 1.0f,  0.0f } },
+                            { {  1.f,   1.f }, { 1.0f,  1.0f } },
+                            { {  0.f,   1.f }, { 0.0f,  1.0f } } };
+                        auto it = map.emplace(id, 1).first;
+                        Vk::Buffer* buffer = new Vk::Buffer;
+                        (*it).second.buffer = (void*)buffer;
+                        (*it).second.id = ids++;
+                        
+                        context.vk->generateSingleBuffer(sizeof(vector[0]) * vector.size(), *buffer, vector.data(), VK_BUFFER_USAGE_VERTEX_BUFFER_BIT);
+                        
+                        return &(*it).second;
+                    } break;
+#endif
+                }
+            }
             else if (id == "quad-v")
             {
                 switch (type)

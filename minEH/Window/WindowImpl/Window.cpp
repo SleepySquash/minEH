@@ -12,6 +12,7 @@ namespace mh
     void Window::resize(Event &event)
     {
         mResized = shouldRender = true;
+        aspect = (float)frame.width/frame.height;
         event.data.size = frame;
     }
 }

@@ -87,6 +87,7 @@ namespace mh
         
         void GLSprite::setContext(void* context) { this->context = (GL::Context*)context; }
         void GLSprite::setTexture(const std::string& path) { texture.first = (GL::Texture*)tc::get(path)->texture; texture.second = path; }
+        void GLSprite::setPosition(const glm::vec2& pos) { position = glm::vec2(pos.x, -pos.y); dirty(); }
     }
 }
 #endif

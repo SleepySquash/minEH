@@ -50,6 +50,7 @@ namespace keys
         
         tc::get("Images/key_base.png");
         tc::get("Images/key_overlay.png");
+        fc::get("Fonts/Arial.ttf");
         
         generatePositions();
         system.composition = entity->composition;
@@ -62,6 +63,7 @@ namespace keys
         
         tc::erase("Images/key_base.png");
         tc::erase("Images/key_overlay.png");
+        fc::erase("Fonts/Arial.ttf");
     }
     
     void Game::onUpdate(const float& elapsed)
@@ -139,8 +141,13 @@ namespace keys
         overlay->setTexture("Images/key_overlay.png"); overlay->create();
         overlay->color = { 0.f, 1.f, 0.f, 0.f }; overlay->setScale({0.f, 0.f});
         overlay->setPosition(game->positions[sym]);
+        
+        text = Graphics::GetText(entity->composition->context);
+        text->setFont("Fonts/Arial.ttf"); text->create();
+        text->setPosition(game->positions[sym]);
+        text->setScale(0.1f); text->string = sym;
     }
-    void Key::onDestroy() { key->destroy(); overlay->destroy(); delete key; delete overlay; }
+    void Key::onDestroy() { key->destroy(); overlay->destroy(); text->destroy(); delete key; delete overlay; delete text; }
     void Key::onUpdate(const float& elapsed)
     {
         switch (mode)
@@ -150,26 +157,26 @@ namespace keys
                 temp += elapsed;
                 if (temp >= game->appear)
                 {
-                    key->color.a = overlay->color.a = 1.f;
+                    key->color.a = overlay->color.a = text->color.a = 1.f;
                     mode = Mode::Exist; temp = 0.f;
                 }
                 else
                 {
                     float alpha = temp/game->appear;
-                    key->color.a = overlay->color.a = alpha;
+                    key->color.a = overlay->color.a = text->color.a = alpha;
                 }
             break;
             case Mode::Disappear:
                 temp += elapsed;
                 if (temp >= game->disappear)
                 {
-                    key->color.a = overlay->color.a = 0.f;
+                    key->color.a = overlay->color.a = text->color.a = 0.f;
                     mode = Mode::Deprecate; this->die();
                 }
                 else
                 {
                     float alpha = temp/game->disappear;
-                    key->color.a = overlay->color.a = 1.f - alpha;
+                    key->color.a = overlay->color.a = text->color.a = 1.f - alpha;
                 }
             break;
         }
@@ -199,8 +206,8 @@ namespace keys
         switch (event.type)
         {
             default: break;
-            case Event::Type::Resized: key->resize(); overlay->resize();
-                key->setScale(game->scale); overlay->setScale(game->scale);
+            case Event::Type::Resized: key->resize(); overlay->resize(); text->resize();
+                key->setScale(game->scale); overlay->setScale(game->scale); text->setScale(game->scale);
                 break;
             case Event::Type::KeyPressed:
                 if (!pressed && event.data.key == keycode)
@@ -212,8 +219,8 @@ namespace keys
                 break;
         }
     }
-    void Key::onRecord(const uint32_t& i) { overlay->record(i); key->record(i); }
-    void Key::onDraw() { overlay->draw(); key->draw(); }
+    void Key::onRecord(const uint32_t& i) { overlay->record(i); key->record(i); text->record(i); }
+    void Key::onDraw() { overlay->draw(); key->draw(); text->draw(); }
     
     
 #pragma mark -

@@ -39,6 +39,7 @@ namespace mh
             
             void setContext(void* context) override;
             void setTexture(const std::string& path) override;
+            void setPosition(const glm::vec2& pos) override;
         };
     }
 }

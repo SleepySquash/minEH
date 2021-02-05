@@ -164,6 +164,7 @@ namespace mh
             const NSRect fbRect = [(__bridge _NSView*)view convertRectToBacking: contentRect];
             frame.width = static_cast<unsigned int>(fbRect.size.width);
             frame.height = static_cast<unsigned int>(fbRect.size.height);
+            aspect = (float)frame.width/frame.height;
             
             const CGSize winRect = ((__bridge NSWindow*)window).frame.size;
             width = static_cast<unsigned int>(winRect.width);

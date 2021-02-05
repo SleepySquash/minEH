@@ -180,11 +180,14 @@ void demo_keys(int, const char**)
     Window window;
     window.open();
     
-    Vk::Context context(&window);
+    GL::Context context(&window);
     
     Composition composition(&context);
     Entity* entity = composition.addEntity();
     entity->addComponent<keys::Game>(resourcePath() + "Keymaps/Marina Rios - Fukashigi no Carte/easy.kmp");
+    
+    Entity* debugEntity = composition.addEntity();
+    debugEntity->addComponent<Components::Debug>();
     
     Event event;
     Clock clock;
@@ -200,7 +203,7 @@ void demo_keys(int, const char**)
                     switch (event.data.key)
                     {
                         default: break;
-                        case Keyboard::Key::Num0: entity->addComponent<keys::Game>(resourcePath() + "Keymaps/Marina Rios - Fukashigi no Carte/easy.kmp")->doResize(); break;
+                        case Keyboard::Key::Num0: entity->addComponent<keys::Game>(resourcePath() + "Keymaps/Ken Ashcorp - I'm Your Slave/easy.kmp")->doResize(); break;
                     }
                     break;
                 default: break;

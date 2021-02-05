@@ -51,7 +51,7 @@ namespace keys
     {
         Sprite* key;
         Sprite* overlay;
-        // Text* text;
+        Text* text;
         
         Game* game; char sym;
         Keyboard::Key keycode;

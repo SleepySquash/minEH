@@ -25,6 +25,7 @@ namespace mh
     namespace ShaderCollection
     {
         extern ShaderCollectorObject* sprite;
+        extern ShaderCollectorObject* text;
         extern ShaderCollectorObject* mesh;
     }
     struct ShaderCollector

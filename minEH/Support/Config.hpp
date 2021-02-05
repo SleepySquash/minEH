@@ -22,6 +22,7 @@
 // #define MINEH_WEBGL
 // #define MINEH_DIRECTX
 // #define MINEH_DIRECTX12
+// #define MINEH_CPU
 
 // This define means that MoltenVK (and not the Vulkan Loader for macOS which uses MoltenVK as well, but does not contain extended MoltenVK headers and functions) is used, so some optimization at a context creation time may be made.
 // #define MINEH_MOLTENVK
