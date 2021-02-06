@@ -5,8 +5,7 @@
 //  Created by Никита Исаенко on 16.01.2021.
 //
 
-#ifndef WindowImpl_Cocoa_h
-#define WindowImpl_Cocoa_h
+#pragma once
 
 #include "../Window.hpp"
 
@@ -29,4 +28,5 @@
 @end
 
 
-#endif /* WindowImpl_Cocoa_h */
+@interface SceneDelegate ()
+@end

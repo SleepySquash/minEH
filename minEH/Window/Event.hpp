@@ -42,6 +42,7 @@ namespace mh
     struct EventData_Resize { uint32_t width, height; };
     struct EventData_MouseMove { int x, y; };
     struct EventData_MouseButton { int x, y; Mouse::Button button; };
+    struct EventData_Touch { float x, y; unsigned int finger; };
     struct Event
     {
         enum class Type
@@ -56,6 +57,10 @@ namespace mh
             MousePressed,
             MouseReleased,
             Scroll,
+            
+            TouchBegan,
+            TouchMoved,
+            TouchEnded,
             
             KeyPressed,
             keyReleased,
@@ -73,6 +78,7 @@ namespace mh
                 EventData_MouseButton button;
             }
             mouse;
+            EventData_Touch touch;
             Keyboard::Key key;
         }
         data;

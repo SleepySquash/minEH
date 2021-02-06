@@ -1427,7 +1427,7 @@ namespace Vk
 
         std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
 #endif
-#ifdef MINEH_MACOS
+#if defined(MINEH_MACOS) || defined(MINEH_IOS)
         std::vector<const char*> extensions(2);
         extensions[0] = "VK_KHR_surface";
         extensions[1] = "VK_EXT_metal_surface";

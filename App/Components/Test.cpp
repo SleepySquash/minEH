@@ -11,10 +11,9 @@ namespace mh
 {
     namespace test
     {
-        NPC::NPC(GL::Context* context, const std::string& path) { sprite = (Sprite*)Graphics::GetSprite(context); sprite->setTexture(path); }
-        NPC::NPC(Vk::Context* context, const std::string& path) { sprite = (Sprite*)Graphics::GetSprite(context); sprite->setTexture(path); }
+        NPC::NPC(const std::string& path) : path(path) { }
         
-        void NPC::onInit() { sprite->create(); }
+        void NPC::onInit() { sprite = (Sprite*)Graphics::GetSprite(entity->composition->context); sprite->setTexture(path); sprite->create(); }
         void NPC::onDestroy() { sprite->destroy(); delete sprite; }
         
         void NPC::onUpdate(const float &elapsed)
@@ -91,11 +90,8 @@ namespace mh
         
         
         
-        MeshTest::MeshTest(GL::Context* context, const std::string& model, const std::string& texture) {
-            mesh = (Mesh*)Graphics::GetMesh(context); mesh->setTexture(texture); mesh->setModel(model); }
-        MeshTest::MeshTest(Vk::Context* context, const std::string& model, const std::string& texture) {
-            mesh = (Mesh*)Graphics::GetMesh(context); mesh->setTexture(texture); mesh->setModel(model); }
-        void MeshTest::onInit() { mesh->create(); }
+        MeshTest::MeshTest(const std::string& model, const std::string& texture): model(model), texture(texture) { }
+        void MeshTest::onInit() { mesh = (Mesh*)Graphics::GetMesh(entity->composition->context); mesh->setTexture(texture); mesh->setModel(model); mesh->create(); }
         void MeshTest::onDestroy() { mesh->destroy(); delete mesh; }
         void MeshTest::onEvent(Event& event)
         {

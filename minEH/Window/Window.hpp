@@ -39,9 +39,9 @@ namespace mh
         
         DisplayData displayData;
         
-        void *window, *view, *delegate;
-        void* caMetalLayer;
-        void* mTitle;
+        void *window, *view, *delegate, *viewController, *scene;
+        void *caMetalLayer;
+        void *mTitle;
         
     public:
         Window();

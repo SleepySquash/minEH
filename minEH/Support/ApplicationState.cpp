@@ -7,7 +7,4 @@
 
 #include "ApplicationState.hpp"
 
-namespace mh
-{
-    ApplicationState applicationState;
-}
+_ApplicationState _applicationState;

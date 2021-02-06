@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "Config.hpp"
 #include <string>
 
 namespace mh
@@ -21,9 +22,9 @@ namespace mh
 #elif __APPLE__
     #include <TargetConditionals.h>
     #if TARGET_IPHONE_SIMULATOR
-        inline std::string resourcePath() { return ""; }
+        std::string resourcePath();
     #elif TARGET_OS_IPHONE
-        inline std::string resourcePath() { return ""; }
+        std::string resourcePath();
     #elif TARGET_OS_MAC
         std::string resourcePath();
     #else

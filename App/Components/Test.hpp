@@ -16,6 +16,7 @@ namespace mh
     {
         struct NPC : Component
         {
+            const std::string& path;
             Sprite* sprite;
             
             bool moveA{ false }, moveD{ false }, moveW{ false }, moveS{ false };
@@ -25,8 +26,7 @@ namespace mh
             float elapsedStanding = 0.4f;
             glm::vec2 movementPoint;
             
-            NPC(GL::Context* context, const std::string& path = "Images/npc.png");
-            NPC(Vk::Context* context, const std::string& path = "Images/npc.png");
+            NPC(const std::string& path = "Images/npc.png");
             void onInit() override;
             void onDestroy() override;
             void onUpdate(const float& elapsed) override;
@@ -37,10 +37,10 @@ namespace mh
         
         struct MeshTest : Component
         {
+            const std::string& model, texture;
             Mesh* mesh;
             
-            MeshTest(GL::Context* context, const std::string& model = "Models/gothloli.obj", const std::string& texture = "Models/gothloli_d.jpg");
-            MeshTest(Vk::Context* context, const std::string& model = "Models/gothloli.obj", const std::string& texture = "Models/gothloli_d.jpg");
+            MeshTest(const std::string& model = "Models/gothloli.obj", const std::string& texture = "Models/gothloli_d.jpg");
             void onInit() override;
             void onDestroy() override;
             void onEvent(Event& event) override;

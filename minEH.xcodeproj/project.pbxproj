@@ -23,6 +23,23 @@
 		DD29166725CCFD0A00497378 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD29166425CCFD0A00497378 /* Font.cpp */; };
 		DD29166C25CD0FA700497378 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD29166A25CD0FA700497378 /* Debug.cpp */; };
 		DD29166D25CD0FA700497378 /* Debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD29166A25CD0FA700497378 /* Debug.cpp */; };
+		DD2E796025CF109B00EF90BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2E795325CF109B00EF90BF /* Main.storyboard */; };
+		DD2E796125CF109B00EF90BF /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2E795425CF109B00EF90BF /* ViewController.mm */; };
+		DD2E796225CF109B00EF90BF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2E795525CF109B00EF90BF /* SceneDelegate.m */; };
+		DD2E796425CF109B00EF90BF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2E795925CF109B00EF90BF /* AppDelegate.mm */; };
+		DD2E796525CF109B00EF90BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2E795B25CF109B00EF90BF /* Assets.xcassets */; };
+		DD2E796625CF109B00EF90BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2E795D25CF109B00EF90BF /* LaunchScreen.storyboard */; };
+		DD2E796725CF109B00EF90BF /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2E795F25CF109B00EF90BF /* main.mm */; };
+		DD4615CF25CEA0CA00A2195A /* UIKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4615CE25CEA0CA00A2195A /* UIKit.mm */; };
+		DD4615D725CEA57300A2195A /* PulseAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4615D525CEA57300A2195A /* PulseAudio.cpp */; };
+		DD4615DD25CEA77D00A2195A /* CoreAudio.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4615DC25CEA77D00A2195A /* CoreAudio.mm */; };
+		DD4615E725CEADEB00A2195A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615E625CEADEB00A2195A /* libfreetype.a */; };
+		DD4615F325CEB29300A2195A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615F125CEB29300A2195A /* libfreetype.a */; };
+		DD4615F425CEB29300A2195A /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615F225CEB29300A2195A /* libfreetype.6.dylib */; };
+		DD4615F525CEB2A400A2195A /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD4615F225CEB29300A2195A /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DD4615F825CEB2D300A2195A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615F725CEB2D300A2195A /* CoreGraphics.framework */; };
+		DD4615FC25CEB94200A2195A /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615FB25CEB94200A2195A /* MetalKit.framework */; };
+		DD46160225CEC0F300A2195A /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BABC25B1616D007E3634 /* ResourcePath.mm */; };
 		DD46E02925B9BB56001E4333 /* OpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD46E02825B9BB56001E4333 /* OpenGL.cpp */; };
 		DD46E02A25B9BB56001E4333 /* OpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD46E02825B9BB56001E4333 /* OpenGL.cpp */; };
 		DD59BB7E25BCB9C30086DD0B /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BB7D25BCB9C30086DD0B /* Window.cpp */; };
@@ -80,13 +97,6 @@
 		DDCCB03625B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
 		DDD7BA2025AF11F4007E3634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BA1F25AF11F4007E3634 /* Assets.xcassets */; };
 		DDD7BA2625AF11F4007E3634 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA2525AF11F4007E3634 /* main.mm */; };
-		DDD7BA3825AF12EC007E3634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA3725AF12EC007E3634 /* AppDelegate.m */; };
-		DDD7BA3B25AF12EC007E3634 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA3A25AF12EC007E3634 /* SceneDelegate.m */; };
-		DDD7BA3E25AF12EC007E3634 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA3D25AF12EC007E3634 /* ViewController.m */; };
-		DDD7BA4125AF12EC007E3634 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BA3F25AF12EC007E3634 /* Main.storyboard */; };
-		DDD7BA4325AF12EE007E3634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BA4225AF12EE007E3634 /* Assets.xcassets */; };
-		DDD7BA4625AF12EE007E3634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BA4425AF12EE007E3634 /* LaunchScreen.storyboard */; };
-		DDD7BA4925AF12EE007E3634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA4825AF12EE007E3634 /* main.m */; };
 		DDD7BA6225AF19BB007E3634 /* Composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA6025AF19BA007E3634 /* Composition.cpp */; };
 		DDD7BA6325AF19BB007E3634 /* Composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA6025AF19BA007E3634 /* Composition.cpp */; };
 		DDD7BA7625B01885007E3634 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA7525B01885007E3634 /* main.cpp */; };
@@ -101,21 +111,16 @@
 		DDD7BAB825B16146007E3634 /* ResourcePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAB625B16146007E3634 /* ResourcePath.cpp */; };
 		DDD7BAB925B16146007E3634 /* ResourcePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAB625B16146007E3634 /* ResourcePath.cpp */; };
 		DDD7BABD25B1616D007E3634 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BABC25B1616D007E3634 /* ResourcePath.mm */; };
-		DDD7BABE25B1616D007E3634 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BABC25B1616D007E3634 /* ResourcePath.mm */; };
 		DDD7BAC525B16256007E3634 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BAC425B16256007E3634 /* Shaders */; };
 		DDD7BAC625B16256007E3634 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BAC425B16256007E3634 /* Shaders */; };
 		DDD7BB0425B2274E007E3634 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BB0325B2274E007E3634 /* Cocoa.framework */; };
 		DDD7BB0825B22761007E3634 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BB0725B22761007E3634 /* CoreVideo.framework */; };
-		DDDE565025C99F5D0055E3EF /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDE564E25C99F5C0055E3EF /* libfreetype.a */; };
-		DDDE565125C99F670055E3EF /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDDE564D25C99F5C0055E3EF /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DDDE565825C99FB10055E3EF /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565625C99FB10055E3EF /* Text.cpp */; };
 		DDDE565925C99FB10055E3EF /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565625C99FB10055E3EF /* Text.cpp */; };
 		DDDE565E25C9A45E0055E3EF /* CPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565C25C9A45E0055E3EF /* CPU.cpp */; };
 		DDDE565F25C9A45E0055E3EF /* CPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565C25C9A45E0055E3EF /* CPU.cpp */; };
-		DDDE566925C9AAB00055E3EF /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDE564D25C99F5C0055E3EF /* libfreetype.6.dylib */; };
 		DDE5348A25C4BC5500D71B70 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348925C4BC5500D71B70 /* libportaudio.a */; };
 		DDE5348D25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */; };
-		DDE5348E25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */; };
 		DDE5349625C4BF2B00D71B70 /* libportaudio.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DDE534C725C5BB4200D71B70 /* libsndfile.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */; };
 		DDE534C825C5BB4200D71B70 /* libsndfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE534C625C5BB4200D71B70 /* libsndfile.a */; };
@@ -143,11 +148,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DD4615F525CEB2A400A2195A /* libfreetype.6.dylib in CopyFiles */,
 				DD59BBEB25BE1D0E0086DD0B /* libMoltenVK.dylib in CopyFiles */,
 				DD282A3325B87268006D398F /* libVkLayer_khronos_validation.dylib in CopyFiles */,
 				DDE5349625C4BF2B00D71B70 /* libportaudio.2.dylib in CopyFiles */,
 				DDE534CC25C5BB5B00D71B70 /* libsndfile.1.dylib in CopyFiles */,
-				DDDE565125C99F670055E3EF /* libfreetype.6.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +174,29 @@
 		DD29166525CCFD0A00497378 /* Font.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Font.hpp; sourceTree = "<group>"; };
 		DD29166A25CD0FA700497378 /* Debug.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
 		DD29166B25CD0FA700497378 /* Debug.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Debug.hpp; sourceTree = "<group>"; };
+		DD2E795325CF109B00EF90BF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DD2E795425CF109B00EF90BF /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		DD2E795525CF109B00EF90BF /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		DD2E795625CF109B00EF90BF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD2E795725CF109B00EF90BF /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		DD2E795825CF109B00EF90BF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DD2E795925CF109B00EF90BF /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		DD2E795B25CF109B00EF90BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD2E795C25CF109B00EF90BF /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		DD2E795D25CF109B00EF90BF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DD2E795E25CF109B00EF90BF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DD2E795F25CF109B00EF90BF /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		DD4615CE25CEA0CA00A2195A /* UIKit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UIKit.mm; sourceTree = "<group>"; };
+		DD4615D125CEA0D400A2195A /* UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKit.h; sourceTree = "<group>"; };
+		DD4615D525CEA57300A2195A /* PulseAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PulseAudio.cpp; sourceTree = "<group>"; };
+		DD4615D625CEA57300A2195A /* PulseAudio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PulseAudio.hpp; sourceTree = "<group>"; };
+		DD4615DC25CEA77D00A2195A /* CoreAudio.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreAudio.mm; sourceTree = "<group>"; };
+		DD4615DF25CEA78B00A2195A /* CoreAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreAudio.h; sourceTree = "<group>"; };
+		DD4615E625CEADEB00A2195A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "../../../Libraries/freetype-2.10.0/lib/ios/libfreetype.a"; sourceTree = "<group>"; };
+		DD4615F125CEB29300A2195A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "../../../Libraries/freetype-2.10.0/lib/macos/libfreetype.a"; sourceTree = "<group>"; };
+		DD4615F225CEB29300A2195A /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = "../../../Libraries/freetype-2.10.0/lib/macos/libfreetype.6.dylib"; sourceTree = "<group>"; };
+		DD4615F725CEB2D300A2195A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		DD4615FB25CEB94200A2195A /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		DD46E02825B9BB56001E4333 /* OpenGL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL.cpp; sourceTree = "<group>"; };
 		DD59BB7D25BCB9C30086DD0B /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		DD59BB8725BD6C630086DD0B /* Factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Factory.cpp; sourceTree = "<group>"; };
@@ -228,17 +256,6 @@
 		DDD7BA2525AF11F4007E3634 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		DDD7BA2725AF11F4007E3634 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		DDD7BA3425AF12EC007E3634 /* iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDD7BA3625AF12EC007E3634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DDD7BA3725AF12EC007E3634 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DDD7BA3925AF12EC007E3634 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		DDD7BA3A25AF12EC007E3634 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		DDD7BA3C25AF12EC007E3634 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DDD7BA3D25AF12EC007E3634 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		DDD7BA4025AF12EC007E3634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DDD7BA4225AF12EE007E3634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DDD7BA4525AF12EE007E3634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DDD7BA4725AF12EE007E3634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDD7BA4825AF12EE007E3634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DDD7BA6025AF19BA007E3634 /* Composition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Composition.cpp; sourceTree = "<group>"; };
 		DDD7BA6125AF19BA007E3634 /* Composition.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Composition.hpp; sourceTree = "<group>"; };
 		DDD7BA6B25AFF198007E3634 /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
@@ -262,7 +279,6 @@
 		DDD7BB0725B22761007E3634 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		DDD7BB0B25B28F5A007E3634 /* Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cocoa.h; sourceTree = "<group>"; };
 		DDD7BB1725B31A5D007E3634 /* minEH.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = minEH.hpp; sourceTree = "<group>"; };
-		DDDE564D25C99F5C0055E3EF /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = "../../../Libraries/freetype-2.10.0/objs/.libs/libfreetype.6.dylib"; sourceTree = "<group>"; };
 		DDDE564E25C99F5C0055E3EF /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "../../../Libraries/freetype-2.10.0/objs/.libs/libfreetype.a"; sourceTree = "<group>"; };
 		DDDE565625C99FB10055E3EF /* Text.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cpp; sourceTree = "<group>"; };
 		DDDE565725C99FB10055E3EF /* Text.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Text.hpp; sourceTree = "<group>"; };
@@ -291,8 +307,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDDE566925C9AAB00055E3EF /* libfreetype.6.dylib in Frameworks */,
-				DDDE565025C99F5D0055E3EF /* libfreetype.a in Frameworks */,
+				DD4615F325CEB29300A2195A /* libfreetype.a in Frameworks */,
+				DD4615F425CEB29300A2195A /* libfreetype.6.dylib in Frameworks */,
 				DDE534C725C5BB4200D71B70 /* libsndfile.1.dylib in Frameworks */,
 				DDE534C825C5BB4200D71B70 /* libsndfile.a in Frameworks */,
 				DDE5348D25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */,
@@ -314,7 +330,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDE5348E25C4BD1900D71B70 /* libportaudio.2.dylib in Frameworks */,
+				DD4615E725CEADEB00A2195A /* libfreetype.a in Frameworks */,
+				DD4615FC25CEB94200A2195A /* MetalKit.framework in Frameworks */,
+				DD4615F825CEB2D300A2195A /* CoreGraphics.framework in Frameworks */,
 				DD5B579925BC157300C78C01 /* IOSurface.framework in Frameworks */,
 				DD5B579725BC156900C78C01 /* UIKit.framework in Frameworks */,
 				DD5B579525BC155500C78C01 /* QuartzCore.framework in Frameworks */,
@@ -327,6 +345,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD2E795225CF108100EF90BF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DD2E795825CF109B00EF90BF /* AppDelegate.h */,
+				DD2E795925CF109B00EF90BF /* AppDelegate.mm */,
+				DD2E795B25CF109B00EF90BF /* Assets.xcassets */,
+				DD2E795A25CF109B00EF90BF /* Base.lproj */,
+				DD2E795625CF109B00EF90BF /* Info.plist */,
+				DD2E795D25CF109B00EF90BF /* LaunchScreen.storyboard */,
+				DD2E795C25CF109B00EF90BF /* main.h */,
+				DD2E795F25CF109B00EF90BF /* main.mm */,
+				DD2E795325CF109B00EF90BF /* Main.storyboard */,
+				DD2E795725CF109B00EF90BF /* SceneDelegate.h */,
+				DD2E795525CF109B00EF90BF /* SceneDelegate.m */,
+				DD2E795E25CF109B00EF90BF /* ViewController.h */,
+				DD2E795425CF109B00EF90BF /* ViewController.mm */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		DD2E795A25CF109B00EF90BF /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		DD4615DA25CEA57F00A2195A /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				DD4615D525CEA57300A2195A /* PulseAudio.cpp */,
+				DD4615D625CEA57300A2195A /* PulseAudio.hpp */,
+				DD4615DF25CEA78B00A2195A /* CoreAudio.h */,
+				DD4615DC25CEA77D00A2195A /* CoreAudio.mm */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
 		DD5B57A825BC660300C78C01 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +412,7 @@
 				DDD7BA5F25AF19A2007E3634 /* App */,
 				DDD7BA7B25B01969007E3634 /* minEH */,
 				DDD7BA1825AF11F1007E3634 /* macOS */,
-				DDD7BA3525AF12EC007E3634 /* iOS */,
+				DD2E795225CF108100EF90BF /* iOS */,
 				DDD7BAC325B16226007E3634 /* Resources */,
 				DDD7B9FB25AF1044007E3634 /* Products */,
 				DDD7BAA925B15EF8007E3634 /* Frameworks */,
@@ -384,24 +440,6 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		DDD7BA3525AF12EC007E3634 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				DDD7BA3625AF12EC007E3634 /* AppDelegate.h */,
-				DDD7BA3725AF12EC007E3634 /* AppDelegate.m */,
-				DDD7BA3925AF12EC007E3634 /* SceneDelegate.h */,
-				DDD7BA3A25AF12EC007E3634 /* SceneDelegate.m */,
-				DDD7BA3C25AF12EC007E3634 /* ViewController.h */,
-				DDD7BA3D25AF12EC007E3634 /* ViewController.m */,
-				DDD7BA3F25AF12EC007E3634 /* Main.storyboard */,
-				DDD7BA4225AF12EE007E3634 /* Assets.xcassets */,
-				DDD7BA4425AF12EE007E3634 /* LaunchScreen.storyboard */,
-				DDD7BA4725AF12EE007E3634 /* Info.plist */,
-				DDD7BA4825AF12EE007E3634 /* main.m */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
 		DDD7BA5F25AF19A2007E3634 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,14 +465,16 @@
 			path = minEH;
 			sourceTree = "<group>";
 		};
-		DDD7BA8625B0280D007E3634 /* WindowImpl */ = {
+		DDD7BA8625B0280D007E3634 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				DD59BB7D25BCB9C30086DD0B /* Window.cpp */,
 				DDD7BB0B25B28F5A007E3634 /* Cocoa.h */,
 				DDD7BA8F25B0285D007E3634 /* Cocoa.mm */,
-				DD59BB7D25BCB9C30086DD0B /* Window.cpp */,
+				DD4615D125CEA0D400A2195A /* UIKit.h */,
+				DD4615CE25CEA0CA00A2195A /* UIKit.mm */,
 			);
-			path = WindowImpl;
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		DDD7BAA125B152C2007E3634 /* OpenGL */ = {
@@ -459,8 +499,12 @@
 		DDD7BAA925B15EF8007E3634 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DDDE564D25C99F5C0055E3EF /* libfreetype.6.dylib */,
+				DD4615FB25CEB94200A2195A /* MetalKit.framework */,
+				DD4615F725CEB2D300A2195A /* CoreGraphics.framework */,
+				DD4615F225CEB29300A2195A /* libfreetype.6.dylib */,
+				DD4615E625CEADEB00A2195A /* libfreetype.a */,
 				DDDE564E25C99F5C0055E3EF /* libfreetype.a */,
+				DD4615F125CEB29300A2195A /* libfreetype.a */,
 				DD963F6225C889C900DD499B /* libvulkan.1.2.131.dylib */,
 				DDE534C525C5BB4200D71B70 /* libsndfile.1.dylib */,
 				DDE534C625C5BB4200D71B70 /* libsndfile.a */,
@@ -508,7 +552,7 @@
 			children = (
 				DDD7BA9E25B03715007E3634 /* Event.hpp */,
 				DDD7BA6B25AFF198007E3634 /* Window.hpp */,
-				DDD7BA8625B0280D007E3634 /* WindowImpl */,
+				DDD7BA8625B0280D007E3634 /* Implementation */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -545,8 +589,9 @@
 		DDD7BB1325B3198B007E3634 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				DD880F8225C1C66400A41F0B /* Audio.cpp */,
 				DD880F8325C1C66400A41F0B /* Audio.hpp */,
+				DD880F8225C1C66400A41F0B /* Audio.cpp */,
+				DD4615DA25CEA57F00A2195A /* Implementation */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -775,13 +820,13 @@
 			files = (
 				DDF0C51225B4353900374CD6 /* Images in Resources */,
 				DD282A2525B87005006D398F /* vulkan in Resources */,
-				DDD7BA4625AF12EE007E3634 /* LaunchScreen.storyboard in Resources */,
 				DDD7BAC625B16256007E3634 /* Shaders in Resources */,
-				DDD7BA4325AF12EE007E3634 /* Assets.xcassets in Resources */,
+				DD2E796525CF109B00EF90BF /* Assets.xcassets in Resources */,
+				DD2E796025CF109B00EF90BF /* Main.storyboard in Resources */,
 				DD69B25F25CA0DD4002372C2 /* Fonts in Resources */,
 				DD59BBCB25BE07B80086DD0B /* Models in Resources */,
 				DD963F5125C747DC00DD499B /* Keymaps in Resources */,
-				DDD7BA4125AF12EC007E3634 /* Main.storyboard in Resources */,
+				DD2E796625CF109B00EF90BF /* LaunchScreen.storyboard in Resources */,
 				DD08A7A325C1EC4800618F26 /* Audio in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -836,6 +881,7 @@
 				DDD7BAA425B15567007E3634 /* Cocoa.mm in Sources */,
 				DDF0C54225B6AB5900374CD6 /* utf.cpp in Sources */,
 				DDD7BA8025B023CE007E3634 /* ApplicationState.cpp in Sources */,
+				DD4615D725CEA57300A2195A /* PulseAudio.cpp in Sources */,
 				DD5B575B25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
 				DD59BBC125BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DD59BBBC25BDF1400086DD0B /* CameraController.cpp in Sources */,
@@ -862,8 +908,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2E796725CF109B00EF90BF /* main.mm in Sources */,
 				DD89FACC25C6E62700D55E66 /* Utility.cpp in Sources */,
-				DDD7BA3E25AF12EC007E3634 /* ViewController.m in Sources */,
 				DD59BB7F25BCB9C30086DD0B /* Window.cpp in Sources */,
 				DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */,
 				DD282A3825B89058006D398F /* Buffer.cpp in Sources */,
@@ -873,16 +919,18 @@
 				DDCCB03625B993EC0078B279 /* Drawable.cpp in Sources */,
 				DD59BBE025BE1A150086DD0B /* Mesh.cpp in Sources */,
 				DD29166D25CD0FA700497378 /* Debug.cpp in Sources */,
-				DDD7BA3825AF12EC007E3634 /* AppDelegate.m in Sources */,
+				DD2E796425CF109B00EF90BF /* AppDelegate.mm in Sources */,
+				DD46160225CEC0F300A2195A /* ResourcePath.mm in Sources */,
+				DD4615CF25CEA0CA00A2195A /* UIKit.mm in Sources */,
 				DDD7BAB125B160BE007E3634 /* Shader.cpp in Sources */,
 				DD46E02A25B9BB56001E4333 /* OpenGL.cpp in Sources */,
+				DD4615DD25CEA77D00A2195A /* CoreAudio.mm in Sources */,
 				DDF0C52125B480FC00374CD6 /* Shader.cpp in Sources */,
 				DDD7BA8125B023CE007E3634 /* ApplicationState.cpp in Sources */,
 				DDF0C53625B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB925B16146007E3634 /* ResourcePath.cpp in Sources */,
 				DDA1151E25C63A70006B628E /* Keys.cpp in Sources */,
 				DD59BBC225BDF3A00086DD0B /* Camera.cpp in Sources */,
-				DDD7BA4925AF12EE007E3634 /* main.m in Sources */,
 				DDF0C54325B6AB5900374CD6 /* utf.cpp in Sources */,
 				DDDE565F25C9A45E0055E3EF /* CPU.cpp in Sources */,
 				DDC4A37F25B42B5F006E2E0D /* Sprite.cpp in Sources */,
@@ -892,40 +940,21 @@
 				DDD7BA7725B01885007E3634 /* main.cpp in Sources */,
 				DDA1152425C64004006B628E /* Parser.cpp in Sources */,
 				DD59BBBD25BDF1400086DD0B /* CameraController.cpp in Sources */,
-				DDD7BA3B25AF12EC007E3634 /* SceneDelegate.m in Sources */,
 				DDF0C53C25B6AA8000374CD6 /* Texture.cpp in Sources */,
-				DDD7BABE25B1616D007E3634 /* ResourcePath.mm in Sources */,
 				DDDE565925C99FB10055E3EF /* Text.cpp in Sources */,
 				DD5B575C25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
 				DD59BBC725BDF82D0086DD0B /* Mesh.cpp in Sources */,
+				DD2E796125CF109B00EF90BF /* ViewController.mm in Sources */,
 				DD59BBB725BDEEC90086DD0B /* Camera.cpp in Sources */,
 				DD5B576125BB36FA00C78C01 /* Descriptor.cpp in Sources */,
 				DDD7BA6325AF19BB007E3634 /* Composition.cpp in Sources */,
+				DD2E796225CF109B00EF90BF /* SceneDelegate.m in Sources */,
 				DD59BB8A25BD6C630086DD0B /* Factory.cpp in Sources */,
 				DD282A1425B86558006D398F /* Vulkan.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		DDD7BA3F25AF12EC007E3634 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDD7BA4025AF12EC007E3634 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DDD7BA4425AF12EE007E3634 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDD7BA4525AF12EE007E3634 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DDD7BA0925AF1046007E3634 /* Debug */ = {
@@ -987,10 +1016,10 @@
 					/Users/mayday/Developer/Libraries/libsndfile/include,
 					"/Users/mayday/Developer/Libraries/freetype-2.10.0/include",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
-					"/Users/mayday/Developer/Libraries/freetype-2.10.0/objs/.libs",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1054,10 +1083,10 @@
 					/Users/mayday/Developer/Libraries/libsndfile/include,
 					"/Users/mayday/Developer/Libraries/freetype-2.10.0/include",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
-					"/Users/mayday/Developer/Libraries/freetype-2.10.0/objs/.libs",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1097,7 +1126,7 @@
 					/Users/mayday/Developer/vulkan/macOS/lib,
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
-					"/Users/mayday/Developer/Libraries/freetype-2.10.0/objs/.libs",
+					"/Users/mayday/Developer/Libraries/freetype-2.10.0/lib/macos",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = melancholyhill.mineh.macOSApp;
@@ -1135,7 +1164,7 @@
 					/Users/mayday/Developer/vulkan/macOS/lib,
 					/Users/mayday/Developer/Libraries/portaudio/lib/.libs,
 					/Users/mayday/Developer/Libraries/libsndfile/src/.libs,
-					"/Users/mayday/Developer/Libraries/freetype-2.10.0/objs/.libs",
+					"/Users/mayday/Developer/Libraries/freetype-2.10.0/lib/macos",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = melancholyhill.mineh.macOSApp;
@@ -1149,13 +1178,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A2VZ8FCF86;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glm/0.9.9.5/include,
+					/Users/mayday/Developer/Libraries/stb/,
+					/Users/mayday/Developer/Libraries/tinyobjloader,
+					"/Users/mayday/Developer/Libraries/freetype-2.10.0/include",
+					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
+				);
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/dylib/iOS,
+					"/Users/mayday/Developer/Libraries/freetype-2.10.0/lib/ios",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = melancholyhill.mineh.iOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1169,13 +1211,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A2VZ8FCF86;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glm/0.9.9.5/include,
+					/Users/mayday/Developer/Libraries/stb/,
+					/Users/mayday/Developer/Libraries/tinyobjloader,
+					"/Users/mayday/Developer/Libraries/freetype-2.10.0/include",
+					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
+				);
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/dylib/iOS,
+					"/Users/mayday/Developer/Libraries/freetype-2.10.0/lib/ios",
+				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = melancholyhill.mineh.iOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

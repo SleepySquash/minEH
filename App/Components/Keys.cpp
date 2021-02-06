@@ -74,14 +74,18 @@ namespace keys
         while (onhold.empty() && !eof)
         {
             std::getline(file, onhold); parser.put(onhold);
-            time = fatoi(parser.word().c_str());
-            if (position >= time/1000.f - approach)
+            if (parser.useful())
             {
-                std::string sym = parser.word();
-                auto k = system.addComponent<Key>(this, sym); k->doResize();
-                if (position > time/1000.f - approach)
-                    k->onUpdate(position - (time/1000.f - approach));
-                onhold.clear();
+                if (parser.starts("}", false)) { onhold.clear(); eof = true; return; }
+                time = fatoi(parser.word().c_str());
+                if (position >= time/1000.f - approach)
+                {
+                    std::string sym = parser.word();
+                    auto k = system.addComponent<Key>(this, sym); k->doResize();
+                    if (position > time/1000.f - approach)
+                        k->onUpdate(position - (time/1000.f - approach));
+                    onhold.clear();
+                }
             }
             eof = file.eof();
         }

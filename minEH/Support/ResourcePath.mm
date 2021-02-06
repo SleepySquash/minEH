@@ -10,6 +10,14 @@
 
 namespace mh
 {
+#ifdef MINEH_IOS
+    /*std::string resourcePath(void)
+    {
+        NSString *folder = [[NSBundle mainBundle] resourcePath];
+    }*/
+#endif
+    
+#if defined(MINEH_MACOS) || defined(MINEH_IOS)
     std::string resourcePath(void)
     {
         std::string rpath;
@@ -26,4 +34,5 @@ namespace mh
         
         return rpath;
     }
+#endif
 }

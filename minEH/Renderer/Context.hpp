@@ -153,7 +153,11 @@ namespace mh
         {
             int MAX_FRAMES_IN_FLIGHT = 3;
             std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+#ifdef MINEH_VULKAN_VALIDATION
             bool enableValidationLayers = true;
+#else
+            bool enableValidationLayers = false;
+#endif
             
             uint32_t vertexID, indexID, pipelineID, descriptorID;
             

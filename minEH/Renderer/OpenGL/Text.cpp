@@ -6,6 +6,7 @@
 //
 
 #include "Text.hpp"
+#ifdef MINEH_OPENGL
 
 #include <iostream>
 using std::cout;
@@ -201,3 +202,5 @@ namespace mh
         void GLText::setPosition(const glm::vec2& pos) { position = glm::vec2(pos.x, -pos.y); dirty(); }
     }
 }
+
+#endif

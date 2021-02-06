@@ -24,6 +24,9 @@
 // #define MINEH_DIRECTX12
 // #define MINEH_CPU
 
+// Define if you want Vulkan's validation layers
+// #define MINEH_VULKAN_VALIDATION
+
 // This define means that MoltenVK (and not the Vulkan Loader for macOS which uses MoltenVK as well, but does not contain extended MoltenVK headers and functions) is used, so some optimization at a context creation time may be made.
 // #define MINEH_MOLTENVK
 
@@ -62,10 +65,12 @@
 // Below are just OS defines
 #if defined(__APPLE__)
     #include <TargetConditionals.h>
-    #if defined(TARGET_OS_OSX)
-        #define MINEH_MACOS
-    #else
+    #if defined(TARGET_OS_IOS)
         #define MINEH_IOS
+    #else
+        #if defined(TARGET_OS_OSX) // defined on iOS as well
+            #define MINEH_MACOS
+        #endif
     #endif
 #elif defined(__ANDROID__)
     #define MINEH_ANDROID
@@ -80,6 +85,12 @@
 #endif
 
 // Undefine Renderers that are not supported by the OS
+#ifdef MINEH_OPENGL
+    #if defined(MINEH_IOS)
+        #undef MINEH_OPENGL
+    #endif
+#endif
+
 #ifdef MINEH_METAL
     #if !defined(MINEH_MACOS) && !defined(MINEH_IOS)
         #undef MINEH_METAL

@@ -18,6 +18,7 @@ using namespace mh;
 #pragma mark Forward declarations (since main() being at top is easier to navigate)
 
 void demo_audio_song(int, const char**);
+void demo_2d_scene(int, const char**);
 void demo_3d_2d_scene(int, const char**);
 void demo_keys(int, const char**);
 
@@ -29,9 +30,11 @@ void _main(int argc, const char** argv)
     // Uncomment the demo you want to start
     // or the demos will be played one after another
     
+    std::cout << "_main()\n";
     // demo_audio_song(argc, argv);
+    demo_2d_scene(argc, argv);
     // demo_3d_2d_scene(argc, argv);
-    demo_keys(argc, argv);
+    // demo_keys(argc, argv);
 }
 
 
@@ -62,7 +65,6 @@ void _main(int argc, const char** argv)
 
 void demo_audio_song(int, const char**)
 {
-    cout << "main()\n";
     Audio::Init();
     
     Audio music(resourcePath() + "Audio/Rascal Does Not Dream of Bunny Girl Senpai ED - Fukashigi no Carte COVER 不可思議のカルテ 歌ってみた.ogg");
@@ -84,12 +86,67 @@ void demo_audio_song(int, const char**)
 }
 
 #pragma mark -
+#pragma mark Demo - 2D scene
+
+#include "Components/Test.hpp"
+void demo_2d_scene(int, const char**)
+{
+    Window window;
+    window.open();
+    
+    Vk::Context context(&window);
+    
+    Composition composition(&context);
+    Entity* entity = composition.addEntity();
+    for (int i = 0; i < 500; ++i) { auto *npc = entity->addComponent<test::NPC>("Images/Vanilla.png"); npc->sprite->setScale({0.3f, 0.3f}); }
+    
+    Event event;
+    Clock clock;
+    while (window.isOpen)
+    {
+        if (window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+                case Event::Type::Closed: window.close(); break;
+                case Event::Type::Resized: window.resize(event); context.resize(); break;
+                case Event::Type::TouchBegan: std::cout << "Touch began (" << event.data.touch.finger << "): " << event.data.touch.x << " " << event.data.touch.y << "\n"; break;
+                case Event::Type::TouchMoved: std::cout << "Touch moved (" << event.data.touch.finger << "): " << event.data.touch.x << " " << event.data.touch.y << "\n"; break;
+                case Event::Type::TouchEnded: std::cout << "Touch ended (" << event.data.touch.finger << "): " << event.data.touch.x << " " << event.data.touch.y << "\n"; break;
+                default: break;
+            }
+            composition.event(event);
+        }
+        
+        composition.update(clock.restart());
+        
+        Clock framerate;
+        {
+            uint32_t i = context.beginDraw();
+            
+            context.beginRecord(i);
+            composition.record(i);
+            context.endRecord(i);
+            
+            composition.draw();
+            
+            context.endDraw(i);
+            window.display();
+        }
+        cout << std::to_string(framerate.restart() * 1000) << "\n"; // window.setTitle(std::to_string(framerate.restart() * 1000) + " ms");
+    }
+    
+    context.wait();
+    composition.destroy();
+    context.destroy();
+}
+
+#pragma mark -
 #pragma mark Demo - 3D & 2D scene
 
 #include "Components/Test.hpp"
 void demo_3d_2d_scene(int, const char**)
 {
-    cout << "main()\n";
     Audio::Init();
     
     Window window;
@@ -99,7 +156,7 @@ void demo_3d_2d_scene(int, const char**)
     
     Composition composition(&context);
     Entity* entity = composition.addEntity();
-    for (int i = 0; i < 100; ++i) { auto *npc = entity->addComponent<test::NPC>(&context, "Images/Vanilla.png"); npc->sprite->setScale({0.3f, 0.3f}); }
+    for (int i = 0; i < 100; ++i) { auto *npc = entity->addComponent<test::NPC>("Images/Vanilla.png"); npc->sprite->setScale({0.3f, 0.3f}); }
     
     Camera* camera = Graphics::GetCamera(&context);
     context.camera = camera;
@@ -109,14 +166,14 @@ void demo_3d_2d_scene(int, const char**)
     
     {
         Entity* entity = composition.addEntity();
-        auto* mesh = entity->addComponent<test::MeshTest>(&context, "Models/chalet.obj", "Models/chalet.jpg");
+        auto* mesh = entity->addComponent<test::MeshTest>("Models/chalet.obj", "Models/chalet.jpg");
         mesh->mesh->setRotation({glm::radians(-90.f), 0.f, 0.f});
         mesh->mesh->setPosition({0.f, 0.f, 0.f});
     }
     
     {
         Entity* entity = composition.addEntity();
-        auto* mesh = entity->addComponent<test::MeshTest>(&context);
+        auto* mesh = entity->addComponent<test::MeshTest>();
         mesh->mesh->setScale({0.5f, 0.5f, 0.5f});
         mesh->mesh->setPosition({1.f, -1.f, -2.f});
     }
@@ -174,13 +231,12 @@ void demo_3d_2d_scene(int, const char**)
 #include "Components/Keys.hpp"
 void demo_keys(int, const char**)
 {
-    cout << "main()\n";
     Audio::Init();
     
     Window window;
     window.open();
     
-    GL::Context context(&window);
+    Vk::Context context(&window);
     
     Composition composition(&context);
     Entity* entity = composition.addEntity();

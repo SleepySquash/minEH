@@ -30,7 +30,7 @@ namespace mh
             return false;
         }
         
-        bool Parser::starts(const std::string& command)
+        bool Parser::starts(const std::string& command, const bool& parse)
         {
             skipSpaces();
             bool reallyFound{ false };
@@ -41,7 +41,7 @@ namespace mh
                 int i = keepTheLastPos ? lastPos : 0;
                 for (int j = 0; found && j < command.length(); i++, j++)
                     found = (commandLine[i] == command[j]);
-                if (found) lastPos = i;
+                if (found && parse) lastPos = i;
                 reallyFound = found;
             }
             
@@ -73,6 +73,14 @@ namespace mh
                 if (!(found = (line[pos] == u))) {
                     if (line[pos] != 13) text += line[pos]; ++pos; }
             lastPos = pos + 1; return text;
+        }
+        bool Parser::useful()
+        {
+            if (line.length() == 0 || line == "") return false;
+            for (int i = lastPos; i < line.length(); i++)
+                if (line[i] != L' ' && line[i] != L'\t' && line[i] != L'\0' && line[i] != L'\n' && line[i] != 13)
+                    return true;
+            return false;
         }
         
         void Parser::skipSpaces() { while (lastPos < line.length() && (line[lastPos] == L' ' || line[lastPos] == L'\t')) lastPos++; }

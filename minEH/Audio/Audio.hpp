@@ -8,27 +8,14 @@
 #pragma once
 
 #include <iostream>
-#include <sndfile.h>
-#include <portaudio.h>
-#include <mutex>
 
 namespace mh
 {
-    struct MyAudioData
-    {
-        SNDFILE *file = nullptr;
-        SF_INFO *sfinfo = nullptr;
-        
-        std::mutex mux;
-        bool playing = false, looped = false, abort = false;
-        sf_count_t framesRead = 0;
-    };
-    
     struct Audio
     {
     private:
-        MyAudioData d;
-        PaStream *stream = nullptr;
+        void* d = nullptr;
+        void* stream = nullptr;
         
     public:
         bool isOpen = false;

@@ -27,10 +27,11 @@ namespace mh
             void put(const std::string& line);
             bool explicitNoMessage();
              
-            bool starts(const std::string& command); // Returns true if 'line' starts with 'command'
+            bool starts(const std::string& command, const bool& parse = true); // Returns true if 'line' starts with 'command'
             std::string string();  // Returns: 1) string 2) "string with spaces"
             std::string word(); // Returns word (until space)
             std::string until(const char& u); // Returns everything until 'u'
+            bool useful(); // Returns true if anything except /t, _, /n is present
             
             void removeSpaces(); // Removes spaces in front
             void skipSpaces(); // Skips spaces at current position

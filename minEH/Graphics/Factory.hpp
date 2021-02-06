@@ -22,24 +22,26 @@ namespace mh
 {
     namespace Graphics
     {
+#ifdef MINEN_OPENGL
         GL::GLSprite* GetSprite(GL::Context* context);
-        Vk::VkSprite* GetSprite(Vk::Context* context);
-        Sprite* GetSprite(Renderer* context);
-        
         GL::GLFont* GetFont(GL::Context* context);
-        // Vk::VkMesh* GetFont(Vk::Context* context);
-        Font* GetFont(Renderer* context);
-        
         GL::GLText* GetText(GL::Context* context);
-        // Vk::VkMesh* GetText(Vk::Context* context);
-        Text* GetText(Renderer* context);
-        
         GL::GLCamera* GetCamera(GL::Context* context);
-        Vk::VkCamera* GetCamera(Vk::Context* context);
-        Camera* GetCamera(Renderer* context);
-        
         GL::GLMesh* GetMesh(GL::Context* context);
+#endif
+#ifdef MINEH_VULKAN
+        Vk::VkSprite* GetSprite(Vk::Context* context);
+        // Vk::VkFont* GetFont(Vk::Context* context);
+        // Vk::VkText* GetText(Vk::Context* context);
+        Vk::VkCamera* GetCamera(Vk::Context* context);
         Vk::VkMesh* GetMesh(Vk::Context* context);
+#endif
+        
+        
+        Sprite* GetSprite(Renderer* context);
+        Font* GetFont(Renderer* context);
+        Text* GetText(Renderer* context);
+        Camera* GetCamera(Renderer* context);
         Mesh* GetMesh(Renderer* context);
     }
 }
