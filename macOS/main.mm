@@ -27,7 +27,7 @@
         postNotificationName:NSApplicationDidFinishLaunchingNotification
         object:NSApp];
     
-    _main(mh::applicationState.argc, mh::applicationState.argv);
+    _main(_applicationState.argc, _applicationState.argv);
 }
 @end
 
@@ -41,9 +41,9 @@ int main(int argc, const char * argv[])
         
         // We put the pointer to NSApplication in our State object so we can use it to create NSWindow
         /// xwin::init(argc, (const char**)argv, applicationObject);
-        mh::applicationState.argc = argc;
-        mh::applicationState.argv = argv;
-        mh::applicationState.application = (__bridge void*)applicationObject;
+        _applicationState.argc = argc;
+        _applicationState.argv = argv;
+        _applicationState.application = (__bridge void*)applicationObject;
 
         // Run our NSApplication with method run() on the main thread
         if ([applicationObject respondsToSelector:@selector(run)])

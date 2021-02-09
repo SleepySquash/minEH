@@ -1,11 +1,11 @@
 //
-//  PulseAudio.cpp
+//  PortAudio.cpp
 //  macOS App
 //
 //  Created by Никита Исаенко on 06.02.2021.
 //
 
-#include "PulseAudio.hpp"
+#include "PortAudio.hpp"
 #include "Audio.hpp"
 
 namespace mh
@@ -41,8 +41,8 @@ namespace mh
     void Audio::close()
     {
         ((AudioData*)d)->mux.lock();
-        if (stream) Pa_AbortStream(stream);
-        if (stream) { Pa_CloseStream(stream); stream = nullptr; }
+        if (((PaStream*)stream)) Pa_AbortStream(((PaStream*)stream));
+        if (((PaStream*)stream)) { Pa_CloseStream(((PaStream*)stream)); stream = nullptr; }
         if (((AudioData*)d)->file) { sf_close(((AudioData*)d)->file); ((AudioData*)d)->file = nullptr; }
         if (((AudioData*)d)->sfinfo) { delete ((AudioData*)d)->sfinfo; ((AudioData*)d)->sfinfo = nullptr; }
         ((AudioData*)d)->playing = false;
@@ -67,7 +67,8 @@ namespace mh
                                     {
                                         AudioData *d = (AudioData*)userData;
                                         d->mux.lock();
-                                        if (!d->file || ! d->sfinfo || d->abort) { d->mux.unlock(); return paAbort; }
+
+                                        if (!d->file || !d->sfinfo || d->abort) { d->mux.unlock(); return paAbort; }
             
                                         float *out = (float*)outputBuffer;
                                         framesPerBuffer *= d->sfinfo->channels;
@@ -96,16 +97,16 @@ namespace mh
             
                                         d->mux.unlock();
                                         return paContinue;
-                                    }, &d);
+                                    }, d);
         if (err != paNoError) { std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; return; }
         
-        err = Pa_SetStreamFinishedCallback(stream, [](void* userData) { ((AudioData*)userData)->playing = false; });
+        err = Pa_SetStreamFinishedCallback(((PaStream*)stream), [](void* userData) { ((AudioData*)userData)->playing = false; });
         if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n";
-        err = Pa_StartStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; else ((AudioData*)d)->playing = true;
+        err = Pa_StartStream(((PaStream*)stream)); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; else ((AudioData*)d)->playing = true;
     }
     
     void Audio::pause() { stop(); }
-    void Audio::stop() { PaError err = Pa_StopStream(stream); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; }
+    void Audio::stop() { PaError err = Pa_StopStream(((PaStream*)stream)); if (err != paNoError) std::cerr << "Error :: Audio :: " << Pa_GetErrorText( err ) << ".\n"; }
     
     void Audio::setLooped(const bool& doLoop) { ((AudioData*)d)->looped = true; }
     bool Audio::isLooped() { return ((AudioData*)d)->looped; }

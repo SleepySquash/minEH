@@ -31,7 +31,7 @@
 		DD2E796625CF109B00EF90BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2E795D25CF109B00EF90BF /* LaunchScreen.storyboard */; };
 		DD2E796725CF109B00EF90BF /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2E795F25CF109B00EF90BF /* main.mm */; };
 		DD4615CF25CEA0CA00A2195A /* UIKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4615CE25CEA0CA00A2195A /* UIKit.mm */; };
-		DD4615D725CEA57300A2195A /* PulseAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4615D525CEA57300A2195A /* PulseAudio.cpp */; };
+		DD4615D725CEA57300A2195A /* PortAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4615D525CEA57300A2195A /* PortAudio.cpp */; };
 		DD4615DD25CEA77D00A2195A /* CoreAudio.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4615DC25CEA77D00A2195A /* CoreAudio.mm */; };
 		DD4615E725CEADEB00A2195A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615E625CEADEB00A2195A /* libfreetype.a */; };
 		DD4615F325CEB29300A2195A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4615F125CEB29300A2195A /* libfreetype.a */; };
@@ -188,8 +188,8 @@
 		DD2E795F25CF109B00EF90BF /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		DD4615CE25CEA0CA00A2195A /* UIKit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UIKit.mm; sourceTree = "<group>"; };
 		DD4615D125CEA0D400A2195A /* UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKit.h; sourceTree = "<group>"; };
-		DD4615D525CEA57300A2195A /* PulseAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PulseAudio.cpp; sourceTree = "<group>"; };
-		DD4615D625CEA57300A2195A /* PulseAudio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PulseAudio.hpp; sourceTree = "<group>"; };
+		DD4615D525CEA57300A2195A /* PortAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PortAudio.cpp; sourceTree = "<group>"; };
+		DD4615D625CEA57300A2195A /* PortAudio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PortAudio.hpp; sourceTree = "<group>"; };
 		DD4615DC25CEA77D00A2195A /* CoreAudio.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CoreAudio.mm; sourceTree = "<group>"; };
 		DD4615DF25CEA78B00A2195A /* CoreAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreAudio.h; sourceTree = "<group>"; };
 		DD4615E625CEADEB00A2195A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "../../../Libraries/freetype-2.10.0/lib/ios/libfreetype.a"; sourceTree = "<group>"; };
@@ -375,8 +375,8 @@
 		DD4615DA25CEA57F00A2195A /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				DD4615D525CEA57300A2195A /* PulseAudio.cpp */,
-				DD4615D625CEA57300A2195A /* PulseAudio.hpp */,
+				DD4615D525CEA57300A2195A /* PortAudio.cpp */,
+				DD4615D625CEA57300A2195A /* PortAudio.hpp */,
 				DD4615DF25CEA78B00A2195A /* CoreAudio.h */,
 				DD4615DC25CEA77D00A2195A /* CoreAudio.mm */,
 			);
@@ -881,7 +881,7 @@
 				DDD7BAA425B15567007E3634 /* Cocoa.mm in Sources */,
 				DDF0C54225B6AB5900374CD6 /* utf.cpp in Sources */,
 				DDD7BA8025B023CE007E3634 /* ApplicationState.cpp in Sources */,
-				DD4615D725CEA57300A2195A /* PulseAudio.cpp in Sources */,
+				DD4615D725CEA57300A2195A /* PortAudio.cpp in Sources */,
 				DD5B575B25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
 				DD59BBC125BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DD59BBBC25BDF1400086DD0B /* CameraController.cpp in Sources */,

@@ -1,5 +1,5 @@
 //
-//  PulseAudio.hpp
+//  PortAudio.hpp
 //  macOS App
 //
 //  Created by Никита Исаенко on 06.02.2021.

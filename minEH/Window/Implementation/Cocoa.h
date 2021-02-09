@@ -27,6 +27,3 @@
 - (BOOL)    isOpaque;
 @end
 
-
-@interface SceneDelegate ()
-@end

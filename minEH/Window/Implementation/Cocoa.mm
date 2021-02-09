@@ -374,7 +374,7 @@ namespace mh
     {
         @autoreleasepool
         {
-            NSApplication* application = (__bridge NSApplication*)applicationState.application;
+            NSApplication* application = (__bridge NSApplication*)_applicationState.application;
             NSEvent* e = nil;
             do
             {
@@ -464,7 +464,7 @@ namespace mh
     {
         @autoreleasepool
         {
-            NSApplication* application = (__bridge NSApplication*)applicationState.application;
+            NSApplication* application = (__bridge NSApplication*)_applicationState.application;
             [application updateWindows];
         }
         mayRender = shouldRender = false;

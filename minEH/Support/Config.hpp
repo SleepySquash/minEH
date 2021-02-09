@@ -65,10 +65,10 @@
 // Below are just OS defines
 #if defined(__APPLE__)
     #include <TargetConditionals.h>
-    #if defined(TARGET_OS_IOS)
+    #if TARGET_OS_IOS==1
         #define MINEH_IOS
     #else
-        #if defined(TARGET_OS_OSX) // defined on iOS as well
+        #if TARGET_OS_OSX==1
             #define MINEH_MACOS
         #endif
     #endif
