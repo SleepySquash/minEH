@@ -20,8 +20,8 @@ namespace mh
 {
     namespace Vk
     {
-        VkSprite::VkSprite() { }
-        VkSprite::VkSprite(Vk::Context* context) : context(context) { }
+        VkSprite::VkSprite() : descriptor(nullptr) { }
+        VkSprite::VkSprite(Vk::Context* context) : context(context), descriptor(context) { }
         
         void VkSprite::setContext(void* context) { this->context = (Vk::Context*)context; }
         void VkSprite::destroy()

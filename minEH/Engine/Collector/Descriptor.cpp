@@ -22,7 +22,7 @@ namespace mh
 #pragma mark -
 #pragma mark Descriptor Collector Object
     
-    DescriptorCollectorObject::DescriptorCollectorObject(const uint32_t& usage) : usage(usage) { }
+    DescriptorCollectorObject::DescriptorCollectorObject(const uint32_t& usage) : usage(usage), descriptor(nullptr) { }
     void DescriptorCollectorObject::createDescriptor(Vk::Context* context)
     {
         createDescriptorLayout(context);

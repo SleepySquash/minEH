@@ -29,6 +29,7 @@
 #include "Renderer/Vulkan/Sprite.hpp"
 #include "Renderer/Vulkan/Camera.hpp"
 #include "Renderer/Vulkan/Mesh.hpp"
+#include "Renderer/Factory.hpp"
 
 #include "Graphics/Drawable.hpp"
 #include "Graphics/Factory.hpp"

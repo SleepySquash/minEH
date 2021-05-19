@@ -17,36 +17,20 @@ namespace mh
 {
     struct BufferCollectorObject
     {
-        void* buffer = nullptr;
+        Buffer* buffer = nullptr;
         uint32_t usage, id, indices;
         bool destroyable = true;
-        
         BufferCollectorObject(const uint32_t& usage = 0);
-        ~BufferCollectorObject();
     };
 
     struct Context;
     struct BufferCollector
     {
-        union Context {
-#ifdef MINEH_OPENGL
-            GL::Context* gl;
-#endif
-#ifdef MINEH_VULKAN
-            Vk::Context* vk;
-#endif
-        };
-        static Context context;
-        static Renderer::Type type;
+        static Renderer* context;
         static std::unordered_map<std::string, BufferCollectorObject> map;
         static uint32_t ids;
         
-#ifdef MINEH_OPENGL
-        static void bindContext(GL::Context* context);
-#endif
-#ifdef MINEH_VULKAN
-        static void bindContext(Vk::Context* context);
-#endif
+        static void bindContext(Renderer* context);
         static BufferCollectorObject* get(const std::string& id);
         static BufferCollectorObject* raw(const std::string& id);
         static bool exists(const std::string& id);

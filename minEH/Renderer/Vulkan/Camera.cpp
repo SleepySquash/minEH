@@ -60,7 +60,8 @@ namespace mh
             }
         }
         
-        void VkCamera::dirty() { dirtyBuffers = static_cast<uint32_t>(context->commandBuffers.size()); }
+        // TODO: Fix some buffers not being rewritten on the fly
+        void VkCamera::dirty() { dirtyBuffers = static_cast<uint32_t>(context->commandBuffers.size() * 2); }
         void VkCamera::setContext(void* context) { this->context = (Vk::Context*)context; }
     }
 }

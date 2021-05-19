@@ -37,7 +37,6 @@ namespace mh
         Vk::VkMesh* GetMesh(Vk::Context* context);
 #endif
         
-        
         Sprite* GetSprite(Renderer* context);
         Font* GetFont(Renderer* context);
         Text* GetText(Renderer* context);

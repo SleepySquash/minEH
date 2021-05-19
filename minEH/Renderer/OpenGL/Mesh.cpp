@@ -87,9 +87,9 @@ namespace mh
             {
                 auto bco = bc::get(path);
                 GL::Buffer* buffer = (GL::Buffer*)bco->buffer;
-                VAO = buffer->VAO;
-                VBO = buffer->VBO;
-                EBO = buffer->EBO;
+                // VAO = buffer->VAO;
+                // VBO = buffer->VBO;
+                // EBO = buffer->EBO;
                 indicesCount = bco->indices;
             }
             else
@@ -131,7 +131,7 @@ namespace mh
                 }
                 
                 auto bco = bc::get(path);
-                GL::Buffer* buffer = new GL::Buffer;
+                /*GL::Buffer* buffer = new GL::Buffer;
                 bco->buffer = (void*)buffer;
                 
                 glGenVertexArrays(1, &buffer->VAO);
@@ -150,7 +150,7 @@ namespace mh
                 
                 VAO = buffer->VAO;
                 VBO = buffer->VBO;
-                EBO = buffer->EBO;
+                EBO = buffer->EBO;*/
                 indicesCount = bco->indices = static_cast<uint32_t>(indices.size());
             }
         }

@@ -5,8 +5,7 @@
 //  Created by Никита Исаенко on 20.01.2021.
 //
 
-#ifndef Vertex_hpp
-#define Vertex_hpp
+#pragma once
 
 #include <vector>
 
@@ -36,5 +35,3 @@ namespace std
         }
     };
 }
-
-#endif /* Vertex_hpp */

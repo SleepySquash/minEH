@@ -106,7 +106,7 @@ namespace mh
         void GLText::create()
         {
             GL::Buffer* buffer = (GL::Buffer*)bc::get("text")->buffer;
-            VAO = buffer->VAO; VBO = buffer->VBO;
+            // VAO = buffer->VAO; VBO = buffer->VBO;
             
             if (ShaderCollection::text) ++ShaderCollection::text->uses;
             else ShaderCollection::text = new ShaderCollectorObject("Shaders/OpenGL/text.vert", "Shaders/OpenGL/text.frag");

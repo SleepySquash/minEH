@@ -76,12 +76,26 @@
 		DD5B57A025BC158D00C78C01 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B579F25BC158D00C78C01 /* Metal.framework */; };
 		DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
 		DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
+		DD678E8C25EED39200058CEC /* Filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD678E8A25EED39200058CEC /* Filesystem.cpp */; };
+		DD678E8D25EED39200058CEC /* Filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD678E8A25EED39200058CEC /* Filesystem.cpp */; };
 		DD69B25E25CA0DD4002372C2 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = DD69B25D25CA0DD4002372C2 /* Fonts */; };
 		DD69B25F25CA0DD4002372C2 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = DD69B25D25CA0DD4002372C2 /* Fonts */; };
 		DD880F8425C1C66400A41F0B /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD880F8225C1C66400A41F0B /* Audio.cpp */; };
 		DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD880F8225C1C66400A41F0B /* Audio.cpp */; };
 		DD89FACB25C6E62700D55E66 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD89FAC925C6E62700D55E66 /* Utility.cpp */; };
 		DD89FACC25C6E62700D55E66 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD89FAC925C6E62700D55E66 /* Utility.cpp */; };
+		DD8BB989265474DE00388874 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB987265474DE00388874 /* Metal.cpp */; };
+		DD8BB98A265474DE00388874 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB987265474DE00388874 /* Metal.cpp */; };
+		DD8BB98F265474E800388874 /* WebGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB98D265474E800388874 /* WebGL.cpp */; };
+		DD8BB990265474E800388874 /* WebGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB98D265474E800388874 /* WebGL.cpp */; };
+		DD8BB994265474F300388874 /* DirectX12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB992265474F300388874 /* DirectX12.cpp */; };
+		DD8BB995265474F300388874 /* DirectX12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB992265474F300388874 /* DirectX12.cpp */; };
+		DD8BB999265474FC00388874 /* DirectX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB997265474FC00388874 /* DirectX.cpp */; };
+		DD8BB99A265474FC00388874 /* DirectX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB997265474FC00388874 /* DirectX.cpp */; };
+		DD8BB9A12655272D00388874 /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB99F2655272D00388874 /* Factory.cpp */; };
+		DD8BB9A22655272D00388874 /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB99F2655272D00388874 /* Factory.cpp */; };
+		DD8BB9A6265530C500388874 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB9A5265530C500388874 /* Renderer.cpp */; };
+		DD8BB9A7265530C500388874 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD8BB9A5265530C500388874 /* Renderer.cpp */; };
 		DD963F4B25C7310600DD499B /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD963F4925C7310600DD499B /* String.cpp */; };
 		DD963F4C25C7310600DD499B /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD963F4925C7310600DD499B /* String.cpp */; };
 		DD963F5025C747DC00DD499B /* Keymaps in Resources */ = {isa = PBXBuildFile; fileRef = DD963F4F25C747DC00DD499B /* Keymaps */; };
@@ -230,12 +244,29 @@
 		DD5B579F25BC158D00C78C01 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		DD5B57A925BC93F500C78C01 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		DD5B57AA25BC93F500C78C01 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		DD678E8A25EED39200058CEC /* Filesystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Filesystem.cpp; sourceTree = "<group>"; };
+		DD678E8B25EED39200058CEC /* Filesystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Filesystem.hpp; sourceTree = "<group>"; };
 		DD69B25D25CA0DD4002372C2 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		DD880F8225C1C66400A41F0B /* Audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
 		DD880F8325C1C66400A41F0B /* Audio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Audio.hpp; sourceTree = "<group>"; };
 		DD880F8725C1C67100A41F0B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DD89FAC925C6E62700D55E66 /* Utility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
 		DD89FACA25C6E62700D55E66 /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		DD8BB9842654736600388874 /* OpenGL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OpenGL.hpp; sourceTree = "<group>"; };
+		DD8BB9852654739C00388874 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
+		DD8BB9862654746500388874 /* Vulkan.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vulkan.hpp; sourceTree = "<group>"; };
+		DD8BB987265474DE00388874 /* Metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Metal.cpp; sourceTree = "<group>"; };
+		DD8BB988265474DE00388874 /* Metal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Metal.hpp; sourceTree = "<group>"; };
+		DD8BB98D265474E800388874 /* WebGL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WebGL.cpp; sourceTree = "<group>"; };
+		DD8BB98E265474E800388874 /* WebGL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WebGL.hpp; sourceTree = "<group>"; };
+		DD8BB992265474F300388874 /* DirectX12.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DirectX12.cpp; sourceTree = "<group>"; };
+		DD8BB993265474F300388874 /* DirectX12.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DirectX12.hpp; sourceTree = "<group>"; };
+		DD8BB997265474FC00388874 /* DirectX.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DirectX.cpp; sourceTree = "<group>"; };
+		DD8BB998265474FC00388874 /* DirectX.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DirectX.hpp; sourceTree = "<group>"; };
+		DD8BB99C2654751A00388874 /* CPU.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPU.hpp; sourceTree = "<group>"; };
+		DD8BB99F2655272D00388874 /* Factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Factory.cpp; sourceTree = "<group>"; };
+		DD8BB9A02655272D00388874 /* Factory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Factory.hpp; sourceTree = "<group>"; };
+		DD8BB9A5265530C500388874 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		DD963F4425C72F6800DD499B /* Stack.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
 		DD963F4925C7310600DD499B /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
 		DD963F4A25C7310600DD499B /* String.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
@@ -480,8 +511,9 @@
 		DDD7BAA125B152C2007E3634 /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
-				DDD7BAA325B15567007E3634 /* Cocoa.mm */,
+				DD8BB9842654736600388874 /* OpenGL.hpp */,
 				DD46E02825B9BB56001E4333 /* OpenGL.cpp */,
+				DDD7BAA325B15567007E3634 /* Cocoa.mm */,
 				DDD7BAAE25B160BE007E3634 /* Shader.cpp */,
 				DDD7BAAF25B160BE007E3634 /* Shader.hpp */,
 				DD5B57A925BC93F500C78C01 /* Sprite.cpp */,
@@ -562,6 +594,10 @@
 			children = (
 				DD282A0925B8482D006D398F /* Vertex.hpp */,
 				DDD7BAA225B152E0007E3634 /* Context.hpp */,
+				DD8BB9852654739C00388874 /* Renderer.hpp */,
+				DD8BB9A5265530C500388874 /* Renderer.cpp */,
+				DD8BB99F2655272D00388874 /* Factory.cpp */,
+				DD8BB9A02655272D00388874 /* Factory.hpp */,
 				DDD7BAA125B152C2007E3634 /* OpenGL */,
 				DDD7BB2125B31CD4007E3634 /* Vulkan */,
 				DDD7BB2225B31CD9007E3634 /* Metal */,
@@ -623,6 +659,8 @@
 				DDF0C53425B6A5C900374CD6 /* Clock.hpp */,
 				DDF0C51825B43B2B00374CD6 /* Color.cpp */,
 				DDF0C51925B43B2B00374CD6 /* Color.hpp */,
+				DD678E8A25EED39200058CEC /* Filesystem.cpp */,
+				DD678E8B25EED39200058CEC /* Filesystem.hpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -630,6 +668,7 @@
 		DDD7BB2125B31CD4007E3634 /* Vulkan */ = {
 			isa = PBXGroup;
 			children = (
+				DD8BB9862654746500388874 /* Vulkan.hpp */,
 				DD282A1225B86558006D398F /* Vulkan.cpp */,
 				DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */,
 				DDC4A37D25B42B5F006E2E0D /* Sprite.hpp */,
@@ -644,6 +683,8 @@
 		DDD7BB2225B31CD9007E3634 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				DD8BB988265474DE00388874 /* Metal.hpp */,
+				DD8BB987265474DE00388874 /* Metal.cpp */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -651,6 +692,8 @@
 		DDD7BB2325B31CDD007E3634 /* DirectX */ = {
 			isa = PBXGroup;
 			children = (
+				DD8BB998265474FC00388874 /* DirectX.hpp */,
+				DD8BB997265474FC00388874 /* DirectX.cpp */,
 			);
 			path = DirectX;
 			sourceTree = "<group>";
@@ -658,6 +701,8 @@
 		DDD7BB2425B31CE2007E3634 /* DirectX12 */ = {
 			isa = PBXGroup;
 			children = (
+				DD8BB993265474F300388874 /* DirectX12.hpp */,
+				DD8BB992265474F300388874 /* DirectX12.cpp */,
 			);
 			path = DirectX12;
 			sourceTree = "<group>";
@@ -665,6 +710,8 @@
 		DDD7BB2525B31CE8007E3634 /* WebGL */ = {
 			isa = PBXGroup;
 			children = (
+				DD8BB98E265474E800388874 /* WebGL.hpp */,
+				DD8BB98D265474E800388874 /* WebGL.cpp */,
 			);
 			path = WebGL;
 			sourceTree = "<group>";
@@ -672,6 +719,7 @@
 		DDDE565B25C9A3A20055E3EF /* CPU */ = {
 			isa = PBXGroup;
 			children = (
+				DD8BB99C2654751A00388874 /* CPU.hpp */,
 				DDDE565C25C9A45E0055E3EF /* CPU.cpp */,
 			);
 			path = CPU;
@@ -870,20 +918,25 @@
 				DD282A3725B89058006D398F /* Buffer.cpp in Sources */,
 				DDA1152325C64004006B628E /* Parser.cpp in Sources */,
 				DD89FACB25C6E62700D55E66 /* Utility.cpp in Sources */,
+				DD8BB9A12655272D00388874 /* Factory.cpp in Sources */,
 				DDF0C52025B480FC00374CD6 /* Shader.cpp in Sources */,
 				DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */,
 				DDF0C53525B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB825B16146007E3634 /* ResourcePath.cpp in Sources */,
+				DD8BB999265474FC00388874 /* DirectX.cpp in Sources */,
 				DDF0C51A25B43B2B00374CD6 /* Color.cpp in Sources */,
 				DD59BB8925BD6C630086DD0B /* Factory.cpp in Sources */,
 				DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */,
 				DDC4A37E25B42B5F006E2E0D /* Sprite.cpp in Sources */,
+				DD678E8C25EED39200058CEC /* Filesystem.cpp in Sources */,
 				DDD7BAA425B15567007E3634 /* Cocoa.mm in Sources */,
+				DD8BB98F265474E800388874 /* WebGL.cpp in Sources */,
 				DDF0C54225B6AB5900374CD6 /* utf.cpp in Sources */,
 				DDD7BA8025B023CE007E3634 /* ApplicationState.cpp in Sources */,
 				DD4615D725CEA57300A2195A /* PortAudio.cpp in Sources */,
 				DD5B575B25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
 				DD59BBC125BDF3A00086DD0B /* Camera.cpp in Sources */,
+				DD8BB994265474F300388874 /* DirectX12.cpp in Sources */,
 				DD59BBBC25BDF1400086DD0B /* CameraController.cpp in Sources */,
 				DDDE565E25C9A45E0055E3EF /* CPU.cpp in Sources */,
 				DDD7BAB025B160BE007E3634 /* Shader.cpp in Sources */,
@@ -891,6 +944,7 @@
 				DDD7BABD25B1616D007E3634 /* ResourcePath.mm in Sources */,
 				DD59BBDA25BE1A0B0086DD0B /* Camera.cpp in Sources */,
 				DD59BBDF25BE1A150086DD0B /* Mesh.cpp in Sources */,
+				DD8BB9A6265530C500388874 /* Renderer.cpp in Sources */,
 				DDF0C53B25B6AA8000374CD6 /* Texture.cpp in Sources */,
 				DD59BB7E25BCB9C30086DD0B /* Window.cpp in Sources */,
 				DDD7BA6225AF19BB007E3634 /* Composition.cpp in Sources */,
@@ -900,6 +954,7 @@
 				DDDE565825C99FB10055E3EF /* Text.cpp in Sources */,
 				DD59BBC625BDF82D0086DD0B /* Mesh.cpp in Sources */,
 				DD963F4B25C7310600DD499B /* String.cpp in Sources */,
+				DD8BB989265474DE00388874 /* Metal.cpp in Sources */,
 				DD282A1325B86558006D398F /* Vulkan.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,6 +965,7 @@
 			files = (
 				DD2E796725CF109B00EF90BF /* main.mm in Sources */,
 				DD89FACC25C6E62700D55E66 /* Utility.cpp in Sources */,
+				DD8BB9A22655272D00388874 /* Factory.cpp in Sources */,
 				DD59BB7F25BCB9C30086DD0B /* Window.cpp in Sources */,
 				DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */,
 				DD282A3825B89058006D398F /* Buffer.cpp in Sources */,
@@ -927,11 +983,14 @@
 				DD4615DD25CEA77D00A2195A /* CoreAudio.mm in Sources */,
 				DDF0C52125B480FC00374CD6 /* Shader.cpp in Sources */,
 				DDD7BA8125B023CE007E3634 /* ApplicationState.cpp in Sources */,
+				DD8BB98A265474DE00388874 /* Metal.cpp in Sources */,
 				DDF0C53625B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB925B16146007E3634 /* ResourcePath.cpp in Sources */,
 				DDA1151E25C63A70006B628E /* Keys.cpp in Sources */,
 				DD59BBC225BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DDF0C54325B6AB5900374CD6 /* utf.cpp in Sources */,
+				DD678E8D25EED39200058CEC /* Filesystem.cpp in Sources */,
+				DD8BB990265474E800388874 /* WebGL.cpp in Sources */,
 				DDDE565F25C9A45E0055E3EF /* CPU.cpp in Sources */,
 				DDC4A37F25B42B5F006E2E0D /* Sprite.cpp in Sources */,
 				DDF0C52A25B5833600374CD6 /* Test.cpp in Sources */,
@@ -940,12 +999,15 @@
 				DDD7BA7725B01885007E3634 /* main.cpp in Sources */,
 				DDA1152425C64004006B628E /* Parser.cpp in Sources */,
 				DD59BBBD25BDF1400086DD0B /* CameraController.cpp in Sources */,
+				DD8BB9A7265530C500388874 /* Renderer.cpp in Sources */,
 				DDF0C53C25B6AA8000374CD6 /* Texture.cpp in Sources */,
 				DDDE565925C99FB10055E3EF /* Text.cpp in Sources */,
+				DD8BB99A265474FC00388874 /* DirectX.cpp in Sources */,
 				DD5B575C25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
 				DD59BBC725BDF82D0086DD0B /* Mesh.cpp in Sources */,
 				DD2E796125CF109B00EF90BF /* ViewController.mm in Sources */,
 				DD59BBB725BDEEC90086DD0B /* Camera.cpp in Sources */,
+				DD8BB995265474F300388874 /* DirectX12.cpp in Sources */,
 				DD5B576125BB36FA00C78C01 /* Descriptor.cpp in Sources */,
 				DDD7BA6325AF19BB007E3634 /* Composition.cpp in Sources */,
 				DD2E796225CF109B00EF90BF /* SceneDelegate.m in Sources */,
@@ -1009,7 +1071,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/glm/0.9.9.5/include,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/portaudio/include,
@@ -1076,7 +1138,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/glm/0.9.9.5/include,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/portaudio/include,
@@ -1107,7 +1169,7 @@
 				DEVELOPMENT_TEAM = A2VZ8FCF86;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/glm/0.9.9.5/include,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
@@ -1145,7 +1207,7 @@
 				DEVELOPMENT_TEAM = A2VZ8FCF86;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/glm/0.9.9.5/include,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					/Users/mayday/Developer/Libraries/MoltenVK/Package/Release/MoltenVK/include,
@@ -1181,7 +1243,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A2VZ8FCF86;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/glm/0.9.9.5/include,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					"/Users/mayday/Developer/Libraries/freetype-2.10.0/include",
@@ -1214,7 +1276,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A2VZ8FCF86;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/glm/0.9.9.5/include,
+					/usr/local/Cellar/glm/0.9.9.8/include,
 					/Users/mayday/Developer/Libraries/stb/,
 					/Users/mayday/Developer/Libraries/tinyobjloader,
 					"/Users/mayday/Developer/Libraries/freetype-2.10.0/include",

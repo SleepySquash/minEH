@@ -15,7 +15,12 @@ namespace mh
         auto currentTime = std::chrono::high_resolution_clock::now();
         float time = std::chrono::duration<float, std::chrono::seconds::period>(currentTime - startTime).count();
         startTime = currentTime;
-        
         return time;
+    }
+    
+    float Clock::elapsed()
+    {
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        return std::chrono::duration<float, std::chrono::seconds::period>(currentTime - startTime).count();
     }
 }

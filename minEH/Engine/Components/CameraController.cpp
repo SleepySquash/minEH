@@ -97,6 +97,31 @@ namespace mh
                 
                 camera->update();
                 break;
+            case Event::Type::TouchBegan:
+                lastxpos = event.data.touch.x;
+                lastypos = event.data.touch.y;
+                break;
+            case Event::Type::TouchMoved:
+                mouseMoveOffsetx = event.data.touch.x - lastxpos;
+                mouseMoveOffsety = event.data.touch.y - lastypos;
+                lastxpos = event.data.touch.x;
+                lastypos = event.data.touch.y;
+                mouseMoveOffsetx *= cameraSensitivity;
+                mouseMoveOffsety *= cameraSensitivity;
+
+                yaw   += mouseMoveOffsetx;
+                pitch += mouseMoveOffsety;
+
+                if (pitch > 1.57f) pitch = 1.57f;
+                else if (pitch < -1.57f) pitch = -1.57f;
+
+                camera->direction.x = cosf(yaw) * cosf(pitch);
+                camera->direction.y = sinf(pitch);
+                camera->direction.z = sinf(yaw) * cosf(pitch);
+                camera->direction = glm::normalize(camera->direction);
+                
+                camera->update();
+                break;
             default: break;
         }
         switch (event.type)

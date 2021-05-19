@@ -17,5 +17,6 @@ namespace mh
         
         Clock();
         float restart();
+        float elapsed();
     };
 }

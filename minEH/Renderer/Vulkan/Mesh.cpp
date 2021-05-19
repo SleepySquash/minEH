@@ -21,7 +21,7 @@ namespace mh
 {
     namespace Vk
     {
-        VkMesh::VkMesh(Vk::Context* context) : context(context) { }
+        VkMesh::VkMesh(Vk::Context* context) : context(context), descriptor(context) { }
         
         void VkMesh::setContext(void* context) { this->context = (Vk::Context*)context; }
         void VkMesh::destroy()
@@ -236,14 +236,14 @@ namespace mh
                 
                 BufferCollectorObject* bcov = bc::get(modelPath + "-v");
                 Vk::Buffer* buffer = new Vk::Buffer;
-                bcov->buffer = (void*)buffer;
+                bcov->buffer = buffer;
                 context->generateSingleBuffer(sizeof(vertices[0]) * vertices.size(), *buffer, vertices.data(), VK_BUFFER_USAGE_VERTEX_BUFFER_BIT);
                 vertexBuffer = *buffer;
                 vertexID = bcov->id;
                 
                 BufferCollectorObject* bcoi = bc::get(modelPath + "-i");
                 buffer = new Vk::Buffer;
-                bcoi->buffer = (void*)buffer;
+                bcoi->buffer = buffer;
                 context->generateSingleBuffer(sizeof(indices[0]) * indices.size(), *buffer, indices.data(), VK_BUFFER_USAGE_INDEX_BUFFER_BIT);
                 indicesCount = bcoi->indices = static_cast<uint32_t>(indices.size());
                 indexBuffer = *buffer;

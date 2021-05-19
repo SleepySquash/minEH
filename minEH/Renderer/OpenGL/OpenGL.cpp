@@ -11,7 +11,7 @@
 #include <stb_image.h>
 #include <iostream>
 
-#include "../Context.hpp"
+#include "OpenGL.hpp"
 #include "../../Engine/Collector/Texture.hpp"
 #include "../../Engine/Collector/Buffer.hpp"
 #include "../../Engine/Collector/Shader.hpp"
@@ -21,34 +21,118 @@ namespace mh
 {
     namespace GL
     {
-        Texture Context::loadTexture(const std::string& path, const GLenum& filter)
+#pragma mark -
+#pragma mark Buffer
+        
+        Buffer::Buffer(Renderer* context) : context((GL::Context*)context) { }
+        void Buffer::allocate(void* data, uint32_t size)
         {
-            Texture texture;
+            switch (type) {
+                default: glGenBuffers(1, &id); break;
+                case BufferType::Array: glGenVertexArrays(1, &id); break;
+            }
+            if (data) update(data, size);
+        }
+        void Buffer::update(void* data, uint32_t size) {
+            switch (type) {
+                default:
+                    glBindBuffer(GL_ARRAY_BUFFER, id);
+                    glBufferData(GL_ARRAY_BUFFER, size, data, updateType == BufferUpdateType::Static ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW);
+                    break;
+                case BufferType::Array: break;
+            }
+        }
+        void Buffer::free() {
+            switch (type) {
+                default: glDeleteBuffers(1, &id); break;
+                case BufferType::Array: glDeleteVertexArrays(1, &id); break;
+            }
+        }
+        
+#pragma mark -
+#pragma mark Texture
+        
+        Texture::Texture(Renderer* context) : context((GL::Context*)context) { }
+        void Texture::allocate(void* data, uint32_t width, uint32_t height, TextureFilter filter)
+        {
+            glGenTextures(1, &id);
+            glBindTexture(GL_TEXTURE_2D, id);
             
-            glGenTextures(1, &texture.id);
-            glBindTexture(GL_TEXTURE_2D, texture.id);
+            GLenum _filter;
+            switch (filter)
+            {
+                default: _filter = GL_LINEAR; break;
+                case TextureFilter::LINEAR: _filter = GL_LINEAR; break;
+                case TextureFilter::NEAREST: _filter = GL_NEAREST; break;
+            }
             
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _filter);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _filter);
             
-            int width, height, channels;
-            stbi_set_flip_vertically_on_load(true);
-            unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
-            if (data)
-            {
-                texture.image.width = static_cast<unsigned int>(width);
-                texture.image.height = static_cast<unsigned int>(height);
-                glTexImage2D(GL_TEXTURE_2D, 0, channels == 4 ? GL_RGBA : GL_RGB, width, height, 0, channels == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
-                glGenerateMipmap(GL_TEXTURE_2D);
-            }
-            else std::cout << "stbi_load() Error: failed to load texture '" << path << "'.\n";
-            stbi_image_free(data);
-            
-            textureID = 0;
-            return texture;
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+            glGenerateMipmap(GL_TEXTURE_2D);
         }
+        void Texture::free() { glDeleteTextures(1, &id); id = 0; }
+        
+#pragma mark -
+#pragma mark ...
+        
+        Shader::Shader(Renderer* context) : context((GL::Context*)context) { }
+        bool Shader::loadFromFile(const std::string& path)
+        {
+            std::ifstream file(path);
+            if (file.is_open())
+            {
+                std::stringstream stream;
+                stream << file.rdbuf();
+                std::string code = stream.str();
+                const char* _code = code.c_str();
+                
+                int ec; char ecode[512];
+                
+                switch (stage) { default: break;
+                    case ShaderStage::Vertex: id = glCreateShader(GL_VERTEX_SHADER); break;
+                    case ShaderStage::Fragment: id = glCreateShader(GL_FRAGMENT_SHADER); break;
+                    case ShaderStage::Geometry: id = glCreateShader(GL_GEOMETRY_SHADER); break;
+                }
+                
+                glShaderSource(id, 1, &_code, NULL);
+                glCompileShader(id);
+                glGetShaderiv(id, GL_COMPILE_STATUS, &ec);
+                if (!ec)
+                {
+                    glGetShaderInfoLog(id, 512, NULL, ecode);
+                    std::cout << "glCompileShader(" << path << ") Error: " << ecode << "\n";
+                }
+                else return true;
+            }
+            return false;
+        }
+        void Shader::free() { glDeleteShader(id); }
+        
+        
+        Pipeline::Pipeline(Renderer* context) : context((GL::Context*)context) { }
+        void Pipeline::allocate()
+        {
+            pipelineID = glCreateProgram();
+            for (auto s : shaders) glAttachShader(pipelineID, ((GL::Shader*)s)->id);
+            glLinkProgram(pipelineID);
+            
+            int ec; char ecode[512];
+            glGetProgramiv(pipelineID, GL_LINK_STATUS, &ec);
+            if (!ec) {
+                glGetProgramInfoLog(pipelineID, 512, NULL, ecode);
+                std::cout << "glLinkProgram() Error(s):\n" << ecode << "\n";
+            }
+        }
+        void Pipeline::free() { glDeleteProgram(pipelineID); }
+        void Pipeline::onRecord(const uint32_t& i) {
+            if (context->shaderID != pipelineID) { glUseProgram(pipelineID); context->shaderID = pipelineID; } }
+        
+#pragma mark -
+#pragma mark Context
         
         uint32_t Context::beginDraw(float r, float g, float b, float a)
         {
@@ -57,7 +141,7 @@ namespace mh
             return 0;
         }
         
-        void Context::beginRecord(const uint32_t&) {  }
+        void Context::beginRecord(const uint32_t&) { shaderID = 0; }
         void Context::endRecord(const uint32_t&) { tc::frame(); }
         
         void Context::resize() { glViewport(0, 0, window->frame.width, window->frame.height); }

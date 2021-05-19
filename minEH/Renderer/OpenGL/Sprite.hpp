@@ -24,8 +24,9 @@ namespace mh
             GL::Context* context = nullptr;
             
             glm::mat4 model;
-            GLuint VAO, VBO, EBO, ID, mloc, cloc;
-            bool mDirty = true;
+            GL::Buffer *VAO, *VBO, *EBO, *UVO;
+            GLuint ID, mloc, cloc;
+            bool mDirty = true, mUV = false;
             
             GLSprite();
             GLSprite(GL::Context* context);
@@ -40,6 +41,7 @@ namespace mh
             void setContext(void* context) override;
             void setTexture(const std::string& path) override;
             void setPosition(const glm::vec2& pos) override;
+            void setUV(const glm::vec4 &uv) override;
         };
     }
 }

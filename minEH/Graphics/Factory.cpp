@@ -25,6 +25,7 @@ namespace mh
         Vk::VkCamera* GetCamera(Vk::Context* context) { Vk::VkCamera* camera = new Vk::VkCamera(context); camera->create(); return camera; }
         Vk::VkMesh* GetMesh(Vk::Context* context) { return new Vk::VkMesh(context); }
 #endif
+        
         Sprite* GetSprite(Renderer* context)
         {
             switch (context->type)
