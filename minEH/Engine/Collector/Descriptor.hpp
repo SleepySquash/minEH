@@ -17,7 +17,7 @@
 
 namespace mh
 {
-    enum class DescriptorType { undef, Camera };
+    enum class DescriptorCollectorType { undef, Camera };
     
     // TODO: Tie to ImageView if descriptor contains one that is used in the TextureCollector so when ImageView gets destroyed there the DCO gets some kind flag of "needs to be recreated since ImageView is destroyed".
     struct DescriptorCollectorObject
@@ -31,7 +31,7 @@ namespace mh
         std::vector<VkDescriptorSetLayoutBinding> bindings;
         std::vector<VkDescriptorPoolSize> size;
         std::vector<VkWriteDescriptorSet> writeSets;
-        std::vector<DescriptorType> types;
+        std::vector<DescriptorCollectorType> types;
         
         void createDescriptor(Vk::Context* context);
         void createDescriptorLayout(Vk::Context* context);

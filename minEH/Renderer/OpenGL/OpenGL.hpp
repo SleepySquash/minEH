@@ -51,9 +51,20 @@ namespace mh
             void free() override;
         };
         
+        struct Descriptor : mh::Descriptor
+        {
+            GL::Context* context;
+            
+            Descriptor(Renderer* context);
+            void allocate() override;
+            void free() override;
+            void onRecord(const uint32_t& i) override;
+        };
+        
         struct Pipeline : mh::Pipeline
         {
             GL::Context* context;
+            GLuint VAO;
             
             Pipeline(Renderer* context);
             void allocate() override;

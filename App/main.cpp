@@ -60,31 +60,42 @@ void _indevelopment()
     Buffer* uvBuffer = Renders::Buffer(&context, BufferType::UV, uvs, sizeof(uvs), BufferUpdateType::Dynamic);
     Buffer* indexBuffer = Renders::Buffer(&context, BufferType::Index, indices, sizeof(indices));
     
-    
-    Buffer* arrayBuffer = Renders::Buffer(&context, BufferType::Array);
-    glBindVertexArray(((GL::Buffer*)arrayBuffer)->id);
-    glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)vertexBuffer)->id);
-    glEnableVertexAttribArray(0); glVertexAttribPointer(0, 2, GL_FLOAT, false, 2 * sizeof(float), (void*)(0));
-    glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)uvBuffer)->id);
-    glEnableVertexAttribArray(1); glVertexAttribPointer(1, 2, GL_FLOAT, false, 2 * sizeof(float), (void*)(0));
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ((GL::Buffer*)indexBuffer)->id);
-    glBindVertexArray(0);
-    
-    
-    Shader *vertexShader = Renders::Shader(&context, ShaderStage::Vertex, resourcePath() + "Shaders/OpenGL/sprite.vert"),
-           *fragmentShader = Renders::Shader(&context, ShaderStage::Fragment, resourcePath() + "Shaders/OpenGL/sprite.frag");
-    Pipeline* pipeline = Renders::Pipeline(&context); // TODO: attributes and VAO belong to here
-    pipeline->shaders = { vertexShader, fragmentShader };
-    pipeline->allocate();
-    
-    GLuint mloc = glGetUniformLocation(pipeline->pipelineID, "model");
-    GLuint cloc = glGetUniformLocation(pipeline->pipelineID, "color");
-    glm::vec4 color = glm::vec4(1.f);
+    // float combined[] = { -1.f, -1.f, 0.0f, 0.0f,   1.f, -1.f, 1.0f, 0.0f,   -1.f, 1.f, 0.0f, 1.0f,   1.f, 1.f, 1.0f, 1.0f  };
+    // Buffer* combinedBuffer = Renders::Buffer(&context, BufferType::Vertex, combined, sizeof(combined));
     
     
     Texture* texture = Renders::Texture(&context, resourcePath() + "Images/nekos/dbcf0cbc94c8b5e3f649f770a7cbb57649a42cc0_hq2.jpg");
     uint32_t frame = 0;
     float elapsed = 0.f;
+    
+    Descriptor* descriptor = Renders::Descriptor(&context);
+    descriptor->layouts = {
+        { DescriptorType::CombinedImageSampler, 0, ShaderStage::Fragment, texture, nullptr }
+    };
+    
+    
+    Shader *vertexShader = Renders::Shader(&context, ShaderStage::Vertex, resourcePath() + "Shaders/OpenGL/sprite.vert"),
+           *fragmentShader = Renders::Shader(&context, ShaderStage::Fragment, resourcePath() + "Shaders/OpenGL/sprite.frag");
+    Pipeline* pipeline = Renders::Pipeline(&context);
+    pipeline->shaders = { vertexShader, fragmentShader };
+    pipeline->bindings = { { 0, sizeof(float) * 2 } };
+    pipeline->attributes = {
+        { 0, 0, 0, VertexFormat::UNDEFINED, indexBuffer },
+        // { 0, 0, 0, VertexFormat::R32G32_SFLOAT, combinedBuffer },
+        // { 1, 0, 8, VertexFormat::R32G32_SFLOAT, combinedBuffer }
+        { 0, 0, 0, VertexFormat::R32G32_SFLOAT, vertexBuffer },
+        { 1, 0, 0, VertexFormat::R32G32_SFLOAT, uvBuffer }, // TODO: this might change so Buffer must be seperate from Pipeline (drawable must set it)
+    };
+    pipeline->pushConstantRanges = {
+        
+    };
+    pipeline->allocate();
+    
+    
+    // TODO: Uniform = PushConstant, so it must be in Pipeline
+    GLuint mloc = glGetUniformLocation(pipeline->pipelineID, "model");
+    GLuint cloc = glGetUniformLocation(pipeline->pipelineID, "color");
+    glm::vec4 color = glm::vec4(1.f);
     
     
     Event event;
@@ -120,7 +131,9 @@ void _indevelopment()
         }
         else elapsed += clock.elapsed();
         
-        composition.update(clock.restart());
+        float elapsedSeconds = clock.restart();
+        if (elapsedSeconds <= 0.01) std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        composition.update(elapsedSeconds);
         
         Clock framerate;
         if (window.shouldRender)
@@ -132,10 +145,10 @@ void _indevelopment()
             context.endRecord(i);
             
             pipeline->onRecord(i);
-            glBindVertexArray(((GL::Buffer*)arrayBuffer)->id);
+            // glBindVertexArray(((GL::Buffer*)arrayBuffer)->id);
             glUniformMatrix4fv(mloc, 1, false, glm::value_ptr(model));
             glUniform4f(cloc, color.r, color.g, color.b, color.a);
-            glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, ((GL::Texture*)texture)->id);
+            descriptor->onRecord(i);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             
             composition.draw();
@@ -143,7 +156,6 @@ void _indevelopment()
             context.endDraw(i);
             window.display();
         }
-        if (clock.elapsed() <= 0.01) std::this_thread::sleep_for(std::chrono::milliseconds(10));
         // cout << std::to_string(framerate.restart() * 1000) << "\n"; // window.setTitle(std::to_string(framerate.restart() * 1000) + " ms");
     }
     

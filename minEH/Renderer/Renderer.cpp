@@ -30,10 +30,16 @@ namespace mh
     void Texture::loadFromImage(Image* image, TextureFilter filter) { allocate(image->data, image->width, image->height, filter); }
     void Texture::free() { }
     
+    DescriptorLayout::DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage, Texture* texture, Buffer* buffer) : type(type), binding(binding), stage(stage), texture(texture), buffer(buffer) { };
+    
+    void Descriptor::allocate() { }
+    void Descriptor::free() { }
+    void Descriptor::onRecord(const uint32_t& i) { }
+    
     bool Shader::loadFromFile(const std::string& path) { return false; }
     void Shader::free() { }
     
-    PipelineAttribute::PipelineAttribute(const uint32_t& location, const uint32_t& binding, const uint32_t& offset, const VertexFormat& format) : location(location), binding(binding), offset(offset), format(format) { }
+    PipelineAttribute::PipelineAttribute(const uint32_t& location, const uint32_t& binding, const uint32_t& offset, const VertexFormat& format, Buffer* buffer) : location(location), binding(binding), offset(offset), format(format), buffer(buffer) { }
     PipelineBinding::PipelineBinding(const uint32_t& binding, const uint32_t& stride) : binding(binding), stride(stride) { }
     PipelinePushConstantRange::PipelinePushConstantRange(const uint32_t& stageFlags, const uint32_t& offset, const uint32_t& size) : stageFlags(stageFlags), offset(offset), size(size) { }
     

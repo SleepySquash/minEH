@@ -61,7 +61,7 @@ namespace mh
                 writeSets[j].dstSet = descriptor.sets[i];
                 if (types.size() > j)
                 {
-                    if (types[j] == DescriptorType::Camera)
+                    if (types[j] == DescriptorCollectorType::Camera)
                     {
                         VkDescriptorBufferInfo* bufferInfo = new VkDescriptorBufferInfo;
                         bufferInfo->buffer = ((Vk::VkCamera*)context->camera)->uniformBuffers[i].buffer;

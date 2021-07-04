@@ -113,11 +113,26 @@ namespace mh
         void Shader::free() { glDeleteShader(id); }
         
         
+        Descriptor::Descriptor(Renderer* context) : context((GL::Context*)context) { }
+        void Descriptor::allocate() { }
+        void Descriptor::free() { }
+        void Descriptor::onRecord(const uint32_t& i)
+        {
+            GLuint tex = GL_TEXTURE0;
+            for (auto& d : layouts) {
+                if (d.type == DescriptorType::CombinedImageSampler) {
+                    glActiveTexture(tex++);
+                    glBindTexture(GL_TEXTURE_2D, ((GL::Texture*)d.texture)->id);
+                }
+            }
+        }
+        
+        
         Pipeline::Pipeline(Renderer* context) : context((GL::Context*)context) { }
         void Pipeline::allocate()
         {
             pipelineID = glCreateProgram();
-            for (auto s : shaders) glAttachShader(pipelineID, ((GL::Shader*)s)->id);
+            for (auto& s : shaders) glAttachShader(pipelineID, ((GL::Shader*)s)->id);
             glLinkProgram(pipelineID);
             
             int ec; char ecode[512];
@@ -125,11 +140,34 @@ namespace mh
             if (!ec) {
                 glGetProgramInfoLog(pipelineID, 512, NULL, ecode);
                 std::cout << "glLinkProgram() Error(s):\n" << ecode << "\n";
+                return;
             }
+            
+            glGenVertexArrays(1, &VAO);
+            glBindVertexArray(VAO);
+            
+            for (auto& a : attributes) {
+                switch (a.buffer->type) { default: break;
+                    case BufferType::Index: glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ((GL::Buffer*)a.buffer)->id); continue; break;
+                    case BufferType::Vertex: glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)a.buffer)->id); break;
+                    case BufferType::UV: glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)a.buffer)->id); break; }
+                
+                int format; uint32_t count, size;
+                switch (a.format) { default: format = GL_FLOAT; count = 0; size = 0; break;
+                    case VertexFormat::R32G32_SFLOAT: count = 2; format = GL_FLOAT; size = 4 * 2; break;
+                    case VertexFormat::R32G32B32_SFLOAT: count = 3; format = GL_FLOAT; size = 4 * 3; break;
+                    case VertexFormat::R32G32B32A32_SFLOAT: count = 4; format = GL_FLOAT; size = 4 * 4; break; }
+                uint32_t stride = 0; for (auto& b : bindings) { if (b.binding == a.binding) { stride = b.stride; break; } }
+                glEnableVertexAttribArray(a.location); glVertexAttribPointer(a.location, count, GL_FLOAT, false, stride, (void*)(a.offset));
+                std::cout << a.location << " " << count << " " << stride << " " << (void*)(a.offset) << '\n';
+            }
+            glBindVertexArray(0);
         }
-        void Pipeline::free() { glDeleteProgram(pipelineID); }
+        void Pipeline::free() { glDeleteProgram(pipelineID); glDeleteVertexArrays(1, &VAO); }
         void Pipeline::onRecord(const uint32_t& i) {
-            if (context->shaderID != pipelineID) { glUseProgram(pipelineID); context->shaderID = pipelineID; } }
+            if (context->shaderID != pipelineID) { glUseProgram(pipelineID); context->shaderID = pipelineID; }
+            if (context->VAOID != VAO) { glBindVertexArray(VAO); context->VAOID = VAO; }
+        }
         
 #pragma mark -
 #pragma mark Context

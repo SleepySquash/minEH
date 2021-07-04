@@ -66,6 +66,21 @@ namespace mh
             return shader;
         }
         
+        mh::Descriptor* Descriptor(Renderer* context)
+        {
+            mh::Descriptor* descriptor = nullptr;
+            switch (context->type)
+            {
+                default: return nullptr; break;
+#ifdef MINEH_OPENGL
+                case Renderer::Type::GL: descriptor = new GL::Descriptor((GL::Context*)context); break;
+#elif defined(MINEH_VULKAN)
+                case Renderer::Type::Vk: descriptor = new Vk::Descriptor((Vk::Context*)context); break;
+#endif
+            }
+            return descriptor;
+        }
+        
         mh::Pipeline* Pipeline(Renderer* context)
         {
             mh::Pipeline* pipeline = nullptr;

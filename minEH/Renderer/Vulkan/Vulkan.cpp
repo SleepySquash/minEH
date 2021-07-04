@@ -166,6 +166,11 @@ namespace Vk
     void Shader::free() { vkDestroyShaderModule(context->device, module, nullptr); }
     
     
+    void Descriptor::allocate() { }
+    void Descriptor::free() { }
+    void Descriptor::onRecord(const uint32_t& i) { }
+    
+    
     Pipeline::Pipeline(Renderer* context) : context((Vk::Context*)context) { }
     void Pipeline::allocate()
     {
@@ -203,7 +208,7 @@ namespace Vk
             switch (a.format) { default: info.format = VK_FORMAT_UNDEFINED; break;
                 case VertexFormat::UNDEFINED: info.format = VK_FORMAT_UNDEFINED; break;
                 case VertexFormat::R32G32_SFLOAT: info.format = VK_FORMAT_R32G32_SFLOAT; break; }
-            info.offset = a.offset;
+            info.offset = static_cast<uint32_t>(a.offset);
             vAttributes.push_back(info); }
         VkPipelineVertexInputStateCreateInfo inputStateInfo = { VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO };
         inputStateInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(vBindings.size());

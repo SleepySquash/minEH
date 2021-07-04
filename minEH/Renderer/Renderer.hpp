@@ -66,12 +66,25 @@ namespace mh
         
     };
     
+    enum class ShaderStage { Vertex, Fragment, Geometry, Tessellation, Compute, Mesh, Task };
+    
+    enum class DescriptorType { Sampler, CombinedImageSampler, SampledImage, StorageImage, UniformTexelBuffer, StorageTexelBuffer, UniformBuffer, StorageBuffer, UniformBufferDynamic, StorageBufferDynamic, InputAttachment };
+    struct DescriptorLayout {
+        DescriptorType type;
+        uint32_t binding;
+        ShaderStage stage;
+        Texture* texture;
+        Buffer* buffer;
+        DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage, Texture* texture = nullptr, Buffer* buffer = nullptr);
+    };
     struct Descriptor
     {
-        
+        std::vector<DescriptorLayout> layouts;
+        virtual void allocate();
+        virtual void free();
+        virtual void onRecord(const uint32_t& i);
     };
     
-    enum class ShaderStage { Vertex, Fragment, Geometry, Tessellation, Compute, Mesh, Task };
     struct Shader
     {
         std::string main;
@@ -86,11 +99,13 @@ namespace mh
     enum class PipelinePolygonMode { Fill, Line, Point, FillRectangleNV };
     enum class PipelineCullMode { None, Front, Back, Both };
     
-    enum class VertexFormat { UNDEFINED, R32G32_SFLOAT };
+    enum class VertexFormat { UNDEFINED, R32G32_SFLOAT, R32G32B32_SFLOAT, R32G32B32A32_SFLOAT };
     struct PipelineAttribute {
-        uint32_t location, binding, offset;
+        uint32_t location, binding;
+        uint64_t offset;
         VertexFormat format;
-        PipelineAttribute(const uint32_t& location = 0, const uint32_t& binding = 0, const uint32_t& offset = 0, const VertexFormat& format = VertexFormat::UNDEFINED);
+        Buffer* buffer;
+        PipelineAttribute(const uint32_t& location = 0, const uint32_t& binding = 0, const uint32_t& offset = 0, const VertexFormat& format = VertexFormat::UNDEFINED, Buffer* buffer = nullptr);
     };
     struct PipelineBinding {
         uint32_t binding, stride;

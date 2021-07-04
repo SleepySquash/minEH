@@ -71,7 +71,7 @@ namespace mh
                 dco->bindings[1] = samplerBinding;
                 
                 dco->types.resize(1);
-                dco->types[0] = DescriptorType::Camera;
+                dco->types[0] = DescriptorCollectorType::Camera;
 
                 dco->size.resize(2);
                 dco->size[0].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
