@@ -32,9 +32,9 @@ void _main(int argc, const char** argv)
     
     std::cout << "_main()\n";
     // demo_audio_song(argc, argv);
-    demo_2d_scene(argc, argv);
+    // demo_2d_scene(argc, argv);
     // demo_3d_2d_scene(argc, argv);
-    // demo_keys(argc, argv);
+    demo_keys(argc, argv);
 }
 
 
@@ -236,7 +236,7 @@ void demo_keys(int, const char**)
     Window window;
     window.open();
     
-    Vk::Context context(&window);
+    GL::Context context(&window);
     
     Composition composition(&context);
     Entity* entity = composition.addEntity();
