@@ -31,12 +31,12 @@
     {
         const NSRect contentRect = [(__bridge NSView*)window->view frame];
         const NSRect fbRect = [(__bridge NSView*)window->view convertRectToBacking: contentRect];
-        window->frame.width = static_cast<unsigned int>(fbRect.size.width);
-        window->frame.height = static_cast<unsigned int>(fbRect.size.height);
+        window->width = static_cast<unsigned int>(fbRect.size.width);
+        window->height = static_cast<unsigned int>(fbRect.size.height);
         
         const CGSize winRect = ((__bridge NSWindow*)window->window).frame.size;
-        window->width = static_cast<unsigned int>(winRect.width);
-        window->height = static_cast<unsigned int>(winRect.height);
+        window->frame.width = static_cast<unsigned int>(winRect.width);
+        window->frame.height = static_cast<unsigned int>(winRect.height);
     
         if (window->mResized)
         {
@@ -132,7 +132,7 @@ namespace mh
     {
         @autoreleasepool
         {
-            NSRect rect = NSMakeRect(x, y, width, height);
+            NSRect rect = NSMakeRect(x, y, width / 2, height / 2);
             NSWindowStyleMask styleMask = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskResizable | NSWindowStyleMaskMiniaturizable;
             
             // Setup NSWindow
@@ -162,13 +162,13 @@ namespace mh
             
             const NSRect contentRect = [(__bridge _NSView*)view frame];
             const NSRect fbRect = [(__bridge _NSView*)view convertRectToBacking: contentRect];
-            frame.width = static_cast<unsigned int>(fbRect.size.width);
-            frame.height = static_cast<unsigned int>(fbRect.size.height);
+            width = static_cast<unsigned int>(fbRect.size.width);
+            height = static_cast<unsigned int>(fbRect.size.height);
             aspect = (float)frame.width/frame.height;
             
             const CGSize winRect = ((__bridge NSWindow*)window).frame.size;
-            width = static_cast<unsigned int>(winRect.width);
-            height = static_cast<unsigned int>(winRect.height);
+            frame.width = static_cast<unsigned int>(winRect.width);
+            frame.height = static_cast<unsigned int>(winRect.height);
         }
         
         focus();

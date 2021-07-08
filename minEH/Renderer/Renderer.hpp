@@ -20,6 +20,8 @@ namespace mh
     {
         enum class Type { undef, GL, Vk, MTL, WebGL, DX, DX12 } type;
         bool UV_0{ 0 }, UV_1{ 1 };
+        glm::mat4 ortho;
+        
         Window* window = nullptr;
         Camera* camera = nullptr;
     };
@@ -40,6 +42,7 @@ namespace mh
     enum class TextureFilter { LINEAR, NEAREST, CUBIC };
     struct Texture
     {
+        uint32_t width, height;
         virtual void allocate(void* data, uint32_t width, uint32_t height, TextureFilter filter = TextureFilter::LINEAR);
         void loadFromImage(Image* image, TextureFilter filter = TextureFilter::LINEAR);
         virtual void free();
@@ -74,15 +77,17 @@ namespace mh
         DescriptorType type;
         uint32_t binding;
         ShaderStage stage;
-        Texture* texture;
-        Buffer* buffer;
-        DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage, Texture* texture = nullptr, Buffer* buffer = nullptr);
+        DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage);
     };
     struct Pipeline;
     struct Descriptor
     {
         std::vector<DescriptorLayout> layouts;
+        bool created{ false };
+        
         virtual void allocate();
+        void allocate(const std::vector<void*>& data);
+        virtual void update(const std::vector<void*>& data);
         virtual void free();
         virtual void onRecord(Pipeline* pipeline);
     };
@@ -129,7 +134,7 @@ namespace mh
         std::vector<PipelineBinding> bindings;
         std::vector<PipelinePushConstantRange> pushConstantRanges;
         
-        bool depthEnabled = true;
+        bool depthEnabled = false;
         Descriptor* descriptor = nullptr;
         PipelinePolygonMode polygonMode = PipelinePolygonMode::Fill;
         PipelineCullMode cullMode = PipelineCullMode::Back;
@@ -137,6 +142,7 @@ namespace mh
         PipelineTopology topology = PipelineTopology::TriangleList;
         
         virtual void allocate();
+        virtual void recreate();
         virtual void free();
         virtual void onRecord(const uint32_t& i);
         virtual void vertex(const std::vector<Buffer*>& buffers);

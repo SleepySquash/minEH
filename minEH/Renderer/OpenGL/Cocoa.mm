@@ -54,8 +54,8 @@ namespace GL
         
         const NSRect contentRect = [(__bridge _NSOpenGLView*)view frame];
         const NSRect fbRect = [(__bridge _NSOpenGLView*)view convertRectToBacking: contentRect];
-        window->frame.width = static_cast<unsigned int>(fbRect.size.width);
-        window->frame.height = static_cast<unsigned int>(fbRect.size.height);
+        window->width = static_cast<unsigned int>(fbRect.size.width);
+        window->height = static_cast<unsigned int>(fbRect.size.height);
         
         setContext();
         init();

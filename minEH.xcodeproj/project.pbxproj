@@ -44,22 +44,12 @@
 		DD46E02A25B9BB56001E4333 /* OpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD46E02825B9BB56001E4333 /* OpenGL.cpp */; };
 		DD59BB7E25BCB9C30086DD0B /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BB7D25BCB9C30086DD0B /* Window.cpp */; };
 		DD59BB7F25BCB9C30086DD0B /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BB7D25BCB9C30086DD0B /* Window.cpp */; };
-		DD59BB8925BD6C630086DD0B /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BB8725BD6C630086DD0B /* Factory.cpp */; };
-		DD59BB8A25BD6C630086DD0B /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BB8725BD6C630086DD0B /* Factory.cpp */; };
 		DD59BBB625BDEEC90086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBB425BDEEC90086DD0B /* Camera.cpp */; };
 		DD59BBB725BDEEC90086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBB425BDEEC90086DD0B /* Camera.cpp */; };
 		DD59BBBC25BDF1400086DD0B /* CameraController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBBA25BDF1400086DD0B /* CameraController.cpp */; };
 		DD59BBBD25BDF1400086DD0B /* CameraController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBBA25BDF1400086DD0B /* CameraController.cpp */; };
-		DD59BBC125BDF3A00086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBBF25BDF3A00086DD0B /* Camera.cpp */; };
-		DD59BBC225BDF3A00086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBBF25BDF3A00086DD0B /* Camera.cpp */; };
-		DD59BBC625BDF82D0086DD0B /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBC425BDF82D0086DD0B /* Mesh.cpp */; };
-		DD59BBC725BDF82D0086DD0B /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBC425BDF82D0086DD0B /* Mesh.cpp */; };
 		DD59BBCA25BE07B80086DD0B /* Models in Resources */ = {isa = PBXBuildFile; fileRef = DD59BBC925BE07B80086DD0B /* Models */; };
 		DD59BBCB25BE07B80086DD0B /* Models in Resources */ = {isa = PBXBuildFile; fileRef = DD59BBC925BE07B80086DD0B /* Models */; };
-		DD59BBDA25BE1A0B0086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBD825BE1A0B0086DD0B /* Camera.cpp */; };
-		DD59BBDB25BE1A0B0086DD0B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBD825BE1A0B0086DD0B /* Camera.cpp */; };
-		DD59BBDF25BE1A150086DD0B /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBDD25BE1A150086DD0B /* Mesh.cpp */; };
-		DD59BBE025BE1A150086DD0B /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD59BBDD25BE1A150086DD0B /* Mesh.cpp */; };
 		DD59BBEB25BE1D0E0086DD0B /* libMoltenVK.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD59BBE925BE1D0B0086DD0B /* libMoltenVK.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DD5B575B25BAF4E700C78C01 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B575925BAF4E700C78C01 /* Pipeline.cpp */; };
 		DD5B575C25BAF4E700C78C01 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B575925BAF4E700C78C01 /* Pipeline.cpp */; };
@@ -74,8 +64,6 @@
 		DD5B579B25BC157C00C78C01 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B579A25BC157C00C78C01 /* IOKit.framework */; };
 		DD5B579D25BC158400C78C01 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B579C25BC158400C78C01 /* IOSurface.framework */; };
 		DD5B57A025BC158D00C78C01 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B579F25BC158D00C78C01 /* Metal.framework */; };
-		DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
-		DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD5B57A925BC93F500C78C01 /* Sprite.cpp */; };
 		DD678E8C25EED39200058CEC /* Filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD678E8A25EED39200058CEC /* Filesystem.cpp */; };
 		DD678E8D25EED39200058CEC /* Filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD678E8A25EED39200058CEC /* Filesystem.cpp */; };
 		DD69B25E25CA0DD4002372C2 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = DD69B25D25CA0DD4002372C2 /* Fonts */; };
@@ -105,8 +93,10 @@
 		DDA1151E25C63A70006B628E /* Keys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1151B25C63A70006B628E /* Keys.cpp */; };
 		DDA1152325C64004006B628E /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1152125C64004006B628E /* Parser.cpp */; };
 		DDA1152425C64004006B628E /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA1152125C64004006B628E /* Parser.cpp */; };
-		DDC4A37E25B42B5F006E2E0D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */; };
-		DDC4A37F25B42B5F006E2E0D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */; };
+		DDADB4D126974B0F0081FA61 /* AnimatedImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4D026974B0F0081FA61 /* AnimatedImage.cpp */; };
+		DDADB4D226974B0F0081FA61 /* AnimatedImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4D026974B0F0081FA61 /* AnimatedImage.cpp */; };
+		DDADB4DE26976A950081FA61 /* RawSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4DC26976A950081FA61 /* RawSprite.cpp */; };
+		DDADB4DF26976A950081FA61 /* RawSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4DC26976A950081FA61 /* RawSprite.cpp */; };
 		DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
 		DDCCB03625B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
 		DDD7BA2025AF11F4007E3634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BA1F25AF11F4007E3634 /* Assets.xcassets */; };
@@ -120,8 +110,6 @@
 		DDD7BA9025B0285D007E3634 /* Cocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BA8F25B0285D007E3634 /* Cocoa.mm */; };
 		DDD7BAA425B15567007E3634 /* Cocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAA325B15567007E3634 /* Cocoa.mm */; };
 		DDD7BAAB25B15EF8007E3634 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BAAA25B15EF8007E3634 /* OpenGL.framework */; };
-		DDD7BAB025B160BE007E3634 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAAE25B160BE007E3634 /* Shader.cpp */; };
-		DDD7BAB125B160BE007E3634 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAAE25B160BE007E3634 /* Shader.cpp */; };
 		DDD7BAB825B16146007E3634 /* ResourcePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAB625B16146007E3634 /* ResourcePath.cpp */; };
 		DDD7BAB925B16146007E3634 /* ResourcePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BAB625B16146007E3634 /* ResourcePath.cpp */; };
 		DDD7BABD25B1616D007E3634 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD7BABC25B1616D007E3634 /* ResourcePath.mm */; };
@@ -129,8 +117,6 @@
 		DDD7BAC625B16256007E3634 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BAC425B16256007E3634 /* Shaders */; };
 		DDD7BB0425B2274E007E3634 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BB0325B2274E007E3634 /* Cocoa.framework */; };
 		DDD7BB0825B22761007E3634 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD7BB0725B22761007E3634 /* CoreVideo.framework */; };
-		DDDE565825C99FB10055E3EF /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565625C99FB10055E3EF /* Text.cpp */; };
-		DDDE565925C99FB10055E3EF /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565625C99FB10055E3EF /* Text.cpp */; };
 		DDDE565E25C9A45E0055E3EF /* CPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565C25C9A45E0055E3EF /* CPU.cpp */; };
 		DDDE565F25C9A45E0055E3EF /* CPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDDE565C25C9A45E0055E3EF /* CPU.cpp */; };
 		DDE5348A25C4BC5500D71B70 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE5348925C4BC5500D71B70 /* libportaudio.a */; };
@@ -143,8 +129,6 @@
 		DDF0C51225B4353900374CD6 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = DDF0C51025B4353900374CD6 /* Images */; };
 		DDF0C51A25B43B2B00374CD6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C51825B43B2B00374CD6 /* Color.cpp */; };
 		DDF0C51B25B43B2B00374CD6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C51825B43B2B00374CD6 /* Color.cpp */; };
-		DDF0C52025B480FC00374CD6 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C51E25B480FC00374CD6 /* Shader.cpp */; };
-		DDF0C52125B480FC00374CD6 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C51E25B480FC00374CD6 /* Shader.cpp */; };
 		DDF0C52925B5833600374CD6 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C52725B5833600374CD6 /* Test.cpp */; };
 		DDF0C52A25B5833600374CD6 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C52725B5833600374CD6 /* Test.cpp */; };
 		DDF0C53525B6A5C900374CD6 /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDF0C53325B6A5C900374CD6 /* Clock.cpp */; };
@@ -213,21 +197,11 @@
 		DD4615FB25CEB94200A2195A /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
 		DD46E02825B9BB56001E4333 /* OpenGL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL.cpp; sourceTree = "<group>"; };
 		DD59BB7D25BCB9C30086DD0B /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
-		DD59BB8725BD6C630086DD0B /* Factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Factory.cpp; sourceTree = "<group>"; };
-		DD59BB8825BD6C630086DD0B /* Factory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Factory.hpp; sourceTree = "<group>"; };
 		DD59BBB425BDEEC90086DD0B /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		DD59BBB525BDEEC90086DD0B /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		DD59BBBA25BDF1400086DD0B /* CameraController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CameraController.cpp; sourceTree = "<group>"; };
 		DD59BBBB25BDF1400086DD0B /* CameraController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CameraController.hpp; sourceTree = "<group>"; };
-		DD59BBBF25BDF3A00086DD0B /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
-		DD59BBC025BDF3A00086DD0B /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
-		DD59BBC425BDF82D0086DD0B /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
-		DD59BBC525BDF82D0086DD0B /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		DD59BBC925BE07B80086DD0B /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
-		DD59BBD825BE1A0B0086DD0B /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
-		DD59BBD925BE1A0B0086DD0B /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
-		DD59BBDD25BE1A150086DD0B /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
-		DD59BBDE25BE1A150086DD0B /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		DD59BBE925BE1D0B0086DD0B /* libMoltenVK.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMoltenVK.dylib; path = ../../../Libraries/MoltenVK/Package/Release/MoltenVK/dylib/macOS/libMoltenVK.dylib; sourceTree = "<group>"; };
 		DD5B575925BAF4E700C78C01 /* Pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pipeline.cpp; sourceTree = "<group>"; };
 		DD5B575A25BAF4E700C78C01 /* Pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Pipeline.hpp; sourceTree = "<group>"; };
@@ -242,8 +216,6 @@
 		DD5B579A25BC157C00C78C01 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		DD5B579C25BC158400C78C01 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		DD5B579F25BC158D00C78C01 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		DD5B57A925BC93F500C78C01 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
-		DD5B57AA25BC93F500C78C01 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		DD678E8A25EED39200058CEC /* Filesystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Filesystem.cpp; sourceTree = "<group>"; };
 		DD678E8B25EED39200058CEC /* Filesystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Filesystem.hpp; sourceTree = "<group>"; };
 		DD69B25D25CA0DD4002372C2 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
@@ -277,8 +249,10 @@
 		DDA1151C25C63A70006B628E /* Keys.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Keys.hpp; sourceTree = "<group>"; };
 		DDA1152125C64004006B628E /* Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
 		DDA1152225C64004006B628E /* Parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
-		DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
-		DDC4A37D25B42B5F006E2E0D /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		DDADB4D026974B0F0081FA61 /* AnimatedImage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedImage.cpp; sourceTree = "<group>"; };
+		DDADB4D526974B380081FA61 /* Examples.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Examples.hpp; sourceTree = "<group>"; };
+		DDADB4DC26976A950081FA61 /* RawSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RawSprite.cpp; sourceTree = "<group>"; };
+		DDADB4DD26976A950081FA61 /* RawSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RawSprite.hpp; sourceTree = "<group>"; };
 		DDCCB03325B993EC0078B279 /* Drawable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
 		DDCCB03425B993EC0078B279 /* Drawable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Drawable.hpp; sourceTree = "<group>"; };
 		DDD7BA1725AF11F1007E3634 /* macOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,8 +274,6 @@
 		DDD7BAA225B152E0007E3634 /* Context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Context.hpp; sourceTree = "<group>"; };
 		DDD7BAA325B15567007E3634 /* Cocoa.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Cocoa.mm; sourceTree = "<group>"; };
 		DDD7BAAA25B15EF8007E3634 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		DDD7BAAE25B160BE007E3634 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		DDD7BAAF25B160BE007E3634 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		DDD7BAB625B16146007E3634 /* ResourcePath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ResourcePath.cpp; sourceTree = "<group>"; };
 		DDD7BAB725B16146007E3634 /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		DDD7BABC25B1616D007E3634 /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -311,8 +283,6 @@
 		DDD7BB0B25B28F5A007E3634 /* Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cocoa.h; sourceTree = "<group>"; };
 		DDD7BB1725B31A5D007E3634 /* minEH.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = minEH.hpp; sourceTree = "<group>"; };
 		DDDE564E25C99F5C0055E3EF /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "../../../Libraries/freetype-2.10.0/objs/.libs/libfreetype.a"; sourceTree = "<group>"; };
-		DDDE565625C99FB10055E3EF /* Text.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cpp; sourceTree = "<group>"; };
-		DDDE565725C99FB10055E3EF /* Text.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Text.hpp; sourceTree = "<group>"; };
 		DDDE565C25C9A45E0055E3EF /* CPU.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CPU.cpp; sourceTree = "<group>"; };
 		DDE5348925C4BC5500D71B70 /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = ../../../Libraries/portaudio/lib/.libs/libportaudio.a; sourceTree = "<group>"; };
 		DDE5348C25C4BD1900D71B70 /* libportaudio.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libportaudio.2.dylib; path = ../../../Libraries/portaudio/lib/.libs/libportaudio.2.dylib; sourceTree = "<group>"; };
@@ -321,8 +291,6 @@
 		DDF0C51025B4353900374CD6 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		DDF0C51825B43B2B00374CD6 /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		DDF0C51925B43B2B00374CD6 /* Color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Color.hpp; sourceTree = "<group>"; };
-		DDF0C51E25B480FC00374CD6 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		DDF0C51F25B480FC00374CD6 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		DDF0C52725B5833600374CD6 /* Test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
 		DDF0C52825B5833600374CD6 /* Test.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Test.hpp; sourceTree = "<group>"; };
 		DDF0C53325B6A5C900374CD6 /* Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clock.cpp; sourceTree = "<group>"; };
@@ -437,6 +405,25 @@
 			path = String;
 			sourceTree = "<group>";
 		};
+		DDADB4CE26974AA70081FA61 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				DDADB4D526974B380081FA61 /* Examples.hpp */,
+				DDADB4CF26974AB70081FA61 /* 1 - Basics */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		DDADB4CF26974AB70081FA61 /* 1 - Basics */ = {
+			isa = PBXGroup;
+			children = (
+				DDADB4D026974B0F0081FA61 /* AnimatedImage.cpp */,
+				DDADB4DC26976A950081FA61 /* RawSprite.cpp */,
+				DDADB4DD26976A950081FA61 /* RawSprite.hpp */,
+			);
+			path = "1 - Basics";
+			sourceTree = "<group>";
+		};
 		DDD7B9F125AF1044007E3634 = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +463,7 @@
 			children = (
 				DDD7BA7525B01885007E3634 /* main.cpp */,
 				DDF0C52425B582C400374CD6 /* Components */,
+				DDADB4CE26974AA70081FA61 /* Examples */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -514,16 +502,6 @@
 				DD46E02825B9BB56001E4333 /* OpenGL.cpp */,
 				DD8BB9842654736600388874 /* OpenGL.hpp */,
 				DDD7BAA325B15567007E3634 /* Cocoa.mm */,
-				DDD7BAAE25B160BE007E3634 /* Shader.cpp */,
-				DDD7BAAF25B160BE007E3634 /* Shader.hpp */,
-				DD5B57A925BC93F500C78C01 /* Sprite.cpp */,
-				DD5B57AA25BC93F500C78C01 /* Sprite.hpp */,
-				DDDE565625C99FB10055E3EF /* Text.cpp */,
-				DDDE565725C99FB10055E3EF /* Text.hpp */,
-				DD59BBD825BE1A0B0086DD0B /* Camera.cpp */,
-				DD59BBD925BE1A0B0086DD0B /* Camera.hpp */,
-				DD59BBDD25BE1A150086DD0B /* Mesh.cpp */,
-				DD59BBDE25BE1A150086DD0B /* Mesh.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
@@ -612,8 +590,6 @@
 		DDD7BB1225B31984007E3634 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				DD59BB8725BD6C630086DD0B /* Factory.cpp */,
-				DD59BB8825BD6C630086DD0B /* Factory.hpp */,
 				DDCCB03325B993EC0078B279 /* Drawable.cpp */,
 				DDCCB03425B993EC0078B279 /* Drawable.hpp */,
 				DD59BBB425BDEEC90086DD0B /* Camera.cpp */,
@@ -670,12 +646,6 @@
 			children = (
 				DD282A1225B86558006D398F /* Vulkan.cpp */,
 				DD8BB9862654746500388874 /* Vulkan.hpp */,
-				DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */,
-				DDC4A37D25B42B5F006E2E0D /* Sprite.hpp */,
-				DD59BBBF25BDF3A00086DD0B /* Camera.cpp */,
-				DD59BBC025BDF3A00086DD0B /* Camera.hpp */,
-				DD59BBC425BDF82D0086DD0B /* Mesh.cpp */,
-				DD59BBC525BDF82D0086DD0B /* Mesh.hpp */,
 			);
 			path = Vulkan;
 			sourceTree = "<group>";
@@ -728,8 +698,6 @@
 		DDF0C51525B436E200374CD6 /* Collector */ = {
 			isa = PBXGroup;
 			children = (
-				DDF0C51E25B480FC00374CD6 /* Shader.cpp */,
-				DDF0C51F25B480FC00374CD6 /* Shader.hpp */,
 				DDF0C53925B6AA8000374CD6 /* Texture.cpp */,
 				DDF0C53A25B6AA8000374CD6 /* Texture.hpp */,
 				DD282A3525B89058006D398F /* Buffer.cpp */,
@@ -910,6 +878,7 @@
 			files = (
 				DD29166625CCFD0A00497378 /* Font.cpp in Sources */,
 				DD29166C25CD0FA700497378 /* Debug.cpp in Sources */,
+				DDADB4DE26976A950081FA61 /* RawSprite.cpp in Sources */,
 				DDD7BA7625B01885007E3634 /* main.cpp in Sources */,
 				DDF0C52925B5833600374CD6 /* Test.cpp in Sources */,
 				DDD7BA2625AF11F4007E3634 /* main.mm in Sources */,
@@ -919,15 +888,11 @@
 				DDA1152325C64004006B628E /* Parser.cpp in Sources */,
 				DD89FACB25C6E62700D55E66 /* Utility.cpp in Sources */,
 				DD8BB9A12655272D00388874 /* Factory.cpp in Sources */,
-				DDF0C52025B480FC00374CD6 /* Shader.cpp in Sources */,
-				DD5B57AB25BC93F500C78C01 /* Sprite.cpp in Sources */,
 				DDF0C53525B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB825B16146007E3634 /* ResourcePath.cpp in Sources */,
 				DD8BB999265474FC00388874 /* DirectX.cpp in Sources */,
 				DDF0C51A25B43B2B00374CD6 /* Color.cpp in Sources */,
-				DD59BB8925BD6C630086DD0B /* Factory.cpp in Sources */,
 				DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */,
-				DDC4A37E25B42B5F006E2E0D /* Sprite.cpp in Sources */,
 				DD678E8C25EED39200058CEC /* Filesystem.cpp in Sources */,
 				DDD7BAA425B15567007E3634 /* Cocoa.mm in Sources */,
 				DD8BB98F265474E800388874 /* WebGL.cpp in Sources */,
@@ -935,15 +900,12 @@
 				DDD7BA8025B023CE007E3634 /* ApplicationState.cpp in Sources */,
 				DD4615D725CEA57300A2195A /* PortAudio.cpp in Sources */,
 				DD5B575B25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
-				DD59BBC125BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DD8BB994265474F300388874 /* DirectX12.cpp in Sources */,
 				DD59BBBC25BDF1400086DD0B /* CameraController.cpp in Sources */,
 				DDDE565E25C9A45E0055E3EF /* CPU.cpp in Sources */,
-				DDD7BAB025B160BE007E3634 /* Shader.cpp in Sources */,
 				DDD7BA9025B0285D007E3634 /* Cocoa.mm in Sources */,
+				DDADB4D126974B0F0081FA61 /* AnimatedImage.cpp in Sources */,
 				DDD7BABD25B1616D007E3634 /* ResourcePath.mm in Sources */,
-				DD59BBDA25BE1A0B0086DD0B /* Camera.cpp in Sources */,
-				DD59BBDF25BE1A150086DD0B /* Mesh.cpp in Sources */,
 				DD8BB9A6265530C500388874 /* Renderer.cpp in Sources */,
 				DDF0C53B25B6AA8000374CD6 /* Texture.cpp in Sources */,
 				DD59BB7E25BCB9C30086DD0B /* Window.cpp in Sources */,
@@ -951,8 +913,6 @@
 				DD46E02925B9BB56001E4333 /* OpenGL.cpp in Sources */,
 				DD5B576025BB36FA00C78C01 /* Descriptor.cpp in Sources */,
 				DDA1151D25C63A70006B628E /* Keys.cpp in Sources */,
-				DDDE565825C99FB10055E3EF /* Text.cpp in Sources */,
-				DD59BBC625BDF82D0086DD0B /* Mesh.cpp in Sources */,
 				DD963F4B25C7310600DD499B /* String.cpp in Sources */,
 				DD8BB989265474DE00388874 /* Metal.cpp in Sources */,
 				DD282A1325B86558006D398F /* Vulkan.cpp in Sources */,
@@ -970,48 +930,40 @@
 				DD880F8525C1C66400A41F0B /* Audio.cpp in Sources */,
 				DD282A3825B89058006D398F /* Buffer.cpp in Sources */,
 				DD963F4C25C7310600DD499B /* String.cpp in Sources */,
-				DD5B57AC25BC93F500C78C01 /* Sprite.cpp in Sources */,
 				DDF0C51B25B43B2B00374CD6 /* Color.cpp in Sources */,
 				DDCCB03625B993EC0078B279 /* Drawable.cpp in Sources */,
-				DD59BBE025BE1A150086DD0B /* Mesh.cpp in Sources */,
 				DD29166D25CD0FA700497378 /* Debug.cpp in Sources */,
 				DD2E796425CF109B00EF90BF /* AppDelegate.mm in Sources */,
 				DD46160225CEC0F300A2195A /* ResourcePath.mm in Sources */,
 				DD4615CF25CEA0CA00A2195A /* UIKit.mm in Sources */,
-				DDD7BAB125B160BE007E3634 /* Shader.cpp in Sources */,
 				DD46E02A25B9BB56001E4333 /* OpenGL.cpp in Sources */,
 				DD4615DD25CEA77D00A2195A /* CoreAudio.mm in Sources */,
-				DDF0C52125B480FC00374CD6 /* Shader.cpp in Sources */,
 				DDD7BA8125B023CE007E3634 /* ApplicationState.cpp in Sources */,
 				DD8BB98A265474DE00388874 /* Metal.cpp in Sources */,
 				DDF0C53625B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB925B16146007E3634 /* ResourcePath.cpp in Sources */,
 				DDA1151E25C63A70006B628E /* Keys.cpp in Sources */,
-				DD59BBC225BDF3A00086DD0B /* Camera.cpp in Sources */,
 				DDF0C54325B6AB5900374CD6 /* utf.cpp in Sources */,
 				DD678E8D25EED39200058CEC /* Filesystem.cpp in Sources */,
 				DD8BB990265474E800388874 /* WebGL.cpp in Sources */,
 				DDDE565F25C9A45E0055E3EF /* CPU.cpp in Sources */,
-				DDC4A37F25B42B5F006E2E0D /* Sprite.cpp in Sources */,
+				DDADB4D226974B0F0081FA61 /* AnimatedImage.cpp in Sources */,
 				DDF0C52A25B5833600374CD6 /* Test.cpp in Sources */,
+				DDADB4DF26976A950081FA61 /* RawSprite.cpp in Sources */,
 				DD29166725CCFD0A00497378 /* Font.cpp in Sources */,
-				DD59BBDB25BE1A0B0086DD0B /* Camera.cpp in Sources */,
 				DDD7BA7725B01885007E3634 /* main.cpp in Sources */,
 				DDA1152425C64004006B628E /* Parser.cpp in Sources */,
 				DD59BBBD25BDF1400086DD0B /* CameraController.cpp in Sources */,
 				DD8BB9A7265530C500388874 /* Renderer.cpp in Sources */,
 				DDF0C53C25B6AA8000374CD6 /* Texture.cpp in Sources */,
-				DDDE565925C99FB10055E3EF /* Text.cpp in Sources */,
 				DD8BB99A265474FC00388874 /* DirectX.cpp in Sources */,
 				DD5B575C25BAF4E700C78C01 /* Pipeline.cpp in Sources */,
-				DD59BBC725BDF82D0086DD0B /* Mesh.cpp in Sources */,
 				DD2E796125CF109B00EF90BF /* ViewController.mm in Sources */,
 				DD59BBB725BDEEC90086DD0B /* Camera.cpp in Sources */,
 				DD8BB995265474F300388874 /* DirectX12.cpp in Sources */,
 				DD5B576125BB36FA00C78C01 /* Descriptor.cpp in Sources */,
 				DDD7BA6325AF19BB007E3634 /* Composition.cpp in Sources */,
 				DD2E796225CF109B00EF90BF /* SceneDelegate.m in Sources */,
-				DD59BB8A25BD6C630086DD0B /* Factory.cpp in Sources */,
 				DD282A1425B86558006D398F /* Vulkan.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

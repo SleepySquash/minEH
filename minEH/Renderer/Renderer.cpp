@@ -30,9 +30,11 @@ namespace mh
     void Texture::loadFromImage(Image* image, TextureFilter filter) { allocate(image->data, image->width, image->height, filter); }
     void Texture::free() { }
     
-    DescriptorLayout::DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage, Texture* texture, Buffer* buffer) : type(type), binding(binding), stage(stage), texture(texture), buffer(buffer) { };
+    DescriptorLayout::DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage) : type(type), binding(binding), stage(stage) { };
     
     void Descriptor::allocate() { }
+    void Descriptor::allocate(const std::vector<void*>& data) { allocate(); update(data); }
+    void Descriptor::update(const std::vector<void*>& data) { }
     void Descriptor::free() { }
     void Descriptor::onRecord(Pipeline* pipeline) { }
     
@@ -44,6 +46,7 @@ namespace mh
     PipelinePushConstantRange::PipelinePushConstantRange(const ShaderStage& stage, const std::string& name, const uint32_t& offset, const uint32_t& size) : stage(stage), name(name), offset(offset), size(size) { }
     
     void Pipeline::allocate() { }
+    void Pipeline::recreate() { }
     void Pipeline::free() { }
     void Pipeline::onRecord(const uint32_t& i) { }
     void Pipeline::vertex(const std::vector<Buffer*>& buffers) { }

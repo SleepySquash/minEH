@@ -54,9 +54,11 @@ namespace mh
         struct Descriptor : mh::Descriptor
         {
             GL::Context* context;
+            std::vector<void*> data;
             
             Descriptor(Renderer* context);
             void allocate() override;
+            void update(const std::vector<void*>& data) override;
             void free() override;
             void onRecord(mh::Pipeline* pipeline) override;
         };

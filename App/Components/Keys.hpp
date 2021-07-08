@@ -14,6 +14,7 @@ using namespace mh;
 #include <unordered_map>
 #include <glm/glm.hpp>
 
+/*
 namespace keys
 {
     struct Game : Component
@@ -71,3 +72,4 @@ namespace keys
         static Keyboard::Key symToKeyCode(const char&);
     };
 }
+*/

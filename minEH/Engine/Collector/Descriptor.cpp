@@ -9,7 +9,6 @@
 
 #ifdef MINEH_VULKAN
 #include <iostream>
-#include "../../Renderer/Vulkan/Camera.hpp"
 
 namespace mh
 {
@@ -64,7 +63,7 @@ namespace mh
                     if (types[j] == DescriptorCollectorType::Camera)
                     {
                         VkDescriptorBufferInfo* bufferInfo = new VkDescriptorBufferInfo;
-                        bufferInfo->buffer = ((Vk::VkCamera*)context->camera)->uniformBuffers[i].buffer;
+                        // bufferInfo->buffer = ((Vk::VkCamera*)context->camera)->uniformBuffers[i].buffer;
                         bufferInfo->offset = 0;
                         bufferInfo->range = sizeof(CameraBufferObject);
                         

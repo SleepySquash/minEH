@@ -17,7 +17,7 @@ namespace mh
         struct NPC : Component
         {
             const std::string& path;
-            Sprite* sprite;
+            // Sprite* sprite;
             
             bool moveA{ false }, moveD{ false }, moveW{ false }, moveS{ false };
             float speed{ 0.4f };

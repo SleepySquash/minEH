@@ -28,10 +28,10 @@ namespace mh
         // CGRect nativeRect = [[UIScreen mainScreen] nativeBounds];
         float scale = [[UIScreen mainScreen] scale];
         
-        width  = static_cast<unsigned int>(rect.size.width );
-        height = static_cast<unsigned int>(rect.size.height);
-        frame.width  = static_cast<unsigned int>(scale * rect.size.width );
-        frame.height = static_cast<unsigned int>(scale * rect.size.height);
+        frame.width  = static_cast<unsigned int>(rect.size.width );
+        frame.height = static_cast<unsigned int>(rect.size.height);
+        width  = static_cast<unsigned int>(scale * rect.size.width );
+        height = static_cast<unsigned int>(scale * rect.size.height);
 
         
         _applicationState._window = this;

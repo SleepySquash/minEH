@@ -9,9 +9,6 @@
 #include <vector>
 
 #include "../../Support/ResourcePath.hpp"
-#ifdef MINEH_OPENGL
-    #include "../../Renderer/OpenGL/Text.hpp"
-#endif
 
 #ifdef MINEH_VULKAN
     #include <vulkan/vulkan.h>
@@ -48,36 +45,6 @@ namespace mh
             switch (type)
             {
                 default: break;
-#ifdef MINEH_OPENGL
-                case Renderer::Type::GL:
-                {
-                    auto it = map.emplace(id, 1).first;
-                    GL::GLFont* font = new GL::GLFont(context.gl);
-                    font->open(id); // TODO: if failed then load standart font instead
-                    (*it).second.font = (void*)font;
-                    return &(*it).second;
-                } break;
-#endif
-#ifdef MINEH_VULKAN
-                /*case Renderer::Type::Vk:
-                {
-                    std::vector<Vertex<glm::vec2>> vector = {
-                        { { -1.f,  -1.f }, { 0.0f,  0.0f } },
-                        { {  1.f,  -1.f }, { 1.0f,  0.0f } },
-                        { { -1.f,   1.f }, { 0.0f,  1.0f } },
-                        { {  1.f,  -1.f }, { 1.0f,  0.0f } },
-                        { {  1.f,   1.f }, { 1.0f,  1.0f } },
-                        { { -1.f,   1.f }, { 0.0f,  1.0f } } };
-                    auto it = map.emplace(id, 1).first;
-                    Vk::Buffer* buffer = new Vk::Buffer;
-                    (*it).second.buffer = (void*)buffer;
-                    (*it).second.id = ids++;
-                    
-                    context.vk->generateSingleBuffer(sizeof(vector[0]) * vector.size(), *buffer, vector.data(), VK_BUFFER_USAGE_VERTEX_BUFFER_BIT);
-                    
-                    return &(*it).second;
-                } break;*/
-#endif
             }
             
             return nullptr;
@@ -107,22 +74,6 @@ namespace mh
                     switch (type)
                     {
                         default: break;
-#ifdef MINEH_VULKAN
-                        /*case Renderer::Type::Vk:
-                        {
-                            Vk::Buffer* buffer = (Vk::Buffer*)((*it).second.buffer);
-                            context.vk->freeBuffer(*buffer);
-                            delete buffer;
-                        } break;*/
-#endif
-#ifdef MINEH_OPENGL
-                        case Renderer::Type::GL:
-                        {
-                            GL::GLFont* font = (GL::GLFont*)((*it).second.font);
-                            font->close();
-                            delete font;
-                        } break;
-#endif
                     }
                     map.erase(it);
                 }
@@ -139,22 +90,6 @@ namespace mh
             switch (type)
             {
                 default: break;
-#ifdef MINEH_VULKAN
-                /*case Renderer::Type::Vk:
-                {
-                    Vk::Buffer* buffer = (Vk::Buffer*)((*it).second.buffer);
-                    context.vk->freeBuffer(*buffer);
-                    delete buffer;
-                } break;*/
-#endif
-#ifdef MINEH_OPENGL
-                case Renderer::Type::GL:
-                {
-                    GL::GLFont* font = (GL::GLFont*)((*it).second.font);
-                    font->close();
-                    delete font;
-                } break;
-#endif
             }
         }
         map.clear(); ids = 1;

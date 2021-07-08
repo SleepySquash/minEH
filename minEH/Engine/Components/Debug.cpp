@@ -7,8 +7,6 @@
 
 #include "Debug.hpp"
 
-#include "../../Graphics/Factory.hpp"
-
 namespace mh
 {
     namespace Components
@@ -16,9 +14,9 @@ namespace mh
         Debug::Debug() { }
         void Debug::onInit()
         {
-            text1 = Graphics::GetText(entity->composition->context);
-            text2 = Graphics::GetText(entity->composition->context);
-            text3 = Graphics::GetText(entity->composition->context);
+            text1 = nullptr; //Graphics::GetText(entity->composition->context);
+            text2 = nullptr; //Graphics::GetText(entity->composition->context);
+            text3 = nullptr; //Graphics::GetText(entity->composition->context);
             
             text1->setFont("Fonts/Arial.ttf");
             text1->halign = Align::Right;

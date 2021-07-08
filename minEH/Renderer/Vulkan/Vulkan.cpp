@@ -102,13 +102,15 @@ namespace Vk
     Texture::Texture(Renderer* context) : context((Vk::Context*)context) { }
     void Texture::allocate(void* pixels, uint32_t width, uint32_t height, TextureFilter filter)
     {
-        image.width = width; image.height = height;
+        this->width = width;
+        this->height = height;
+        
         VkDeviceSize imageSize = width * height * 4;
         VkFormat imageFormat = VK_FORMAT_R8G8B8A8_UNORM;
         
         if (context->maxMipLevels == 0)
-            mip = std::min(static_cast<uint32_t>( std::floor( std::log2( std::max(image.width, image.height) ) ) ) + 1, 15U);
-        else mip = std::min(static_cast<uint32_t>( std::floor( std::log2( std::max(image.width, image.height) ) ) ) + 1, context->maxMipLevels);
+            mip = std::min(static_cast<uint32_t>( std::floor( std::log2( std::max(width, height) ) ) ) + 1, 15U);
+        else mip = std::min(static_cast<uint32_t>( std::floor( std::log2( std::max(width, height) ) ) ) + 1, context->maxMipLevels);
         
         Buffer stagingBuffer;
         context->createBuffer(imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBuffer.buffer, stagingBuffer.memory.memory);
@@ -118,13 +120,13 @@ namespace Vk
             memcpy(data, pixels, static_cast<size_t>(imageSize));
         vkUnmapMemory(context->device, stagingBuffer.memory.memory);
         
-        context->createImage(image.width, image.height, mip, VK_SAMPLE_COUNT_1_BIT, imageFormat, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, image.image, image.memory.memory);
+        context->createImage(width, height, mip, VK_SAMPLE_COUNT_1_BIT, imageFormat, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, source.image, source.memory.memory);
         
-        context->transitionImageLayout(image.image, mip, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-        context->copyBufferToImage(stagingBuffer.buffer, image.image, width, height);
-        context->generateMipmaps(image.image, imageFormat, width, height, mip);
+        context->transitionImageLayout(source.image, mip, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+        context->copyBufferToImage(stagingBuffer.buffer, source.image, width, height);
+        context->generateMipmaps(source.image, imageFormat, width, height, mip);
         
-        image.view = context->createImageView(image.image, imageFormat, VK_IMAGE_ASPECT_COLOR_BIT, mip);
+        source.view = context->createImageView(source.image, imageFormat, VK_IMAGE_ASPECT_COLOR_BIT, mip);
         
         VkFilter _filter;
         switch (filter)
@@ -157,9 +159,9 @@ namespace Vk
     }
     void Texture::free()
     {
-        vkDestroyImage(context->device, image.image, nullptr);
-        vkFreeMemory(context->device, image.memory.memory, nullptr);
-        vkDestroyImageView(context->device, image.view, nullptr);
+        vkDestroyImage(context->device, source.image, nullptr);
+        vkFreeMemory(context->device, source.memory.memory, nullptr);
+        vkDestroyImageView(context->device, source.view, nullptr);
         vkDestroySampler(context->device, sampler, nullptr);
     }
     
@@ -189,8 +191,6 @@ namespace Vk
     void Descriptor::allocate() {
         std::vector<VkDescriptorSetLayoutBinding> bindings;
         std::vector<VkDescriptorPoolSize> size;
-        std::vector<VkWriteDescriptorSet> writeSets;
-        std::vector<DescriptorCollectorType> types;
         
         for (auto& l : layouts)
         {
@@ -214,30 +214,6 @@ namespace Vk
                     poolSize.descriptorCount = context->swapChainProps.images;
                     break;
             } size.push_back(poolSize);
-            
-            switch (l.type) {
-                default: break;
-                case mh::DescriptorType::CombinedImageSampler:
-                    {
-                        VkDescriptorImageInfo imageInfo;
-                        imageInfo.sampler = ((Vk::Texture*)l.texture)->sampler;
-                        imageInfo.imageView = ((Vk::Texture*)l.texture)->image.view;
-                        imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-                        
-                        VkWriteDescriptorSet set;
-                        set.sType = { VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET };
-                        set.pNext = nullptr;
-                        set.dstBinding = 0;
-                        set.dstArrayElement = 0;
-                        set.descriptorCount = 1;
-                        set.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-                        set.pImageInfo = &imageInfo;
-                        set.pBufferInfo = nullptr;
-                        set.pTexelBufferView = nullptr;
-                        writeSets.push_back(set);
-                    }
-                    break;
-            }
         }
         
         VkDescriptorSetLayoutCreateInfo layoutInfo = { VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO };
@@ -259,9 +235,36 @@ namespace Vk
         allocInfo.pSetLayouts = setLayouts.data();
         sets.resize(context->swapChainProps.images);
         if (vkAllocateDescriptorSets(context->device, &allocInfo, sets.data()) != VK_SUCCESS) throw std::runtime_error("createDescriptorSets() failed!");
-    
-        for (size_t i = 0; i < sets.size(); ++i)
-        {
+    }
+    void Descriptor::update(const std::vector<void*>& data)
+    {
+        std::vector<VkWriteDescriptorSet> writeSets;
+        for (size_t i = 0; i < layouts.size(); ++i)
+            switch (layouts[i].type) {
+                default: break;
+                case mh::DescriptorType::CombinedImageSampler:
+                {
+                    VkDescriptorImageInfo imageInfo;
+                    imageInfo.sampler = ((Vk::Texture*)data[i])->sampler;
+                    imageInfo.imageView = ((Vk::Texture*)data[i])->source.view;
+                    imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+                    
+                    VkWriteDescriptorSet set;
+                    set.sType = { VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET };
+                    set.pNext = nullptr;
+                    set.dstBinding = 0;
+                    set.dstArrayElement = 0;
+                    set.descriptorCount = 1;
+                    set.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+                    set.pImageInfo = &imageInfo;
+                    set.pBufferInfo = nullptr;
+                    set.pTexelBufferView = nullptr;
+                    writeSets.push_back(set);
+                }
+                break;
+            }
+        
+        for (size_t i = 0; i < sets.size(); ++i) {
             for (size_t j = 0; j < writeSets.size(); ++j) writeSets[j].dstSet = sets[i];
             vkUpdateDescriptorSets(context->device, static_cast<uint32_t>(writeSets.size()), writeSets.data(), 0, nullptr);
         }
@@ -285,8 +288,6 @@ namespace Vk
     Pipeline::Pipeline(Renderer* context) : context((Vk::Context*)context) { }
     void Pipeline::allocate()
     {
-        pipelineID = rand();
-        
         std::vector<VkPipelineShaderStageCreateInfo> vStages;
         vStages.reserve(shaders.size());
         for (auto s : shaders) {
@@ -479,6 +480,7 @@ namespace Vk
         if (vkCreateGraphicsPipelines(context->device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &pipeline) != VK_SUCCESS)
             throw std::runtime_error("createGraphicsPipeline() failed!");
     }
+    void Pipeline::recreate() { free(); allocate(); }
     void Pipeline::free() {
         vkDestroyPipelineLayout(context->device, layout, nullptr);
         vkDestroyPipeline(context->device, pipeline, nullptr);
@@ -486,20 +488,10 @@ namespace Vk
     void Pipeline::onRecord(const uint32_t& i)
     {
         page = i; commandBuffer = &context->commandBuffers[i];
-        if (context->pipelineID != pipelineID) {
-            vkCmdBindPipeline(*commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline); context->pipelineID = pipelineID; }
+        vkCmdBindPipeline(*commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
     }
     void Pipeline::vertex(const std::vector<mh::Buffer*>& buffers)
     {
-        /*std::vector<VkDeviceSize> offsets = { 0 };
-        if (buffers.size() > 1)
-            for (auto& b : bindings)
-                offsets.push_back(offsets.back() + b.stride);
-        
-        std::vector<VkBuffer> bufs;
-        for (auto& b : buffers)
-            bufs.push_back(((Vk::Buffer*)b)->buffer);*/
-        
         VkDeviceSize offset = 0;
         for (int i = 0; i < buffers.size(); ++i)
             vkCmdBindVertexBuffers(*commandBuffer, i, 1, &(((Vk::Buffer*)buffers[i])->buffer), &offset);
@@ -522,6 +514,8 @@ namespace Vk
         tc::bindContext(this);
         pc::bindContext(this);
         dc::bindContext(this);
+        ortho = glm::ortho(0.f, (float)window->width,
+                           0.f, (float)window->height);
         
         createInstance();
         createSurface(window);
@@ -567,6 +561,8 @@ namespace Vk
             createFramebuffers();
             createCommandBuffer();
             
+            ortho = glm::ortho(0.f, (float)window->width,
+                               0.f, (float)window->height);
             lastSize.width = size.width;
             lastSize.height = size.height;
             
@@ -1297,10 +1293,10 @@ namespace Vk
         
         int width, height, comp;
         stbi_uc* pixels = stbi_load(textureName.c_str(), &width, &height, &comp, STBI_rgb_alpha);
-        texture.image.width = static_cast<uint32_t>(width); texture.image.height = static_cast<uint32_t>(height);
+        texture.width = static_cast<uint32_t>(width); texture.height = static_cast<uint32_t>(height);
         if (maxMipLevels == 0)
-            texture.mip = static_cast<uint32_t>( std::floor( std::log2( std::max(texture.image.width, texture.image.height) ) ) ) + 1;
-        else texture.mip = std::max(static_cast<uint32_t>( std::floor( std::log2( std::max(texture.image.width, texture.image.height) ) ) ) + 1, maxMipLevels);
+            texture.mip = static_cast<uint32_t>( std::floor( std::log2( std::max(texture.width, texture.height) ) ) ) + 1;
+        else texture.mip = std::max(static_cast<uint32_t>( std::floor( std::log2( std::max(texture.width, texture.height) ) ) ) + 1, maxMipLevels);
         VkDeviceSize imageSize = width * height * 4;
         VkFormat imageFormat = VK_FORMAT_R8G8B8A8_UNORM;
         
@@ -1316,13 +1312,13 @@ namespace Vk
         
         stbi_image_free(pixels);
         
-        createImage(texture.image.width, texture.image.height, texture.mip, VK_SAMPLE_COUNT_1_BIT, imageFormat, VK_IMAGE_TILING_OPTIMAL,VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, texture.image.image,texture.image.memory.memory);
+        createImage(texture.width, texture.height, texture.mip, VK_SAMPLE_COUNT_1_BIT, imageFormat, VK_IMAGE_TILING_OPTIMAL,VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, texture.source.image,texture.source.memory.memory);
         
-        transitionImageLayout(texture.image.image, texture.mip, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-        copyBufferToImage(stagingBuffer.buffer, texture.image.image, width, height);
-        generateMipmaps(texture.image.image, imageFormat, width, height, texture.mip);
+        transitionImageLayout(texture.source.image, texture.mip, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+        copyBufferToImage(stagingBuffer.buffer, texture.source.image, width, height);
+        generateMipmaps(texture.source.image, imageFormat, width, height, texture.mip);
         
-        texture.image.view = createImageView(texture.image.image, imageFormat, VK_IMAGE_ASPECT_COLOR_BIT, texture.mip);
+        texture.source.view = createImageView(texture.source.image, imageFormat, VK_IMAGE_ASPECT_COLOR_BIT, texture.mip);
         
         VkSamplerCreateInfo samplerInfo = { VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO };
         samplerInfo.magFilter = samplerFilter;
@@ -1448,7 +1444,7 @@ namespace Vk
 
     void Context::freeTexture(Texture& texture)
     {
-        freeImage(texture.image);
+        freeImage(texture.source);
         vkDestroySampler(device, texture.sampler, nullptr);
     }
 

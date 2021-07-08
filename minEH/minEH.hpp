@@ -21,21 +21,13 @@
 #include "Window/Window.hpp"
 
 #include "Renderer/Context.hpp"
-#include "Renderer/OpenGL/Shader.hpp"
-#include "Renderer/OpenGL/Sprite.hpp"
-#include "Renderer/OpenGL/Text.hpp"
-#include "Renderer/OpenGL/Camera.hpp"
-#include "Renderer/OpenGL/Mesh.hpp"
-#include "Renderer/Vulkan/Sprite.hpp"
-#include "Renderer/Vulkan/Camera.hpp"
-#include "Renderer/Vulkan/Mesh.hpp"
+#include "Renderer/OpenGL/OpenGL.hpp"
+#include "Renderer/Vulkan/Vulkan.hpp"
 #include "Renderer/Factory.hpp"
 
 #include "Graphics/Drawable.hpp"
-#include "Graphics/Factory.hpp"
 #include "Graphics/Camera.hpp"
 
-#include "Engine/Collector/Shader.hpp"
 #include "Engine/Collector/Texture.hpp"
 #include "Engine/Collector/Buffer.hpp"
 #include "Engine/Collector/Pipeline.hpp"

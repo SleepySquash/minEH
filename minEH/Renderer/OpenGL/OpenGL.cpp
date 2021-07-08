@@ -10,11 +10,12 @@
 
 #include <stb_image.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include "OpenGL.hpp"
 #include "../../Engine/Collector/Texture.hpp"
 #include "../../Engine/Collector/Buffer.hpp"
-#include "../../Engine/Collector/Shader.hpp"
 #include "../../Engine/Collector/Font.hpp"
 
 #include <glm/gtc/type_ptr.hpp>
@@ -57,6 +58,8 @@ namespace mh
         Texture::Texture(Renderer* context) : context((GL::Context*)context) { }
         void Texture::allocate(void* data, uint32_t width, uint32_t height, TextureFilter filter)
         {
+            this->width = width;
+            this->height = height;
             glGenTextures(1, &id);
             glBindTexture(GL_TEXTURE_2D, id);
             
@@ -117,14 +120,16 @@ namespace mh
         
         Descriptor::Descriptor(Renderer* context) : context((GL::Context*)context) { }
         void Descriptor::allocate() { }
+        void Descriptor::update(const std::vector<void*>& data) { this->data = data; }
         void Descriptor::free() { }
         void Descriptor::onRecord(mh::Pipeline* pipeline)
         {
+            if (!data.size()) return;
             GLuint tex = GL_TEXTURE0;
-            for (auto& d : layouts) {
-                if (d.type == DescriptorType::CombinedImageSampler) {
+            for (size_t i = 0; i < layouts.size(); ++i) {
+                if (layouts[i].type == DescriptorType::CombinedImageSampler) {
                     glActiveTexture(tex++);
-                    glBindTexture(GL_TEXTURE_2D, ((GL::Texture*)d.texture)->id);
+                    glBindTexture(GL_TEXTURE_2D, ((GL::Texture*)data[i])->id);
                 }
             }
         }
@@ -146,28 +151,10 @@ namespace mh
             }
             
             glGenVertexArrays(1, &VAO);
-            /*glGenVertexArrays(1, &VAO);
-            glBindVertexArray(VAO);
-            
-            for (auto& a : attributes) {
-                switch (a.buffer->type) { default: break;
-                    case BufferType::Index: glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ((GL::Buffer*)a.buffer)->id); continue; break;
-                    case BufferType::Vertex: glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)a.buffer)->id); break;
-                    case BufferType::UV: glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)a.buffer)->id); break; }
-                
-                int format; uint32_t count, size;
-                switch (a.format) { default: format = GL_FLOAT; count = 0; size = 0; break;
-                    case VertexFormat::R32G32_SFLOAT: count = 2; format = GL_FLOAT; size = 4 * 2; break;
-                    case VertexFormat::R32G32B32_SFLOAT: count = 3; format = GL_FLOAT; size = 4 * 3; break;
-                    case VertexFormat::R32G32B32A32_SFLOAT: count = 4; format = GL_FLOAT; size = 4 * 4; break; }
-                uint32_t stride = 0; for (auto& b : bindings) { if (b.binding == a.binding) { stride = b.stride; break; } }
-                glEnableVertexAttribArray(a.location); glVertexAttribPointer(a.location, count, GL_FLOAT, false, stride, (void*)(a.offset));
-                std::cout << a.location << " " << count << " " << stride << " " << (void*)(a.offset) << '\n';
-            }
-            glBindVertexArray(0);*/
         }
         void Pipeline::free() { glDeleteProgram(pipelineID); glDeleteVertexArrays(1, &VAO); }
         void Pipeline::onRecord(const uint32_t& i) {
+            if (depthEnabled) glEnable(GL_DEPTH_TEST); else glDisable(GL_DEPTH_TEST);
             if (context->shaderID != pipelineID) { glUseProgram(pipelineID); context->shaderID = pipelineID; }
             if (context->VAOID != VAO) { glBindVertexArray(VAO); context->VAOID = VAO; }
         }
@@ -217,7 +204,11 @@ namespace mh
         void Context::beginRecord(const uint32_t&) { shaderID = 0; }
         void Context::endRecord(const uint32_t&) { tc::frame(); }
         
-        void Context::resize() { glViewport(0, 0, window->frame.width, window->frame.height); }
+        void Context::resize() {
+            ortho = glm::ortho(0.f, (float)window->width,
+                               (float)window->height, 0.f);
+            glViewport(0, 0, window->width, window->height);
+        }
         void Context::destroy()
         {
             bc::clear();
@@ -236,6 +227,8 @@ namespace mh
             glEnable(GL_CULL_FACE);
             glCullFace(GL_BACK);
             
+            ortho = glm::ortho(0.f, (float)window->width,
+                               (float)window->height, 0.f);
             UV_0 = 1;
             UV_1 = 0;
             

@@ -31,14 +31,6 @@ namespace mh
     const glm::vec2& Transform2D::getScale()    { return scale;    }
     
     
-    void Sprite::create() { }
-    void Sprite::resize() { }
-    void Sprite::destroy() { }
-    
-    void Sprite::setContext(void* context) { }
-    void Sprite::setTexture(const std::string& path) { }
-    void Sprite::setUV(const glm::vec4& uv) { }
-    
     
     bool Font::open(const std::string& path) { return false; }
     void Font::close() { }

@@ -7,13 +7,14 @@
 
 #include "Test.hpp"
 
+/*
 namespace mh
 {
     namespace test
     {
         NPC::NPC(const std::string& path) : path(path) { }
         
-        void NPC::onInit() { sprite = (Sprite*)Graphics::GetSprite(entity->composition->context); sprite->setTexture(path); sprite->create(); }
+        void NPC::onInit() { sprite->setTexture(path); sprite->create(); }
         void NPC::onDestroy() { sprite->destroy(); delete sprite; }
         
         void NPC::onUpdate(const float &elapsed)
@@ -91,7 +92,7 @@ namespace mh
         
         
         MeshTest::MeshTest(const std::string& model, const std::string& texture): model(model), texture(texture) { }
-        void MeshTest::onInit() { mesh = (Mesh*)Graphics::GetMesh(entity->composition->context); mesh->setTexture(texture); mesh->setModel(model); mesh->create(); }
+        void MeshTest::onInit() { mesh->setTexture(texture); mesh->setModel(model); mesh->create(); }
         void MeshTest::onDestroy() { mesh->destroy(); delete mesh; }
         void MeshTest::onEvent(Event& event)
         {
@@ -105,3 +106,4 @@ namespace mh
         void MeshTest::onDraw() { mesh->draw(); }
     }
 }
+*/

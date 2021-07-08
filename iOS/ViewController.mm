@@ -46,10 +46,10 @@ CADisplayLink* _displayLink;
     if (_applicationState._window)
     {
         float scale = [[UIScreen mainScreen] scale];
-        ((mh::Window*)_applicationState._window)->width  = static_cast<unsigned int>(size.width );
-        ((mh::Window*)_applicationState._window)->height = static_cast<unsigned int>(size.height);
-        ((mh::Window*)_applicationState._window)->frame.width  = static_cast<unsigned int>(scale * size.width );
-        ((mh::Window*)_applicationState._window)->frame.height = static_cast<unsigned int>(scale * size.height);
+        ((mh::Window*)_applicationState._window)->frame.width  = static_cast<unsigned int>(size.width );
+        ((mh::Window*)_applicationState._window)->frame.height = static_cast<unsigned int>(size.height);
+        ((mh::Window*)_applicationState._window)->width  = static_cast<unsigned int>(scale * size.width );
+        ((mh::Window*)_applicationState._window)->height = static_cast<unsigned int>(scale * size.height);
         
         mh::Event event;
         event.type = mh::Event::Type::Resized;

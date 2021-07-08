@@ -44,7 +44,6 @@ namespace mh
 
         struct Image
         {
-            uint32_t width, height;
             VkImage image = VK_NULL_HANDLE;
             VkImageView view = VK_NULL_HANDLE;
             Allocation memory;
@@ -53,7 +52,7 @@ namespace mh
         struct Texture : mh::Texture
         {
             Vk::Context* context;
-            Image image;
+            Image source;
             VkSampler sampler = VK_NULL_HANDLE;
             uint32_t mip = 1;
             
@@ -85,6 +84,7 @@ namespace mh
             
             Descriptor(Renderer* context);
             void allocate() override;
+            void update(const std::vector<void*>& data) override;
             void free() override;
             void onRecord(mh::Pipeline* pipeline) override;
         };
@@ -109,6 +109,7 @@ namespace mh
             
             Pipeline(Renderer* context);
             void allocate() override;
+            void recreate() override;
             void free() override;
             void onRecord(const uint32_t& i) override;
             void vertex(const std::vector<mh::Buffer*>& buffers) override;

@@ -11,6 +11,7 @@
 using std::cout;
 using std::endl;
 
+/*
 namespace keys
 {
 #pragma mark -
@@ -45,7 +46,7 @@ namespace keys
             song.play();
         }
         
-        background = Graphics::GetSprite(entity->composition->context);
+        background = nullptr; //Graphics::GetSprite(entity->composition->context);
         if (back.length()) { background->setTexture(folder + back); background->create(); }
         
         tc::get("Images/key_base.png");
@@ -137,16 +138,16 @@ namespace keys
     Key::Key(Game* game, const std::string& sym) : game(game), sym(sym[0]) { keycode = symToKeyCode(this->sym); }
     void Key::onInit()
     {
-        key = Graphics::GetSprite(entity->composition->context);
+        key = nullptr; //Graphics::GetSprite(entity->composition->context);
         key->setTexture("Images/key_base.png"); key->create(); key->color.a = 0.f;
         key->setPosition(game->positions[sym]);
         
-        overlay = Graphics::GetSprite(entity->composition->context);
+        overlay = nullptr; //Graphics::GetSprite(entity->composition->context);
         overlay->setTexture("Images/key_overlay.png"); overlay->create();
         overlay->color = { 0.f, 1.f, 0.f, 0.f }; overlay->setScale({0.f, 0.f});
         overlay->setPosition(game->positions[sym]);
         
-        text = Graphics::GetText(entity->composition->context);
+        text = nullptr; //Graphics::GetText(entity->composition->context);
         text->setFont("Fonts/Arial.ttf"); text->create();
         text->setPosition(game->positions[sym]);
         text->setScale(0.1f); text->string = sym;
@@ -336,3 +337,4 @@ namespace keys
         }
     }
 }
+*/

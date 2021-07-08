@@ -38,20 +38,6 @@ namespace mh
         virtual void dirty();
     };
     
-    struct Sprite : Drawable, Transform2D
-    {
-        glm::vec4 color{ 1.f, 1.f, 1.f, 1.f };
-        float xcoef{ 1.f }, ycoef{ 1.f };
-        
-        virtual void create();
-        virtual void resize();
-        virtual void destroy();
-        
-        virtual void setContext(void* context);
-        virtual void setTexture(const std::string& path);
-        virtual void setUV(const glm::vec4& uv); // TODO: vertex and UV buffers should be seperate vertex attributes (in) so that sprite can change independently their own UV buffer via glSubBufferData or vkCmdCopyBuffer (if UV change is frequent then it should use GL_DYNAMIC_DRAW and CPU visible buffer)
-    };
-    
     struct Font
     {
         virtual bool open(const std::string& path);
