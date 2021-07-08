@@ -48,7 +48,7 @@ void _indevelopment()
     Window window;
     window.open();
     
-    GL::Context context(&window);
+    Vk::Context context(&window);
     Composition composition(&context);
     
     
@@ -57,46 +57,47 @@ void _indevelopment()
     uint32_t indices[] = { 0, 1, 2,   1, 3, 2 };
     
     Buffer* vertexBuffer = Renders::Buffer(&context, BufferType::Vertex, vertices, sizeof(vertices));
-    Buffer* uvBuffer = Renders::Buffer(&context, BufferType::UV, uvs, sizeof(uvs), BufferUpdateType::Dynamic);
+    Buffer* uvBuffer = Renders::Buffer(&context, BufferType::Vertex, uvs, sizeof(uvs), BufferUpdateType::Dynamic);
     Buffer* indexBuffer = Renders::Buffer(&context, BufferType::Index, indices, sizeof(indices));
     
-    // float combined[] = { -1.f, -1.f, 0.0f, 0.0f,   1.f, -1.f, 1.0f, 0.0f,   -1.f, 1.f, 0.0f, 1.0f,   1.f, 1.f, 1.0f, 1.0f  };
-    // Buffer* combinedBuffer = Renders::Buffer(&context, BufferType::Vertex, combined, sizeof(combined));
+    float combined[] = { -1.f, -1.f, 0.0f, 0.0f,   1.f, -1.f, 1.0f, 0.0f,   -1.f, 1.f, 0.0f, 1.0f,   1.f, 1.f, 1.0f, 1.0f  };
+    Buffer* combinedBuffer = Renders::Buffer(&context, BufferType::Vertex, combined, sizeof(combined));
     
     
     Texture* texture = Renders::Texture(&context, resourcePath() + "Images/nekos/dbcf0cbc94c8b5e3f649f770a7cbb57649a42cc0_hq2.jpg");
-    uint32_t frame = 0;
-    float elapsed = 0.f;
-    
     Descriptor* descriptor = Renders::Descriptor(&context);
     descriptor->layouts = {
         { DescriptorType::CombinedImageSampler, 0, ShaderStage::Fragment, texture, nullptr }
     };
+    descriptor->allocate();
     
     
-    Shader *vertexShader = Renders::Shader(&context, ShaderStage::Vertex, resourcePath() + "Shaders/OpenGL/sprite.vert"),
-           *fragmentShader = Renders::Shader(&context, ShaderStage::Fragment, resourcePath() + "Shaders/OpenGL/sprite.frag");
+    Shader *vertexShader = Renders::Shader(&context, ShaderStage::Vertex, resourcePath() + "Shaders", "sprite.vert"),
+           *fragmentShader = Renders::Shader(&context, ShaderStage::Fragment, resourcePath() + "Shaders", "sprite.frag");
     Pipeline* pipeline = Renders::Pipeline(&context);
     pipeline->shaders = { vertexShader, fragmentShader };
-    pipeline->bindings = { { 0, sizeof(float) * 2 } };
+    pipeline->bindings = {
+        { 0, sizeof(float) * 2 },
+        { 1, sizeof(float) * 2 }
+    };
     pipeline->attributes = {
-        { 0, 0, 0, VertexFormat::UNDEFINED, indexBuffer },
-        // { 0, 0, 0, VertexFormat::R32G32_SFLOAT, combinedBuffer },
-        // { 1, 0, 8, VertexFormat::R32G32_SFLOAT, combinedBuffer }
-        { 0, 0, 0, VertexFormat::R32G32_SFLOAT, vertexBuffer },
-        { 1, 0, 0, VertexFormat::R32G32_SFLOAT, uvBuffer }, // TODO: this might change so Buffer must be seperate from Pipeline (drawable must set it)
+        // { 0, 0, 0, VertexFormat::R32G32_SFLOAT },
+        // { 1, 0, 8, VertexFormat::R32G32_SFLOAT }
+        { 0, 0, 0, VertexFormat::R32G32_SFLOAT },
+        { 1, 1, 0, VertexFormat::R32G32_SFLOAT },
     };
     pipeline->pushConstantRanges = {
-        
+        {   ShaderStage::Vertex, "model",                 0, sizeof(glm::mat4) },
+        { ShaderStage::Fragment, "color", sizeof(glm::mat4), sizeof(glm::vec4) },
     };
+    pipeline->descriptor = descriptor;
     pipeline->allocate();
     
-    
-    // TODO: Uniform = PushConstant, so it must be in Pipeline
-    GLuint mloc = glGetUniformLocation(pipeline->pipelineID, "model");
-    GLuint cloc = glGetUniformLocation(pipeline->pipelineID, "color");
+
     glm::vec4 color = glm::vec4(1.f);
-    
+    glm::mat4 model = glm::mat4(1.f);
+    uint32_t frame = 0;
+    float elapsed = 0.f;
     
     Event event;
     Clock clock;
@@ -113,16 +114,15 @@ void _indevelopment()
             composition.event(event);
         }
         
-        glm::mat4 model = glm::mat4(1.f);
-        
+        // model = glm::rotate(model, 0.1f * elapsed, glm::vec3(0.f, 0.f, 1.f));
         if (elapsed >= 0.07) {
             uint32_t framex = frame % 9, framey = frame / 9;
             float w = 1.0 / 9.f, h = 1.0 / 5.f;
             float uv[] = {
-                (framex + 0) * w, (framey + 1) * h,
-                (framex + 1) * w, (framey + 1) * h,
-                (framex + 0) * w, (framey + 0) * h,
-                (framex + 1) * w, (framey + 0) * h };
+                (framex + 0) * w, (framey + context.UV_0) * h,
+                (framex + 1) * w, (framey + context.UV_0) * h,
+                (framex + 0) * w, (framey + context.UV_1) * h,
+                (framex + 1) * w, (framey + context.UV_1) * h };
             uvBuffer->update(uv, sizeof(uv));
             ++frame; if (frame >= 45) frame = 0;
             elapsed = 0.f;
@@ -139,20 +139,22 @@ void _indevelopment()
         if (window.shouldRender)
         {
             uint32_t i = context.beginDraw();
-            
-            context.beginRecord(i);
-            composition.record(i);
-            context.endRecord(i);
-            
-            pipeline->onRecord(i);
-            // glBindVertexArray(((GL::Buffer*)arrayBuffer)->id);
-            glUniformMatrix4fv(mloc, 1, false, glm::value_ptr(model));
-            glUniform4f(cloc, color.r, color.g, color.b, color.a);
-            descriptor->onRecord(i);
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-            
-            composition.draw();
-            
+            {
+                context.beginRecord(i);
+                {
+                    pipeline->onRecord(i);          // once per Shader
+                    pipeline->vertex({ vertexBuffer, uvBuffer });      // once per Object
+                    pipeline->index(indexBuffer);       // once per Object
+                    descriptor->onRecord(pipeline);        // once per Object
+                    pipeline->push(0, &model);      // every    Object
+                    pipeline->push(1, &color);      // every    Object
+                    pipeline->drawIndexed(6, 6); // every    Object
+                    
+                    composition.record(i);
+                }
+                context.endRecord(i);
+                composition.draw();
+            }
             context.endDraw(i);
             window.display();
         }
@@ -161,6 +163,15 @@ void _indevelopment()
     
     context.wait();
     composition.destroy();
+    vertexBuffer->free();
+    uvBuffer->free();
+    indexBuffer->free();
+    combinedBuffer->free();
+    vertexShader->free();
+    fragmentShader->free();
+    texture->free();
+    descriptor->free();
+    pipeline->free();
     context.destroy();
 }
 

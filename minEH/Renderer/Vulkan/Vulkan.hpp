@@ -86,7 +86,7 @@ namespace mh
             Descriptor(Renderer* context);
             void allocate() override;
             void free() override;
-            void onRecord(const uint32_t& i) override;
+            void onRecord(mh::Pipeline* pipeline) override;
         };
         
         struct Shader : mh::Shader
@@ -104,11 +104,17 @@ namespace mh
             Vk::Context* context;
             VkPipeline pipeline;
             VkPipelineLayout layout;
+            VkCommandBuffer* commandBuffer;
+            uint32_t page = 0;
             
             Pipeline(Renderer* context);
             void allocate() override;
             void free() override;
             void onRecord(const uint32_t& i) override;
+            void vertex(const std::vector<mh::Buffer*>& buffers) override;
+            void index(mh::Buffer* buffer) override;
+            void push(const uint32_t& i, void* data) override;
+            void drawIndexed(const uint32_t& vertices, const uint32_t& indices) override;
         };
 
         template<typename T> struct Model
@@ -221,6 +227,7 @@ namespace mh
             std::pair<VkPipeline, VkPipelineLayout> generateDefaultPipeline(VkShaderModule& vertexShader, VkShaderModule& fragmentShader, std::vector<VkVertexInputAttributeDescription>& vAttributeDescription, VkVertexInputBindingDescription& vBindingDescription, Descriptor* descriptor, bool depthEnabled, const VkPolygonMode& polygonMode, const VkCullModeFlags& cullMode, const VkFrontFace& frontFace);
             void generateDefaultVertexAndIndexBuffers(const VkDeviceSize &bufferSizeV, Buffer &vertexBuffer, const void* vertexData, const VkDeviceSize &bufferSizeI, Buffer &indexBuffer, const void* indexData);
             void generateSingleBuffer(const VkDeviceSize& bufferSize, Buffer& buffer, const void* vectorData, VkBufferUsageFlags flags);
+            void generateSingleDynamicBuffer(const VkDeviceSize& bufferSize, Buffer& buffer, const void* vectorData, VkBufferUsageFlags flags);
             Texture generateTexture(const std::string& textureName, uint32_t maxMipLevels = 0, const VkFilter& samplerFilter = VK_FILTER_LINEAR);
             
             void createCommandPool();

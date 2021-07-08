@@ -34,16 +34,20 @@ namespace mh
     
     void Descriptor::allocate() { }
     void Descriptor::free() { }
-    void Descriptor::onRecord(const uint32_t& i) { }
+    void Descriptor::onRecord(Pipeline* pipeline) { }
     
     bool Shader::loadFromFile(const std::string& path) { return false; }
     void Shader::free() { }
     
-    PipelineAttribute::PipelineAttribute(const uint32_t& location, const uint32_t& binding, const uint32_t& offset, const VertexFormat& format, Buffer* buffer) : location(location), binding(binding), offset(offset), format(format), buffer(buffer) { }
+    PipelineAttribute::PipelineAttribute(const uint32_t& location, const uint32_t& binding, const uint32_t& offset, const VertexFormat& format) : location(location), binding(binding), offset(offset), format(format) { }
     PipelineBinding::PipelineBinding(const uint32_t& binding, const uint32_t& stride) : binding(binding), stride(stride) { }
-    PipelinePushConstantRange::PipelinePushConstantRange(const uint32_t& stageFlags, const uint32_t& offset, const uint32_t& size) : stageFlags(stageFlags), offset(offset), size(size) { }
+    PipelinePushConstantRange::PipelinePushConstantRange(const ShaderStage& stage, const std::string& name, const uint32_t& offset, const uint32_t& size) : stage(stage), name(name), offset(offset), size(size) { }
     
     void Pipeline::allocate() { }
     void Pipeline::free() { }
     void Pipeline::onRecord(const uint32_t& i) { }
+    void Pipeline::vertex(const std::vector<Buffer*>& buffers) { }
+    void Pipeline::index(Buffer* buffer) { }
+    void Pipeline::push(const uint32_t& i, void* data) { }
+    void Pipeline::drawIndexed(const uint32_t& vertices, const uint32_t& indices) { }
 }

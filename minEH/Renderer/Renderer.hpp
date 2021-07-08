@@ -19,6 +19,7 @@ namespace mh
     struct Renderer
     {
         enum class Type { undef, GL, Vk, MTL, WebGL, DX, DX12 } type;
+        bool UV_0{ 0 }, UV_1{ 1 };
         Window* window = nullptr;
         Camera* camera = nullptr;
     };
@@ -44,7 +45,7 @@ namespace mh
         virtual void free();
     };
     
-    enum class BufferType { Array, Vertex, Index, UV };
+    enum class BufferType { Array, Vertex, Index };
     enum class BufferUpdateType { Static, Dynamic };
     struct Buffer
     {
@@ -77,12 +78,13 @@ namespace mh
         Buffer* buffer;
         DescriptorLayout(const DescriptorType& type, const uint32_t& binding, const ShaderStage& stage, Texture* texture = nullptr, Buffer* buffer = nullptr);
     };
+    struct Pipeline;
     struct Descriptor
     {
         std::vector<DescriptorLayout> layouts;
         virtual void allocate();
         virtual void free();
-        virtual void onRecord(const uint32_t& i);
+        virtual void onRecord(Pipeline* pipeline);
     };
     
     struct Shader
@@ -104,21 +106,23 @@ namespace mh
         uint32_t location, binding;
         uint64_t offset;
         VertexFormat format;
-        Buffer* buffer;
-        PipelineAttribute(const uint32_t& location = 0, const uint32_t& binding = 0, const uint32_t& offset = 0, const VertexFormat& format = VertexFormat::UNDEFINED, Buffer* buffer = nullptr);
+        PipelineAttribute(const uint32_t& location = 0, const uint32_t& binding = 0, const uint32_t& offset = 0, const VertexFormat& format = VertexFormat::UNDEFINED);
     };
     struct PipelineBinding {
         uint32_t binding, stride;
         PipelineBinding(const uint32_t& binding = 0, const uint32_t& stride = 0);
     };
     struct PipelinePushConstantRange {
-        uint32_t stageFlags, offset, size;
-        PipelinePushConstantRange(const uint32_t& stageFlags = 0, const uint32_t& offset = 0, const uint32_t& size = 0);
+        std::string name;
+        ShaderStage stage;
+        uint32_t offset, size;
+        PipelinePushConstantRange(const ShaderStage& stage = ShaderStage::Vertex, const std::string& name = "", const uint32_t& offset = 0, const uint32_t& size = 0);
     };
     
     struct Pipeline
     {
         uint32_t pipelineID;
+        uint32_t page = 0;
         
         std::vector<Shader*> shaders;
         std::vector<PipelineAttribute> attributes;
@@ -129,12 +133,16 @@ namespace mh
         Descriptor* descriptor = nullptr;
         PipelinePolygonMode polygonMode = PipelinePolygonMode::Fill;
         PipelineCullMode cullMode = PipelineCullMode::Back;
-        PipelineFrontFace frontFace = PipelineFrontFace::CounterClockwise;
+        PipelineFrontFace frontFace = PipelineFrontFace::Clockwise;
         PipelineTopology topology = PipelineTopology::TriangleList;
         
         virtual void allocate();
         virtual void free();
         virtual void onRecord(const uint32_t& i);
+        virtual void vertex(const std::vector<Buffer*>& buffers);
+        virtual void index(Buffer* buffer);
+        virtual void push(const uint32_t& i, void* data);
+        virtual void drawIndexed(const uint32_t& vertices, const uint32_t& indices);
     };
 }
 

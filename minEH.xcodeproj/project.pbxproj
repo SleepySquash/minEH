@@ -511,8 +511,8 @@
 		DDD7BAA125B152C2007E3634 /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
-				DD8BB9842654736600388874 /* OpenGL.hpp */,
 				DD46E02825B9BB56001E4333 /* OpenGL.cpp */,
+				DD8BB9842654736600388874 /* OpenGL.hpp */,
 				DDD7BAA325B15567007E3634 /* Cocoa.mm */,
 				DDD7BAAE25B160BE007E3634 /* Shader.cpp */,
 				DDD7BAAF25B160BE007E3634 /* Shader.hpp */,
@@ -594,8 +594,8 @@
 			children = (
 				DD282A0925B8482D006D398F /* Vertex.hpp */,
 				DDD7BAA225B152E0007E3634 /* Context.hpp */,
-				DD8BB9852654739C00388874 /* Renderer.hpp */,
 				DD8BB9A5265530C500388874 /* Renderer.cpp */,
+				DD8BB9852654739C00388874 /* Renderer.hpp */,
 				DD8BB99F2655272D00388874 /* Factory.cpp */,
 				DD8BB9A02655272D00388874 /* Factory.hpp */,
 				DDD7BAA125B152C2007E3634 /* OpenGL */,
@@ -668,8 +668,8 @@
 		DDD7BB2125B31CD4007E3634 /* Vulkan */ = {
 			isa = PBXGroup;
 			children = (
-				DD8BB9862654746500388874 /* Vulkan.hpp */,
 				DD282A1225B86558006D398F /* Vulkan.cpp */,
+				DD8BB9862654746500388874 /* Vulkan.hpp */,
 				DDC4A37C25B42B5F006E2E0D /* Sprite.cpp */,
 				DDC4A37D25B42B5F006E2E0D /* Sprite.hpp */,
 				DD59BBBF25BDF3A00086DD0B /* Camera.cpp */,

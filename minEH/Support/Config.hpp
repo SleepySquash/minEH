@@ -25,7 +25,7 @@
 // #define MINEH_CPU
 
 // Define if you want Vulkan's validation layers
-// #define MINEH_VULKAN_VALIDATION
+#define MINEH_VULKAN_VALIDATION
 
 // This define means that MoltenVK (and not the Vulkan Loader for macOS which uses MoltenVK as well, but does not contain extended MoltenVK headers and functions) is used, so some optimization at a context creation time may be made.
 // #define MINEH_MOLTENVK

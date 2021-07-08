@@ -58,7 +58,7 @@ namespace mh
             Descriptor(Renderer* context);
             void allocate() override;
             void free() override;
-            void onRecord(const uint32_t& i) override;
+            void onRecord(mh::Pipeline* pipeline) override;
         };
         
         struct Pipeline : mh::Pipeline
@@ -70,6 +70,10 @@ namespace mh
             void allocate() override;
             void free() override;
             void onRecord(const uint32_t& i) override;
+            void vertex(const std::vector<mh::Buffer*>& buffers) override;
+            void index(mh::Buffer* buffer) override;
+            void push(const uint32_t& i, void* data) override;
+            void drawIndexed(const uint32_t& vertices, const uint32_t& indices) override;
         };
         
         struct Context : Renderer

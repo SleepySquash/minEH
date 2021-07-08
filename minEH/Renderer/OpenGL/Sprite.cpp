@@ -27,7 +27,7 @@ namespace mh
         void GLSprite::create()
         {
             VAO = (GL::Buffer*)Renders::Buffer(context); VAO->type = BufferType::Array; VAO->allocate();
-            UVO = (GL::Buffer*)Renders::Buffer(context); UVO->type = BufferType::UV; UVO->allocate();
+            UVO = (GL::Buffer*)Renders::Buffer(context); UVO->type = BufferType::Vertex; UVO->allocate();
             VBO = (GL::Buffer*)bc::get("quad-v")->buffer;
             EBO = (GL::Buffer*)bc::get("quad-i")->buffer;
             

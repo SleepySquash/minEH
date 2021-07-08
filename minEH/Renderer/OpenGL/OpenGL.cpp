@@ -17,6 +17,8 @@
 #include "../../Engine/Collector/Shader.hpp"
 #include "../../Engine/Collector/Font.hpp"
 
+#include <glm/gtc/type_ptr.hpp>
+
 namespace mh
 {
     namespace GL
@@ -116,7 +118,7 @@ namespace mh
         Descriptor::Descriptor(Renderer* context) : context((GL::Context*)context) { }
         void Descriptor::allocate() { }
         void Descriptor::free() { }
-        void Descriptor::onRecord(const uint32_t& i)
+        void Descriptor::onRecord(mh::Pipeline* pipeline)
         {
             GLuint tex = GL_TEXTURE0;
             for (auto& d : layouts) {
@@ -144,6 +146,7 @@ namespace mh
             }
             
             glGenVertexArrays(1, &VAO);
+            /*glGenVertexArrays(1, &VAO);
             glBindVertexArray(VAO);
             
             for (auto& a : attributes) {
@@ -161,13 +164,45 @@ namespace mh
                 glEnableVertexAttribArray(a.location); glVertexAttribPointer(a.location, count, GL_FLOAT, false, stride, (void*)(a.offset));
                 std::cout << a.location << " " << count << " " << stride << " " << (void*)(a.offset) << '\n';
             }
-            glBindVertexArray(0);
+            glBindVertexArray(0);*/
         }
         void Pipeline::free() { glDeleteProgram(pipelineID); glDeleteVertexArrays(1, &VAO); }
         void Pipeline::onRecord(const uint32_t& i) {
             if (context->shaderID != pipelineID) { glUseProgram(pipelineID); context->shaderID = pipelineID; }
             if (context->VAOID != VAO) { glBindVertexArray(VAO); context->VAOID = VAO; }
         }
+        void Pipeline::vertex(const std::vector<mh::Buffer*>& buffers) {
+            auto it = buffers.begin();
+            for (auto& a : attributes) {
+                if (a.location && !a.offset) ++it;
+                glBindBuffer(GL_ARRAY_BUFFER, ((GL::Buffer*)(*it))->id);
+                int format; uint32_t count, size;
+                switch (a.format) { default: format = GL_FLOAT; count = 0; size = 0; break;
+                    case VertexFormat::R32G32_SFLOAT: count = 2; format = GL_FLOAT; size = 4 * 2; break;
+                    case VertexFormat::R32G32B32_SFLOAT: count = 3; format = GL_FLOAT; size = 4 * 3; break;
+                    case VertexFormat::R32G32B32A32_SFLOAT: count = 4; format = GL_FLOAT; size = 4 * 4; break; }
+                uint32_t stride = 0; for (auto& b : bindings) { if (b.binding == a.binding) { stride = b.stride; break; } }
+                glEnableVertexAttribArray(a.location); glVertexAttribPointer(a.location, count, GL_FLOAT, false, stride, (void*)(a.offset));
+            }
+        }
+        void Pipeline::index(mh::Buffer* buffer) { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ((GL::Buffer*)buffer)->id); }
+        void Pipeline::push(const uint32_t& i, void* data)
+        {
+            switch (pushConstantRanges[i].size)
+            {
+                case sizeof(glm::vec4): {
+                    glm::vec4* d = reinterpret_cast<glm::vec4*>(data);
+                    glUniform4f(glGetUniformLocation(pipelineID, pushConstantRanges[i].name.c_str()), d->r, d->g, d->b, d->a);
+                } break;
+                case sizeof(glm::mat4): {
+                    glm::mat4* d = reinterpret_cast<glm::mat4*>(data);
+                    glUniformMatrix4fv(glGetUniformLocation(pipelineID, pushConstantRanges[i].name.c_str()), 1, false, glm::value_ptr(*d));
+                } break;
+                default: break;
+            }
+        }
+        // TODO: GL_TRINAGLES from PipelineTopology - make function-converter
+        void Pipeline::drawIndexed(const uint32_t& vertices, const uint32_t& indices) { glDrawElements(GL_TRIANGLES, vertices, GL_UNSIGNED_INT, 0); }
         
 #pragma mark -
 #pragma mark Context
@@ -200,6 +235,9 @@ namespace mh
             glDepthFunc(GL_LEQUAL);
             glEnable(GL_CULL_FACE);
             glCullFace(GL_BACK);
+            
+            UV_0 = 1;
+            UV_1 = 0;
             
             bc::bindContext(this);
             tc::bindContext(this);
