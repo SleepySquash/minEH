@@ -71,9 +71,9 @@ namespace mh
         glm::vec4 nuv = { uv.x / texture->width, uv.y / texture->height,
                           uv.z / texture->width, uv.w / texture->height };
         float uvs[] = {
-            nuv.x       , nuv.y + context->UV_0 * nuv.w,
+            nuv.x        , nuv.y + context->UV_0 * nuv.w,
             nuv.x + nuv.z, nuv.y + context->UV_0 * nuv.w,
-            nuv.x       , nuv.y + context->UV_1 * nuv.w,
+            nuv.x        , nuv.y + context->UV_1 * nuv.w,
             nuv.x + nuv.z, nuv.y + context->UV_1 * nuv.w };
         uvBuffer->update(uvs, sizeof(uvs));
         if (uvWH.x != uv.z || uvWH.y != uv.w) { uvWH = { uv.z, uv.w }; dirty(); }

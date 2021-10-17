@@ -97,6 +97,8 @@
 		DDADB4D226974B0F0081FA61 /* AnimatedImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4D026974B0F0081FA61 /* AnimatedImage.cpp */; };
 		DDADB4DE26976A950081FA61 /* RawSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4DC26976A950081FA61 /* RawSprite.cpp */; };
 		DDADB4DF26976A950081FA61 /* RawSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4DC26976A950081FA61 /* RawSprite.cpp */; };
+		DDADB4E726989BE10081FA61 /* RawText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4E526989BE10081FA61 /* RawText.cpp */; };
+		DDADB4E826989BE10081FA61 /* RawText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDADB4E526989BE10081FA61 /* RawText.cpp */; };
 		DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
 		DDCCB03625B993EC0078B279 /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDCCB03325B993EC0078B279 /* Drawable.cpp */; };
 		DDD7BA2025AF11F4007E3634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD7BA1F25AF11F4007E3634 /* Assets.xcassets */; };
@@ -253,6 +255,8 @@
 		DDADB4D526974B380081FA61 /* Examples.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Examples.hpp; sourceTree = "<group>"; };
 		DDADB4DC26976A950081FA61 /* RawSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RawSprite.cpp; sourceTree = "<group>"; };
 		DDADB4DD26976A950081FA61 /* RawSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RawSprite.hpp; sourceTree = "<group>"; };
+		DDADB4E526989BE10081FA61 /* RawText.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RawText.cpp; sourceTree = "<group>"; };
+		DDADB4E626989BE10081FA61 /* RawText.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RawText.hpp; sourceTree = "<group>"; };
 		DDCCB03325B993EC0078B279 /* Drawable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
 		DDCCB03425B993EC0078B279 /* Drawable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Drawable.hpp; sourceTree = "<group>"; };
 		DDD7BA1725AF11F1007E3634 /* macOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -420,6 +424,8 @@
 				DDADB4D026974B0F0081FA61 /* AnimatedImage.cpp */,
 				DDADB4DC26976A950081FA61 /* RawSprite.cpp */,
 				DDADB4DD26976A950081FA61 /* RawSprite.hpp */,
+				DDADB4E526989BE10081FA61 /* RawText.cpp */,
+				DDADB4E626989BE10081FA61 /* RawText.hpp */,
 			);
 			path = "1 - Basics";
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				DDF0C53525B6A5C900374CD6 /* Clock.cpp in Sources */,
 				DDD7BAB825B16146007E3634 /* ResourcePath.cpp in Sources */,
 				DD8BB999265474FC00388874 /* DirectX.cpp in Sources */,
+				DDADB4E726989BE10081FA61 /* RawText.cpp in Sources */,
 				DDF0C51A25B43B2B00374CD6 /* Color.cpp in Sources */,
 				DDCCB03525B993EC0078B279 /* Drawable.cpp in Sources */,
 				DD678E8C25EED39200058CEC /* Filesystem.cpp in Sources */,
@@ -955,6 +962,7 @@
 				DDA1152425C64004006B628E /* Parser.cpp in Sources */,
 				DD59BBBD25BDF1400086DD0B /* CameraController.cpp in Sources */,
 				DD8BB9A7265530C500388874 /* Renderer.cpp in Sources */,
+				DDADB4E826989BE10081FA61 /* RawText.cpp in Sources */,
 				DDF0C53C25B6AA8000374CD6 /* Texture.cpp in Sources */,
 				DD8BB99A265474FC00388874 /* DirectX.cpp in Sources */,
 				DD5B575C25BAF4E700C78C01 /* Pipeline.cpp in Sources */,

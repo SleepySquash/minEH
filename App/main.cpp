@@ -51,9 +51,7 @@ void _indevelopment()
     
     Texture* texture = Renders::Texture(&context,
                                         resourcePath() + "Images/nekos/dbcf0cbc94c8b5e3f649f770a7cbb57649a42cc0_hq2.jpg");
-    RawSprite sprite(&context, texture);
-    sprite.setScale(2.f);
-    RawSprite sprite1(&context, texture);
+    RawSprite sprite(&context, texture); sprite.setScale(2.f);
     
     uint32_t frame = 0;
     float elapsed = 0.f;
@@ -69,7 +67,6 @@ void _indevelopment()
                 case Event::Type::Closed: window.close(); break;
                 case Event::Type::Resized: window.resize(event); context.resize();
                     sprite.resize(); sprite.setPosition(glm::vec2(window.width / 2, window.height / 2));
-                    sprite1.resize();
                     break;
                 default: break;
             }
@@ -99,7 +96,6 @@ void _indevelopment()
                 context.beginRecord(i);
                 {
                     sprite.record(i);
-                    // sprite1.record(i);
                     composition.record(i);
                 }
                 context.endRecord(i);
@@ -114,7 +110,6 @@ void _indevelopment()
     context.wait();
     composition.destroy();
     sprite.destroy();
-    sprite1.destroy();
     texture->free();
     context.destroy();
 }
