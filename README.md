@@ -20,7 +20,7 @@ Example of usage is for now embedded into the project - App subfolder (main.cpp 
 # Window and events
 Window is an abstract entity which has really intuitive interface. In order to create one, you simply create a Window and then call the open function:
 ```
-Window window;
+Window window; 
 window.open();
 ```
 Before opening the window you can specify its dimentions and title.
